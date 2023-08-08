@@ -1,10 +1,28 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 
 function NavBar() {
+    const { user, logout } = useUserContext();
+
+    const navigate = useNavigate();
+
+    function logoutUser() {
+        fetch('/logout', {
+            method: 'DELETE',
+            header: { 'Content-Type': 'application/json' }
+        })
+        .then(() => {
+            logout();
+            navigate('/');
+        });
+    }
+
     return (
         <nav>
-            <NavLink>Login/Logout</NavLink>
+            <h1>{user && user.first_name}</h1>
+            <NavLink to='/'>Enter title</NavLink>
+            {user ? <Link onClick={logoutUser}>Logout</Link> : <Link to='/login'>Login</Link>}
         </nav>
     );
 }

@@ -1,17 +1,22 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useUserContext } from './context/UserContext';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import Signup from './components/Signup';
+import Auth from './components/Auth';
 
 function App() {
-  const { user, login} = useUserContext();
+  const { login } = useUserContext();
 
-  function loginUser(userData) {
-    login(userData);
-  }
+  useEffect(() => {
+    fetch('/me')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => login(data));
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -20,8 +25,8 @@ function App() {
         <Route path='/' element={
           <Home />
         } />
-        <Route path='/signup' element={
-          <Signup onLoginUser={loginUser}/>
+        <Route path='/login' element={
+          <Auth />
         } />
       </Routes>
     </div>
