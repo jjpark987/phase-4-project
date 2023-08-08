@@ -15,7 +15,7 @@ function Home() {
             </form>
             <Link to='/signup'>Sign up</Link>
         </div>
-    )
+    );
 }
 
 export default Home;

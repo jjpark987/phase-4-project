@@ -6,7 +6,7 @@ function NavBar() {
         <nav>
             <NavLink>Login/Logout</NavLink>
         </nav>
-    )
+    );
 }
 
 export default NavBar;
