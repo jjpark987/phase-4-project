@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'rest-client'
 
 puts 'Seeding 50 Users...'
 
@@ -21,3 +22,24 @@ puts 'Seeding 50 Users...'
 end
 
 puts 'Done seeding users'
+
+puts 'Seeding exercises from ExerciseDB...'
+
+response = RestClient.get 'https://exercisedb.p.rapidapi.com/exercises', {
+    'X-RapidAPI-Key': '9bccf8aa16mshb5158258741576fp17eab0jsn6262f01bd491',
+    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+}
+
+exercises = JSON.parse(response)
+
+exercises.each do |exercise|
+    Exercise.create(
+        name: exercise['name'], 
+        body_part: exercise['bodyPart'], 
+        target: exercise['target'],
+        equipment: exercise['equipment'],
+        gif_url: exercise['gifUrl']
+    )
+end
+
+puts 'Done seeding exercises'
