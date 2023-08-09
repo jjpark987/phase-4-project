@@ -26,7 +26,7 @@ puts 'Done seeding users'
 puts 'Seeding exercises from ExerciseDB...'
 
 response = RestClient.get 'https://exercisedb.p.rapidapi.com/exercises', {
-    'X-RapidAPI-Key': '9bccf8aa16mshb5158258741576fp17eab0jsn6262f01bd491',
+    'X-RapidAPI-Key': ENV['RAPIDAPI_KEY'],
     'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
 }
 
