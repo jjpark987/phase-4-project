@@ -20,7 +20,6 @@ function NavBar() {
 
     return (
         <nav>
-            <h1>{user && user.first_name}</h1>
             <NavLink to='/'>Enter title</NavLink>
             {user ? <Link onClick={logoutUser}>Logout</Link> : <Link to='/login'>Login</Link>}
         </nav>

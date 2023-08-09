@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+/* NavBar.js */
+nav {
+  background-color: rgb(0, 0, 0);
+  font-size: x-large;
+  height: 10vh;
+  padding: 0 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav a,
+nav h1 {
+  color: rgb(255, 255, 255);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Shared */
+.component {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 3vh;
 }
 
-.App-link {
-  color: #61dafb;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label {
+  font-size: large;
+}
+
+input {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: large;
+  margin-bottom: 3vh;
+}
+
+.login-signup-btn {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: xx-large;
+  width: fit-content;
+}
+
+.login-signup-switch-btn {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: large;
+  width: fit-content;
 }

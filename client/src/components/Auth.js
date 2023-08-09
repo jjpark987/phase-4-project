@@ -102,10 +102,11 @@ function Auth() {
 
     if (showLogin) {
         return (
-            <div>
+            <div className='component'>
+                <button className='login-signup-switch-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Create a new account</button>
                 <h1>Login</h1>
-                <form onSubmit={submitAccount}>
-                    <label htmlFor='login-email'>Email: </label>
+                <form className='form' onSubmit={submitAccount}>
+                    <label htmlFor='login-email'>Email:</label>
                     <input 
                         id='login-email' 
                         name='email'
@@ -113,7 +114,7 @@ function Auth() {
                         onChange={updateAccount}
                         required
                     />
-                    <label htmlFor='login-password'>Password: </label>
+                    <label htmlFor='login-password'>Password:</label>
                     <input 
                         id='login-password' 
                         name='password'
@@ -121,19 +122,19 @@ function Auth() {
                         onChange={updateAccount}
                         required
                     />
-                    <button>Login</button>
+                    <button className='login-signup-btn'>Login</button>
                 </form>
                 <h3>{errors.error}</h3>
-                <button type='button' onClick={() => setShowLogin(!showLogin)}>Sign up</button>
             </div>
         );
     }
 
     return (
-        <div>
-            <h1>Create an account</h1>
-            <form onSubmit={submitNewAccount}>
-                <label htmlFor='signup-first-name'>First Name: </label>
+        <div className='component'>
+            <button className='login-signup-switch-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Login to your account</button>
+            <h1>Sign up</h1>
+            <form className='form' onSubmit={submitNewAccount}>
+                <label htmlFor='signup-first-name'>First name:</label>
                 <input 
                     id='signup-first-name'
                     name='firstName'
@@ -141,7 +142,7 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <label htmlFor='signup-last-name'>Last Name: </label>
+                <label htmlFor='signup-last-name'>Last name:</label>
                 <input 
                     id='signup-last-name'
                     name='lastName'
@@ -149,7 +150,7 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <label htmlFor='signup-email'>Email: </label>
+                <label htmlFor='signup-email'>Email:</label>
                 <input 
                     id='signup-email'
                     name='email'
@@ -157,7 +158,7 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <label htmlFor='signup-password'>Password: </label>
+                <label htmlFor='signup-password'>Password:</label>
                 <input 
                     id='signup-password'
                     name='password'
@@ -165,7 +166,7 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <label htmlFor='signup-password-confirmation'>Password confirmation: </label>
+                <label htmlFor='signup-password-confirmation'>Password confirmation:</label>
                 <input 
                     id='signup-password-confirmation'
                     name='passwordConfirmation'
@@ -173,12 +174,11 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <button>Sign up</button>
+                <button className='login-signup-btn'>Sign up</button>
             </form>
             {errors.errors && (errors.errors.map(
                 (error, index) => <h3 key={index}>{error}</h3>
             ))}
-            <button type='button' onClick={() => setShowLogin(!showLogin)}>Login</button>
         </div>
     );
 }
