@@ -1,20 +1,8 @@
-/* NavBar.js */
-nav {
-  background-color: rgb(0, 0, 0);
-  font-size: x-large;
-  height: 10vh;
-  padding: 0 3vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav a,
-nav h1 {
-  color: rgb(255, 255, 255);
-}
-
 /* Shared */
+button {
+  font-family: Impact, fantasy, -apple-system;
+}
+
 .component {
   display: flex;
   flex-direction: column;
@@ -22,7 +10,29 @@ nav h1 {
   margin-top: 3vh;
 }
 
-.form {
+/* NavBar.js */
+nav {
+  height: 5vh;
+  background-color: rgb(0, 0, 0);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+nav a,
+nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: large;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+/* Auth.js */
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,14 +49,30 @@ input {
   margin-bottom: 3vh;
 }
 
-.login-signup-btn {
-  font-family: Impact, fantasy, -apple-system;
-  font-size: xx-large;
-  width: fit-content;
+.login-signup-switch-btn {
+  font-size: large;
 }
 
-.login-signup-switch-btn {
-  font-family: Impact, fantasy, -apple-system;
-  font-size: large;
-  width: fit-content;
+.login-signup-btn {
+  font-size: xx-large;
+}
+
+/* AllExercises.js */
+#pages {
+  margin: 3vh 0;
+}
+
+/* Exercise.js */
+#exercise-info {
+  display: flex;
+}
+
+#exercise-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+img {
+  width: 20vw;
 }

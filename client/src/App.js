@@ -5,6 +5,7 @@ import { useUserContext } from './context/UserContext';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Auth from './components/Auth';
+import AllExercises from './components/AllExercises';
 
 function App() {
   const { login } = useUserContext();
@@ -27,6 +28,9 @@ function App() {
         } />
         <Route path='/login' element={
           <Auth />
+        } />
+        <Route path='/exercises' element={
+          <AllExercises />
         } />
       </Routes>
     </div>
