@@ -103,7 +103,7 @@ function Auth() {
     if (showLogin) {
         return (
             <div className='component'>
-                <button className='login-signup-switch-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Create a new account</button>
+                <button className='large-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Create a new account</button>
                 <h1>Login</h1>
                 <form className='form' onSubmit={submitAccount}>
                     <label htmlFor='login-email'>Email:</label>
@@ -122,7 +122,7 @@ function Auth() {
                         onChange={updateAccount}
                         required
                     />
-                    <button className='login-signup-btn'>Login</button>
+                    <button className='xx-large-btn'>Login</button>
                 </form>
                 <h3>{errors.error}</h3>
             </div>
@@ -131,7 +131,7 @@ function Auth() {
 
     return (
         <div className='component'>
-            <button className='login-signup-switch-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Login to your account</button>
+            <button className='large-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Login to your account</button>
             <h1>Sign up</h1>
             <form className='form' onSubmit={submitNewAccount}>
                 <label htmlFor='signup-first-name'>First name:</label>
@@ -174,7 +174,7 @@ function Auth() {
                     onChange={updateNewAccount}
                     required 
                 />
-                <button className='login-signup-btn'>Sign up</button>
+                <button className='xx-large-btn'>Sign up</button>
             </form>
             {errors.errors && (errors.errors.map(
                 (error, index) => <h3 key={index}>{error}</h3>

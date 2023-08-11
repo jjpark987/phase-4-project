@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Auth from './components/Auth';
 import AllExercises from './components/AllExercises';
+import AddExercise from './components/AddExercise';
 
 function App() {
   const { login } = useUserContext();
@@ -31,6 +32,9 @@ function App() {
         } />
         <Route path='/exercises' element={
           <AllExercises />
+        } />
+        <Route path='/exercises/add' element={
+          <AddExercise />
         } />
       </Routes>
     </div>

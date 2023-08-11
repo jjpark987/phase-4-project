@@ -3,6 +3,14 @@ button {
   font-family: Impact, fantasy, -apple-system;
 }
 
+.large-btn {
+  font-size: large;
+}
+
+.xx-large-btn {
+  font-size: xx-large;
+}
+
 .component {
   display: flex;
   flex-direction: column;
@@ -49,17 +57,23 @@ input {
   margin-bottom: 3vh;
 }
 
-.login-signup-switch-btn {
-  font-size: large;
-}
-
-.login-signup-btn {
-  font-size: xx-large;
-}
-
 /* AllExercises.js */
-#pages {
-  margin: 3vh 0;
+#all-exercises {
+  display: grid;
+  grid-template-rows: [top] 10vh [middle] 1fr [bottom] 5vh;
+}
+
+#add-exercise {
+  font-size: x-large;
+}
+
+#exercise-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#page_navigation {
+
 }
 
 /* Exercise.js */

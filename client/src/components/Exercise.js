@@ -9,7 +9,7 @@ function Exercise({ exercise }) {
         <div>
             <h1>{capitalize(exercise.name)}</h1>
             <div id='exercise-info'>
-                <img src={exercise.gif_url} alt={exercise.gif_url} />
+                <img src={exercise.gif_url} alt={exercise.name} />
                 <div id='exercise-detail'>
                     <p>{capitalize(exercise.target)}</p>
                     <p>Equipment: {capitalize(exercise.equipment)}</p>

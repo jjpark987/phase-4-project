@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :exercises, only: [:index]
+  resources :exercises, only: [:index, :create]
   # Authentication
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'

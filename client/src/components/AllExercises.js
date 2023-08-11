@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Exercise from "./Exercise";
 
 function AllExercises() {
@@ -20,13 +21,14 @@ function AllExercises() {
     }, []);
 
     return (
-        <div className='component'>
-            <div>
-                {exercises.slice(start, start + 5).map(exercise => (
+        <div id='all-exercises'>
+            <Link id='add-exercise' to='/exercises/add'>Add new exercise</Link>
+            <div id='exercise-container'>
+                {exercises.slice(start, start + 3).map(exercise => (
                     <Exercise key={exercise.id} exercise={exercise} />
                 ))}
             </div>
-            <div id='pages'>
+            <div id='page_navigation'>
                 {start !== 0 && <button onClick={prevPage}>Back</button>}
                 {start <= exercises.length - 10 && <button onClick={nextPage}>Next</button>}
             </div>
