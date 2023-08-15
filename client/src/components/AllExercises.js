@@ -7,11 +7,11 @@ function AllExercises() {
     const [start, setStart] = useState(0);
 
     function nextPage() {
-        setStart(start + 10);
+        setStart(start + 3);
     }
 
     function prevPage() {
-        setStart(start - 10);
+        setStart(start - 3);
     }
 
     useEffect(() => {
