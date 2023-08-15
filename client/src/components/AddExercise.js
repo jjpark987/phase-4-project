@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddExercise() {
+    function capitalize(string) {
+        return string[0].toUpperCase() + string.slice(1).toLowerCase();
+    }
+
     const navigate = useNavigate();
 
     const [addExercise, setAddExercise] = useState({
@@ -12,9 +16,33 @@ function AddExercise() {
         gifUrl: ''
     });
     const [errors, setErrors] = useState([]);
+    const [uniqueAttributes, setUniqueAttributes] = useState({
+        bodyParts: [],
+        targets: [],
+        equipments: []
+    });
+    const [showInput, setShowInput] = useState({
+        bodyPart: false,
+        target: false,
+        equipment: false
+    });
+
+    useEffect(() => {
+        fetch('/exercises/unique_attributes')
+        .then(res => res.json())
+        .then(data => setUniqueAttributes({
+            bodyParts: data.body_parts.sort(),
+            targets: data.targets.sort(),
+            equipments: data.equipments.sort()
+        }))
+        .catch(error => console.error(error));
+    }, []);
 
     function updateAddExercise(e) {
-        setAddExercise({ ...addExercise, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        value === '' && setShowInput({ ...showInput, [name]: !showInput.name });
+        setAddExercise({ ...addExercise, [name]: value });
     }
 
     function submitExercise(e) {
@@ -43,7 +71,8 @@ function AddExercise() {
             } else {
                 response.then(data => setErrors(data))
             }
-        });
+        })
+        .catch(error => console.error(error));
     }
 
     return (
@@ -59,28 +88,58 @@ function AddExercise() {
                     required
                 />
                 <label htmlFor='exercise-body-part'>Body part:</label>
-                <input 
+                <select 
                     id='exercise-body-part'
                     name='bodyPart'
                     value={addExercise.bodyPart}
                     onChange={updateAddExercise}
-                    required    
+                >
+                    <option value=''>Add new body part</option>
+                    {uniqueAttributes.bodyParts.map((bodyPart, index) => (
+                        <option key={index} value={bodyPart}>{capitalize(bodyPart)}</option>
+                    ))}
+                </select>
+                <input
+                        name='bodyPart'
+                        value={addExercise.bodyPart}
+                        onChange={updateAddExercise}
+                        required   
                 />
                 <label htmlFor='exercise-target'>Target muscle:</label>
-                <input 
+                <select 
                     id='exercise-target'
                     name='target'
                     value={addExercise.target}
                     onChange={updateAddExercise}
-                    required
+                >
+                    <option value=''>Add new muscle group</option>
+                    {uniqueAttributes.targets.map((target, index) => (
+                        <option key={index} value={target}>{capitalize(target)}</option>
+                    ))}
+                </select>
+                <input
+                    name='target'
+                    value={addExercise.target}
+                    onChange={updateAddExercise}
+                    required   
                 />
                 <label htmlFor='exercise-equipment'>Equipment:</label>
-                <input 
+                <select 
                     id='exercise-equipment'
                     name='equipment'
                     value={addExercise.equipment}
                     onChange={updateAddExercise}
-                    required    
+                >
+                    <option value=''>Add new equipment</option>
+                    {uniqueAttributes.equipments.map((equipment, index) => (
+                        <option key={index} value={equipment}>{capitalize(equipment)}</option>
+                    ))}
+                </select>
+                <input
+                    name='equipment'
+                    value={addExercise.equipment}
+                    onChange={updateAddExercise} 
+                    required
                 />
                 <label htmlFor='exercise-gif-url'>Gif or image URL:</label>
                 <input 

@@ -50,7 +50,8 @@ function Auth() {
             } else {
                 response.then(data => setErrors(data));
             }
-        });
+        })
+        .catch(error => console.error(error));
     }
 
     function submitAccount(e) {
@@ -90,7 +91,7 @@ function Auth() {
                     const loginData = {
                         email: newAccount.email,
                         password: newAccount.password
-                    }
+                    };
 
                     createSession(loginData);
                 });
@@ -98,6 +99,7 @@ function Auth() {
                 response.then(data => setErrors(data));
             }
         })
+        .catch(error => console.error(error));
     }
 
     if (showLogin) {

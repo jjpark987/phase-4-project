@@ -10,6 +10,10 @@ class ExercisesController < ApplicationController
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
+    def unique_attributes
+        render json: Exercise.unique_attributes
+    end
+
     private
 
     def exercise_params

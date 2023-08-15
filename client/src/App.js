@@ -17,7 +17,8 @@ function App() {
       if (res.ok) {
         res.json().then(data => login(data));
       }
-    });
+    })
+    .catch(error => console.error(error));
   }, []);
 
   return (

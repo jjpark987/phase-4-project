@@ -18,6 +18,7 @@ function AllExercises() {
         fetch('/exercises')
         .then(res => res.json())
         .then(data => setExercises(data))
+        .catch(error => console.error(error));
     }, []);
 
     return (
@@ -30,7 +31,7 @@ function AllExercises() {
             </div>
             <div id='page_navigation'>
                 {start !== 0 && <button onClick={prevPage}>Back</button>}
-                {start <= exercises.length - 10 && <button onClick={nextPage}>Next</button>}
+                {start <= exercises.length - 3 && <button onClick={nextPage}>Next</button>}
             </div>
         </div>
     );

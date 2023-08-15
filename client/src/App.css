@@ -1,4 +1,27 @@
 /* Shared */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+label {
+  font-size: x-large;
+}
+
+input {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: large;
+  margin-bottom: 3vh;
+}
+
+select {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: large;
+  margin-bottom: 3vh;
+}
+
 button {
   font-family: Impact, fantasy, -apple-system;
 }
@@ -39,31 +62,15 @@ nav button {
   cursor: pointer;
 }
 
-/* Auth.js */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3vh;
-}
-
-label {
-  font-size: large;
-}
-
-input {
-  font-family: Impact, fantasy, -apple-system;
-  font-size: large;
-  margin-bottom: 3vh;
-}
-
 /* AllExercises.js */
 #all-exercises {
   display: grid;
   grid-template-rows: [top] 10vh [middle] 1fr [bottom] 5vh;
+  justify-items: center;
 }
 
 #add-exercise {
+  place-self: center;
   font-size: x-large;
 }
 
@@ -73,7 +80,7 @@ input {
 }
 
 #page_navigation {
-
+  place-self: center;
 }
 
 /* Exercise.js */

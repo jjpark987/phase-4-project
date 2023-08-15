@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :exercises, only: [:index, :create]
+  get '/exercises/unique_attributes', to: 'exercises#unique_attributes'
   # Authentication
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'

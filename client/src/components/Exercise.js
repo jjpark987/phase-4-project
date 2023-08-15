@@ -7,13 +7,12 @@ function Exercise({ exercise }) {
 
     return (
         <div>
-            <h1>{capitalize(exercise.name)}</h1>
+            <h2>{capitalize(exercise.name)}</h2>
             <div id='exercise-info'>
                 <img src={exercise.gif_url} alt={exercise.name} />
                 <div id='exercise-detail'>
                     <p>{capitalize(exercise.target)}</p>
                     <p>Equipment: {capitalize(exercise.equipment)}</p>
-                    <p>{exercise.equipment === 'assisted' && 'Assitance needed'}</p>
                 </div>
             </div>
         </div>
