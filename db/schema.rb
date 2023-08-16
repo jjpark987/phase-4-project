@@ -33,19 +33,19 @@ ActiveRecord::Schema.define(version: 2023_08_15_184136) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "exercises_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "exercise_id", null: false
     t.string "day"
-    t.string "sets"
-    t.string "reps"
-    t.string "weight"
-    t.string "duration"
+    t.integer "sets"
+    t.integer "reps"
+    t.integer "weight"
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exercises_id"], name: "index_workouts_on_exercises_id"
-    t.index ["users_id"], name: "index_workouts_on_users_id"
+    t.index ["exercise_id"], name: "index_workouts_on_exercise_id"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
-  add_foreign_key "workouts", "exercises", column: "exercises_id"
-  add_foreign_key "workouts", "users", column: "users_id"
+  add_foreign_key "workouts", "exercises"
+  add_foreign_key "workouts", "users"
 end

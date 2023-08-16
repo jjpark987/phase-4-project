@@ -9,15 +9,15 @@
 require 'faker'
 require 'rest-client'
 
-puts 'Seeding 50 Users...'
+puts 'Seeding 10 users...'
 
-50.times do 
+10.times do 
     User.create(
         email: Faker::Internet.email,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        password: 'password',
-        password_confirmation: 'password'
+        password: 'a',
+        password_confirmation: 'a'
     )
 end
 
@@ -43,3 +43,21 @@ exercises.each do |exercise|
 end
 
 puts 'Done seeding exercises'
+
+puts 'Seeding 50 workouts...'
+
+days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+
+50.times do
+    Workout.create(
+        user_id: rand(1..10),
+        exercise_id: rand(1..1324),
+        day: days.sample,
+        sets: rand(4..8),
+        reps: rand(6..12),
+        weight: rand(5..100),
+        duration: nil
+    )
+end
+
+puts 'Done seeding workouts'

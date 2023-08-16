@@ -1,20 +1,20 @@
 import React from "react";
+import { useUserContext } from "../context/UserContext";
 
-function Exercise({ exercise }) {
-    function capitalize(string) {
-        return string[0].toUpperCase() + string.slice(1).toLowerCase();
-    }
+function Exercise({ exercise, onUpdateWorkoutData }) {
+    const { user } = useUserContext();
 
     return (
         <div>
-            <h2>{capitalize(exercise.name)}</h2>
+            <h2>{exercise.name}</h2>
             <div id='exercise-info'>
                 <img src={exercise.gif_url} alt={exercise.name} />
                 <div id='exercise-detail'>
-                    <p>{capitalize(exercise.target)}</p>
-                    <p>Equipment: {capitalize(exercise.equipment)}</p>
+                    <p>{exercise.target}</p>
+                    <p>Equipment: {exercise.equipment}</p>
                 </div>
             </div>
+            {user && <button onClick={() => onUpdateWorkoutData('exercise', exercise)}>Add to workout</button>}
         </div>
     );
 }

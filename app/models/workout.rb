@@ -1,4 +1,6 @@
 class Workout < ApplicationRecord
-  belongs_to :users
-  belongs_to :exercises
+  belongs_to :user
+  belongs_to :exercise
+
+  validates :day, presence: true
 end

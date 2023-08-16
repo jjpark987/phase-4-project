@@ -26,7 +26,7 @@ function NavBar() {
         <nav>
             <NavLink to='/'>Enter title</NavLink>
             <NavLink to='/exercises'>All exercises</NavLink>
-            <NavLink to='/'>My workouts</NavLink>
+            <NavLink to='/workouts'>My workouts</NavLink>
             {user ? 
                 <button onClick={logoutUser}>Logout</button> : 
                 <button onClick={loginUser}>Login</button>

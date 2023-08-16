@@ -1,5 +1,9 @@
 class Exercise < ApplicationRecord
+    has_many :workouts
+    has_many :users, through: :workouts
+
     before_validation :lowercase_all, :remove_parentheses, :update_equipments
+    
     validates :name, :body_part, :target, :equipment, presence: true
     validates :name, uniqueness: true
 

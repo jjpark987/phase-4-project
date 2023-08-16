@@ -1,5 +1,6 @@
 class WorkoutSerializer < ActiveModel::Serializer
-  attributes :id, :day, :sets, :reps, :weight
-  has_one :users
-  has_one :exercises
+  attributes :id, :day, :sets, :reps, :weight, :duration
+
+  has_one :user
+  has_one :exercise
 end

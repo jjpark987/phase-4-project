@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddExercise() {
-    function capitalize(string) {
-        return string[0].toUpperCase() + string.slice(1).toLowerCase();
-    }
-
     const navigate = useNavigate();
 
     const [addExercise, setAddExercise] = useState({
@@ -31,9 +27,9 @@ function AddExercise() {
         fetch('/exercises/unique_attributes')
         .then(res => res.json())
         .then(data => setUniqueAttributes({
-            bodyParts: data.body_parts.sort(),
-            targets: data.targets.sort(),
-            equipments: data.equipments.sort()
+            bodyParts: data.body_parts,
+            targets: data.targets,
+            equipments: data.equipments
         }))
         .catch(error => console.error(error));
     }, []);
@@ -96,7 +92,7 @@ function AddExercise() {
                 >
                     <option value=''>Add new body part</option>
                     {uniqueAttributes.bodyParts.map((bodyPart, index) => (
-                        <option key={index} value={bodyPart}>{capitalize(bodyPart)}</option>
+                        <option key={index} value={bodyPart}>{bodyPart}</option>
                     ))}
                 </select>
                 <input
@@ -114,7 +110,7 @@ function AddExercise() {
                 >
                     <option value=''>Add new muscle group</option>
                     {uniqueAttributes.targets.map((target, index) => (
-                        <option key={index} value={target}>{capitalize(target)}</option>
+                        <option key={index} value={target}>{target}</option>
                     ))}
                 </select>
                 <input
@@ -132,7 +128,7 @@ function AddExercise() {
                 >
                     <option value=''>Add new equipment</option>
                     {uniqueAttributes.equipments.map((equipment, index) => (
-                        <option key={index} value={equipment}>{capitalize(equipment)}</option>
+                        <option key={index} value={equipment}>{equipment}</option>
                     ))}
                 </select>
                 <input

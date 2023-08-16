@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Exercise from "./Exercise";
 
-function AllExercises() {
+function AllExercises({ onUpdateWorkoutData }) {
     const [exercises, setExercises] = useState([]);
     const [start, setStart] = useState(0);
 
     function nextPage() {
-        setStart(start + 3);
+        setStart(start + 10);
     }
 
     function prevPage() {
-        setStart(start - 3);
+        setStart(start - 10);
     }
 
     useEffect(() => {
@@ -25,13 +25,13 @@ function AllExercises() {
         <div id='all-exercises'>
             <Link id='add-exercise' to='/exercises/add'>Add new exercise</Link>
             <div id='exercise-container'>
-                {exercises.slice(start, start + 3).map(exercise => (
-                    <Exercise key={exercise.id} exercise={exercise} />
+                {exercises.slice(start, start + 10).map(exercise => (
+                    <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutData={onUpdateWorkoutData} />
                 ))}
             </div>
             <div id='page_navigation'>
                 {start !== 0 && <button onClick={prevPage}>Back</button>}
-                {start <= exercises.length - 3 && <button onClick={nextPage}>Next</button>}
+                {start <= exercises.length - 10 && <button onClick={nextPage}>Next</button>}
             </div>
         </div>
     );
