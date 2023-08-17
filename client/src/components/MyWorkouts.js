@@ -91,8 +91,9 @@ function MyWorkouts({ onUpdateWorkoutInfo }) {
     }
 
     return (
-        <div>
+        <div className='component'>
             <h1>Please login</h1>
+            <h3>Add some image?</h3>
         </div>
     );
 }
