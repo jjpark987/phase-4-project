@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Exercise from "./Exercise";
 
-function AllExercises({ onUpdateWorkoutData }) {
+function AllExercises({ onUpdateWorkoutInfo }) {
     const [exercises, setExercises] = useState([]);
     const [start, setStart] = useState(0);
 
@@ -26,7 +26,7 @@ function AllExercises({ onUpdateWorkoutData }) {
             <Link id='add-exercise' to='/exercises/add'>Add new exercise</Link>
             <div id='exercise-container'>
                 {exercises.slice(start, start + 10).map(exercise => (
-                    <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutData={onUpdateWorkoutData} />
+                    <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutInfo={onUpdateWorkoutInfo} />
                 ))}
             </div>
             <div id='page_navigation'>

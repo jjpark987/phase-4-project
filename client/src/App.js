@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Auth from './components/Auth';
 import AllExercises from './components/AllExercises';
 import AddExercise from './components/AddExercise';
-import Workouts from './components/Workouts';
+import MyWorkouts from './components/MyWorkouts';
 import AddWorkout from './components/AddWorkout';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const [workoutData, setWorkoutData] = useState({
+  const [workoutInfo, setWorkoutInfo] = useState({
     day: '',
     exercise: {}
   });
@@ -30,8 +30,8 @@ function App() {
     .catch(error => console.error(error));
   }, []);
 
-  function updateWorkoutData(key, value) {
-    setWorkoutData({ ...workoutData, [key]: value });
+  function updateWorkoutInfo(key, value) {
+    setWorkoutInfo({ ...workoutInfo, [key]: value });
     navigate('/workouts/add');
   }
 
@@ -46,16 +46,16 @@ function App() {
           <Auth />
         } />
         <Route path='/exercises' element={
-          <AllExercises onUpdateWorkoutData={updateWorkoutData}/>
+          <AllExercises onUpdateWorkoutInfo={updateWorkoutInfo}/>
         } />
         <Route path='/exercises/add' element={
           <AddExercise />
         } />
         <Route path='/workouts' element={
-          <Workouts onUpdateWorkoutData={updateWorkoutData}/>
+          <MyWorkouts onUpdateWorkoutInfo={updateWorkoutInfo}/>
         } />
         <Route path='/workouts/add' element={
-          <AddWorkout workoutData={workoutData} onUpdateWorkoutData={updateWorkoutData} />
+          <AddWorkout workoutInfo={workoutInfo} onUpdateWorkoutInfo={updateWorkoutInfo} />
         } />
       </Routes>
     </div>

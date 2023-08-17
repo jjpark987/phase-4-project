@@ -65,7 +65,7 @@ nav button {
 /* AllExercises.js */
 #all-exercises {
   display: grid;
-  grid-template-rows: [top] 10vh [middle] 1fr [bottom] 5vh;
+  grid-template-rows: [header] 10vh [container] 1fr [footer] 5vh;
   justify-items: center;
 }
 
@@ -81,6 +81,7 @@ nav button {
 
 #page_navigation {
   place-self: center;
+  margin-top: 3vh;
 }
 
 /* Exercise.js */
@@ -96,4 +97,52 @@ nav button {
 
 img {
   width: 20vw;
+}
+
+/* MyWorkouts.js */
+#my-workout {
+  display: grid;
+  grid-template-rows: [title] 10vh [table] 1fr;
+  justify-items: center;
+  margin-top: 3vh;
+}
+
+table {  
+  margin-top: 3vh;
+  background-color: rgb(255, 255, 255);
+}
+
+tr {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+th {
+  border: 2px solid;
+  border-top: none;
+}
+
+td {
+  border: 2px solid;
+  border-bottom: none;
+}
+
+#workout-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 1vh;
+  border-bottom: 2px dashed;
+}
+
+#workout-name {
+  display: flex;
+  align-items: center;
+}
+
+#workout-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 1vh;
 }

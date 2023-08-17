@@ -1,7 +1,7 @@
 import React from "react";
 import { useUserContext } from "../context/UserContext";
 
-function Exercise({ exercise, onUpdateWorkoutData }) {
+function Exercise({ exercise, onUpdateWorkoutInfo }) {
     const { user } = useUserContext();
 
     return (
@@ -14,7 +14,7 @@ function Exercise({ exercise, onUpdateWorkoutData }) {
                     <p>Equipment: {exercise.equipment}</p>
                 </div>
             </div>
-            {user && <button onClick={() => onUpdateWorkoutData('exercise', exercise)}>Add to workout</button>}
+            {user && <button onClick={() => onUpdateWorkoutInfo('exercise', exercise)}>Add to workout</button>}
         </div>
     );
 }
