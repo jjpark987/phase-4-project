@@ -41,6 +41,14 @@ button {
   margin-top: 3vh;
 }
 
+.error-msg {
+  margin-top: 3vh;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* NavBar.js */
 nav {
   height: 5vh;
@@ -63,40 +71,11 @@ nav button {
 }
 
 /* AllExercises.js */
-/* #all-exercises {
-  display: grid;
-  grid-template-areas:
-    "add-exercise"
-    'search-filter'
-    "exercise-container"
-    "page-navigation";
-  justify-items: center;
-}
-
-#add-exercise {
-  place-self: center;
-  font-size: x-large;
-}
-
-#search-filter {
-  place-self: center;
-}
-
-#exercise-container {
-  display: flex;
-  flex-direction: column;
-}
-
-#page-navigation {
-  place-self: center;
-  margin-top: 3vh;
-} */
 #all-exercises {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 20vw 1fr 20vw;
   grid-template-areas:
-    '. add-exercise .'
-    '. search-filter .'
+    'add-exercise search-filter .'
     '. exercise-container .'
     '. page-navigation .';
   justify-items: center;
@@ -104,24 +83,50 @@ nav button {
 
 #add-exercise {
   grid-area: add-exercise;
+  place-self: center;
+  place-items: center;
+  font-size: x-large;
 }
 
 #search-filter {
   grid-area: search-filter;
+  justify-items: center;
+  margin-top: 5vh;
 }
 
 #exercise-container {
   grid-area: exercise-container;
+  width: stretch;
 }
 
 #page-navigation {
   grid-area: page-navigation;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 
+    'back-btn next-btn';
+  margin: 5vh 0;
+  width: stretch;
+}
+
+#back-btn {
+  grid-area: back-btn;
+  font-size: x-large;
+  place-self: start;
+}
+
+#next-btn {
+  grid-area: next-btn;
+  font-size: x-large;
+  place-self: end;
 }
 
 
 /* Exercise.js */
 #exercise-info {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #exercise-detail {
@@ -131,7 +136,11 @@ nav button {
 }
 
 img {
-  width: 20vw;
+  width: 10vw;
+}
+
+#add-workout-btn {
+  height: fit-content;
 }
 
 /* MyWorkouts.js */
@@ -180,4 +189,8 @@ td {
   align-items: flex-end;
   justify-content: center;
   padding-right: 1vh;
+}
+
+#select-exercise {
+  font-size: x-large;
 }

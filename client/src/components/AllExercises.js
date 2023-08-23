@@ -20,7 +20,7 @@ function AllExercises({ onUpdateWorkoutInfo }) {
         setAttributeValue(e.target.value);
     }
 
-    const searchExercises = exercise => exercise.name.includes(search.toLowerCase());
+    const searchExercises = exercise => exercise.name.toLowerCase().includes(search.toLowerCase());
 
     function filterExercises(exercise) {
         if (!attributeValue) {
@@ -87,65 +87,67 @@ function AllExercises({ onUpdateWorkoutInfo }) {
                     value={search}
                     onChange={updateSearch}
                 />
-                <select
-                    id='filter-by'
-                    value={filterBy}
-                    onChange={updateFilterBy}
-                >
-                    <option value=''>Filter by</option>
-                    <option value='body-part'>Body part</option>
-                    <option value='target'>Target muscle</option>
-                    <option value='equipment'>Equipment</option>
-                </select>
-                {filterBy === 'body-part' && (
+                <div>
                     <select
-                        id='attribute-value'
-                        value={attributeValue}
-                        onChange={updateAttributeValue}
+                        id='filter-by'
+                        value={filterBy}
+                        onChange={updateFilterBy}
                     >
-                        <option value=''>Select a body part</option>
-                        {uniqueAttributes.bodyParts.map((bodyPart, index) => (
-                            <option key={index} value={bodyPart}>{bodyPart}</option>
-                        ))}
+                        <option value=''>Filter by</option>
+                        <option value='body-part'>Body part</option>
+                        <option value='target'>Target muscle</option>
+                        <option value='equipment'>Equipment</option>
                     </select>
-                )}
-                {filterBy === 'target' && (
-                    <select
-                        value={attributeValue}
-                        onChange={updateAttributeValue}
-                    >
-                        <option value=''>Select a target muscle</option>
-                        {uniqueAttributes.targets.map((target, index) => (
-                            <option key={index} value={target}>{target}</option>
-                        ))}
-                    </select>
-                )}
-                {filterBy === 'equipment' && (
-                    <select
-                        value={attributeValue}
-                        onChange={updateAttributeValue}
-                    >
-                        <option value=''>Select an equipment</option>
-                        {uniqueAttributes.equipments.map((equipment, index) => (
-                            <option key={index} value={equipment}>{equipment}</option>
-                        ))}
-                    </select>
-                )}
+                    {filterBy === 'body-part' && (
+                        <select
+                            id='attribute-value'
+                            value={attributeValue}
+                            onChange={updateAttributeValue}
+                        >
+                            <option value=''>Select a body part</option>
+                            {uniqueAttributes.bodyParts.map((bodyPart, index) => (
+                                <option key={index} value={bodyPart}>{bodyPart}</option>
+                            ))}
+                        </select>
+                    )}
+                    {filterBy === 'target' && (
+                        <select
+                            value={attributeValue}
+                            onChange={updateAttributeValue}
+                        >
+                            <option value=''>Select a target muscle</option>
+                            {uniqueAttributes.targets.map((target, index) => (
+                                <option key={index} value={target}>{target}</option>
+                            ))}
+                        </select>
+                    )}
+                    {filterBy === 'equipment' && (
+                        <select
+                            value={attributeValue}
+                            onChange={updateAttributeValue}
+                        >
+                            <option value=''>Select an equipment</option>
+                            {uniqueAttributes.equipments.map((equipment, index) => (
+                                <option key={index} value={equipment}>{equipment}</option>
+                            ))}
+                        </select>
+                    )}
+                </div>
             </form>
             <div id='exercise-container'>
                 {exercises
-                    .filter(exercise => searchExercises(exercise))
                     .filter(exercise => filterExercises(exercise))
+                    .filter(exercise => searchExercises(exercise))
                     .slice(start, start + 10).map(exercise => (
                         <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutInfo={onUpdateWorkoutInfo} />
                 ))}
             </div>
             <div id='page-navigation'>
-                {start !== 0 && <button onClick={prevPage}>Back</button>}
+                {start !== 0 && <button id='back-btn' onClick={prevPage}>Back</button>}
                 {start <= exercises
                     .filter(exercise => searchExercises(exercise))
                     .filter(exercise => filterExercises(exercise))
-                    .length - 10 && <button onClick={nextPage}>Next</button>}
+                    .length - 10 && <button id='next-btn' onClick={nextPage}>Next</button>}
             </div>
         </div>
     );

@@ -45,7 +45,7 @@ function Auth() {
                 response.then(data => {
                     setErrors([]);
                     login(data);
-                    navigate('/');
+                    navigate('/workouts');
                 });
             } else {
                 response.then(data => setErrors(data));
@@ -126,7 +126,9 @@ function Auth() {
                     />
                     <button className='xx-large-btn'>Login</button>
                 </form>
-                <h3>{errors.error}</h3>
+                <div className='error-msg'>
+                    <h3>{errors.error}</h3>
+                </div>
             </div>
         );
     }
@@ -178,9 +180,11 @@ function Auth() {
                 />
                 <button className='xx-large-btn'>Sign up</button>
             </form>
-            {errors.errors && (errors.errors.map(
-                (error, index) => <h3 key={index}>{error}</h3>
-            ))}
+            <div className='error-msg'>
+                {errors.errors && (errors.errors.map(
+                    (error, index) => <h3 key={index}>{error}</h3>
+                ))}
+            </div>
         </div>
     );
 }

@@ -70,7 +70,7 @@ function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
                     <option value='friday'>Friday</option>
                     <option value='saturday'>Saturday</option>
                 </select>
-                <Link to='/exercises'>Choose an exercise</Link>
+                <Link id='select-exercise' to='/exercises'>Select an exercise</Link>
                 {workoutInfo.exercise && <h1>{workoutInfo.exercise.name}</h1>}
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 
@@ -86,14 +86,14 @@ function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
                     value={addWorkout.reps}
                     onChange={updateAddWorkout}    
                 />
-                <label htmlFor='workout-sets'>Weight (lbs):</label>
+                <label htmlFor='workout-weight'>Weight (lbs):</label>
                 <input 
                     id='workout-weight' 
                     name='weight'
                     value={addWorkout.weight}
                     onChange={updateAddWorkout}
                 />
-                <label htmlFor='workout-sets'>Duration (sec):</label>
+                <label htmlFor='workout-duration'>Duration (sec):</label>
                 <input 
                     id='workout-duration' 
                     name='duration'
@@ -101,10 +101,12 @@ function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
                     onChange={updateAddWorkout}
                 />
                 <button className='large-btn'>Add workout</button>
+                <div className='error-msg'>
+                    {errors.errors && (errors.errors.map(
+                        (error, index) => <h3 key={index}>{error}</h3>
+                    ))}
+                </div>
             </form>
-            {errors.errors && (errors.errors.map(
-                (error, index) => <h3 key={index}>{error}</h3>
-            ))}
         </div>
     );
 }
