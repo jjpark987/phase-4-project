@@ -7,50 +7,53 @@ function AllExercises({ onUpdateWorkoutInfo }) {
     const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
 
     const [exercises, setExercises] = useState([]);
-    const [start, setStart] = useState(0);
     const [search, setSearch] = useState('');
-    const [filterBy, setFilterBy] = useState('');
-    const [attributeValue, setAttributeValue] = useState('');
+    const [bodyPart, setBodyPart] = useState('');
+    const [equipment, setEquipment] = useState('');
+    const [start, setStart] = useState(0);
+
+    useEffect(() => {
+        fetch('/exercises/unique_attributes')
+        .then(res => res.json())
+        .then(data => setUniqueAttributes({
+            bodyParts: data.body_parts,
+            targets: data.targets,
+            equipments: data.equipments
+        }))
+        .catch(error => console.error(error));
+
+        fetch('/exercises')
+        .then(res => res.json())
+        .then(data => setExercises(data))
+        .catch(error => console.error(error));
+    }, []);
 
     function updateSearch(e) {
         setSearch(e.target.value);
     }
 
-    function updateAttributeValue(e) {
-        setAttributeValue(e.target.value);
+    function searchExercises(exercise) {
+        return exercise.name.toLowerCase().includes(search.toLowerCase());
     }
 
-    const searchExercises = exercise => exercise.name.toLowerCase().includes(search.toLowerCase());
+    function updateBodyPart(e) {
+        setBodyPart(e.target.value);
+    }
 
-    function filterExercises(exercise) {
-        if (!attributeValue) {
-            return exercise
-        }
-
-        switch(filterBy) {
-            case 'body-part':
-                if (exercise.body_part === attributeValue) {
-                    return exercise
-                }
-                break
-            case 'target':
-                if (exercise.target === attributeValue) {
-                    return exercise
-                }
-                break
-            case 'equipment':
-                if (exercise.equipment === attributeValue) {
-                    return exercise
-                }
-                break
-            default:
-                return exercise
+    function filterBodyPart(exercise) {
+        if (bodyPart === exercise.body_part || bodyPart === '') {
+            return exercise;
         }
     }
 
-    function updateFilterBy(e) {
-        setFilterBy(e.target.value);
-        setAttributeValue('');
+    function updateEquipment(e) {
+        setEquipment(e.target.value);
+    }
+
+    function filterEquipment(exercise) {
+        if (equipment === exercise.equipment || equipment === '') {
+            return exercise;
+        }
     }
 
     function nextPage() {
@@ -61,83 +64,41 @@ function AllExercises({ onUpdateWorkoutInfo }) {
         setStart(start - 10);
     }
 
-    useEffect(() => {
-        fetch('/exercises')
-        .then(res => res.json())
-        .then(data => setExercises(data))
-        .catch(error => console.error(error));
-
-        fetch('/exercises/unique_attributes')
-        .then(res => res.json())
-        .then(data => setUniqueAttributes({
-            bodyParts: data.body_parts,
-            targets: data.targets,
-            equipments: data.equipments
-        }))
-        .catch(error => console.error(error));
-    }, []);
-
     return (
         <div id='all-exercises'>
             <Link id='add-exercise' to='/exercises/add'>Add new exercise</Link>
             <form id='search-filter'>
                 <input
-                    id='search'
                     placeholder='Search by name'
                     value={search}
                     onChange={updateSearch}
                 />
-                <div>
+                <div id='filter'>
                     <select
-                        id='filter-by'
-                        value={filterBy}
-                        onChange={updateFilterBy}
+                        value={bodyPart}
+                        onChange={updateBodyPart}
                     >
-                        <option value=''>Filter by</option>
-                        <option value='body-part'>Body part</option>
-                        <option value='target'>Target muscle</option>
-                        <option value='equipment'>Equipment</option>
+                        <option value=''>Filter by body part</option>
+                        {uniqueAttributes.bodyParts.map((bodyPart, index) => (
+                            <option key={index} value={bodyPart}>{bodyPart}</option>
+                        ))}
                     </select>
-                    {filterBy === 'body-part' && (
-                        <select
-                            id='attribute-value'
-                            value={attributeValue}
-                            onChange={updateAttributeValue}
-                        >
-                            <option value=''>Select a body part</option>
-                            {uniqueAttributes.bodyParts.map((bodyPart, index) => (
-                                <option key={index} value={bodyPart}>{bodyPart}</option>
-                            ))}
-                        </select>
-                    )}
-                    {filterBy === 'target' && (
-                        <select
-                            value={attributeValue}
-                            onChange={updateAttributeValue}
-                        >
-                            <option value=''>Select a target muscle</option>
-                            {uniqueAttributes.targets.map((target, index) => (
-                                <option key={index} value={target}>{target}</option>
-                            ))}
-                        </select>
-                    )}
-                    {filterBy === 'equipment' && (
-                        <select
-                            value={attributeValue}
-                            onChange={updateAttributeValue}
-                        >
-                            <option value=''>Select an equipment</option>
-                            {uniqueAttributes.equipments.map((equipment, index) => (
-                                <option key={index} value={equipment}>{equipment}</option>
-                            ))}
-                        </select>
-                    )}
+                    <select
+                        value={equipment}
+                        onChange={updateEquipment}
+                    >
+                        <option value=''>Filter by equipment</option>
+                        {uniqueAttributes.equipments.map((equipment, index) => (
+                            <option key={index} value={equipment}>{equipment}</option>
+                        ))}
+                    </select>
                 </div>
             </form>
             <div id='exercise-container'>
                 {exercises
-                    .filter(exercise => filterExercises(exercise))
                     .filter(exercise => searchExercises(exercise))
+                    .filter(exercise => filterBodyPart(exercise))
+                    .filter(exercise => filterEquipment(exercise))
                     .slice(start, start + 10).map(exercise => (
                         <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutInfo={onUpdateWorkoutInfo} />
                 ))}
@@ -146,7 +107,8 @@ function AllExercises({ onUpdateWorkoutInfo }) {
                 {start !== 0 && <button id='back-btn' onClick={prevPage}>Back</button>}
                 {start <= exercises
                     .filter(exercise => searchExercises(exercise))
-                    .filter(exercise => filterExercises(exercise))
+                    .filter(exercise => filterBodyPart(exercise))
+                    .filter(exercise => filterEquipment(exercise))
                     .length - 10 && <button id='next-btn' onClick={nextPage}>Next</button>}
             </div>
         </div>

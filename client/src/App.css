@@ -94,6 +94,10 @@ nav button {
   margin-top: 5vh;
 }
 
+#filter {
+  display: flex;
+}
+
 #exercise-container {
   grid-area: exercise-container;
   width: stretch;
