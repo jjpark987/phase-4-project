@@ -14,7 +14,7 @@ function Exercise({ exercise, onUpdateWorkoutInfo }) {
                     <p>Equipment: {exercise.equipment}</p>
                 </div>
             </div>
-            {user && <button onClick={() => onUpdateWorkoutInfo('exercise', exercise)}>Add to workout</button>}
+            {user && <button id='add-workout-btn' onClick={() => onUpdateWorkoutInfo('exercise', exercise)}>Add to workout</button>}
         </div>
     );
 }

@@ -63,9 +63,13 @@ nav button {
 }
 
 /* AllExercises.js */
-#all-exercises {
+/* #all-exercises {
   display: grid;
-  grid-template-rows: [header] 10vh [container] 1fr [footer] 5vh;
+  grid-template-areas:
+    "add-exercise"
+    'search-filter'
+    "exercise-container"
+    "page-navigation";
   justify-items: center;
 }
 
@@ -74,15 +78,46 @@ nav button {
   font-size: x-large;
 }
 
+#search-filter {
+  place-self: center;
+}
+
 #exercise-container {
   display: flex;
   flex-direction: column;
 }
 
-#page_navigation {
+#page-navigation {
   place-self: center;
   margin-top: 3vh;
+} */
+#all-exercises {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    '. add-exercise .'
+    '. search-filter .'
+    '. exercise-container .'
+    '. page-navigation .';
+  justify-items: center;
 }
+
+#add-exercise {
+  grid-area: add-exercise;
+}
+
+#search-filter {
+  grid-area: search-filter;
+}
+
+#exercise-container {
+  grid-area: exercise-container;
+}
+
+#page-navigation {
+  grid-area: page-navigation;
+}
+
 
 /* Exercise.js */
 #exercise-info {

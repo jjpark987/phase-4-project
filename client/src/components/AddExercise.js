@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAttributesContext } from "../context/AttributesContext";
 
 function AddExercise() {
+    const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
+
     const navigate = useNavigate();
 
     const [addExercise, setAddExercise] = useState({
@@ -12,11 +15,6 @@ function AddExercise() {
         gifUrl: ''
     });
     const [errors, setErrors] = useState([]);
-    const [uniqueAttributes, setUniqueAttributes] = useState({
-        bodyParts: [],
-        targets: [],
-        equipments: []
-    });
     const [showInput, setShowInput] = useState({
         bodyPart: false,
         target: false,
