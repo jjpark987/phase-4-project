@@ -48,9 +48,9 @@ puts 'Seeding 50 workouts...'
 
 days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
-50.times do
+10.times do
     Workout.create(
-        user_id: rand(1..10),
+        user_id: 1,
         exercise_id: rand(1..1324),
         day: days.sample,
         sets: rand(4..8),

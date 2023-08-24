@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import Workout from "./Workout";
+import { useWorkoutContext } from "../context/WorkoutContext";
 
 function MyWorkouts({ onUpdateWorkoutInfo }) {
     const { user } = useUserContext();
+    const { showEditWorkouts, setShowEditWorkouts } = useWorkoutContext();
 
     const [workouts, setWorkouts] = useState({
         sunday: [],
@@ -86,6 +88,7 @@ function MyWorkouts({ onUpdateWorkoutInfo }) {
                         </tr>
                     </tbody>
                 </table>
+                <button value={showEditWorkouts} onClick={() => setShowEditWorkouts(!showEditWorkouts)}>Edit workouts</button>
             </div>
         );
     }

@@ -9,6 +9,7 @@ import AllExercises from './components/AllExercises';
 import AddExercise from './components/AddExercise';
 import MyWorkouts from './components/MyWorkouts';
 import AddWorkout from './components/AddWorkout';
+import EditWorkout from './components/EditWorkout';
 
 function App() {
   const { login } = useUserContext();
@@ -56,6 +57,9 @@ function App() {
         } />
         <Route path='/workouts/add' element={
           <AddWorkout workoutInfo={workoutInfo} onUpdateWorkoutInfo={updateWorkoutInfo} />
+        } />
+        <Route path='/workouts/edit' element={
+          <EditWorkout />
         } />
       </Routes>
     </div>
