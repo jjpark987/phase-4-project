@@ -69,12 +69,7 @@ function AddWorkout() {
                     <option value='friday'>Friday</option>
                     <option value='saturday'>Saturday</option>
                 </select>
-                <Link 
-                    className='select-exercise' 
-                    to='/exercises'
-                >
-                    Select an exercise
-                </Link>
+                <Link className='select-exercise' to='/exercises'>Select an exercise</Link>
                 {addWorkout.exercise && <h1>{addWorkout.exercise.name}</h1>}
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 

@@ -18,6 +18,13 @@ class WorkoutsController < ApplicationController
         workout.update!(workout_params)
         render json: workout, status: :accepted
     end
+
+    # delete '/workouts/:id'
+    def destroy
+        workout = Workout.find_by!(user_id: session[:user_id], id: params[:id])
+        workout.destroy
+        head :no_content
+    end
     
     private
 

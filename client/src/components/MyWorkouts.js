@@ -21,6 +21,7 @@ function MyWorkouts() {
         friday: [],
         saturday: []
     });
+    const [showDeleteWorkouts, setShowDeleteWorkouts] = useState(false);
 
     useEffect(() => {
         fetch('/workouts')
@@ -37,9 +38,20 @@ function MyWorkouts() {
         .catch(error => console.error(error));
     }, []);
 
-    function handleAddWorkoutClick(day) {
+    function handleAddToWorkout(day) {
+        setShowEditWorkouts(false);
         setAddWorkout({ ...addWorkout, day: day });
         navigate('/workouts/add');
+    }
+
+    function handleShowEditWorkouts() {
+        setShowDeleteWorkouts(false);
+        setShowEditWorkouts(!showEditWorkouts);
+    }
+
+    function handleShowDeleteWorkouts() {
+        setShowEditWorkouts(false);
+        setShowDeleteWorkouts(!showDeleteWorkouts);
     }
 
     if (user) {
@@ -50,58 +62,37 @@ function MyWorkouts() {
                     <thead>
                         <tr>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('sunday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('sunday')}>
                                     Sunday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('monday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('monday')}>
                                     Monday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('tuesday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('tuesday')}>
                                     Tuesday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('wednesday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('wednesday')}>
                                     Wednesday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('thursday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('thursday')}>
                                     Thursday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('friday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('friday')}>
                                     Friday
                                 </button>
                             </th>
                             <th>
-                                <button 
-                                    className='x-large-btn' 
-                                    onClick={() => handleAddWorkoutClick('saturday')}
-                                >
+                                <button className='x-large-btn' onClick={() => handleAddToWorkout('saturday')}>
                                     Saturday
                                 </button>
                             </th>
@@ -110,38 +101,45 @@ function MyWorkouts() {
                     <tbody>
                         <tr>
                             <td>
-                                {workouts.sunday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.sunday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.monday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.monday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.tuesday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.tuesday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.wednesday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.wednesday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.thursday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.thursday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.friday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.friday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                             <td>
-                                {workouts.saturday.map(workout => <Workout key={workout.id} workout={workout} />)}
+                                {workouts.saturday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button value={showEditWorkouts} onClick={() => setShowEditWorkouts(!showEditWorkouts)}>Edit workouts</button>
+                <div id='edit-delete-btns'>
+                    <button id='edit-workouts' onClick={handleShowEditWorkouts}>Edit workouts</button>
+                    <button id='delete-workouts' onClick={handleShowDeleteWorkouts}>Delete workouts</button>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className='component'>
-            <h1>Please login</h1>
-            <h3>Add some image?</h3>
+        <div id='please-login'>
+            <h1>Please login to see your weekly routine</h1>
+            <img 
+                src='https://health.clevelandclinic.org/wp-content/uploads/sites/3/2022/04/exerciseHowOften-944015592-770x533-1-650x428.jpg' 
+                alt='please-login'
+                style={{ width: '50vw' }}
+            />
         </div>
     );
 }

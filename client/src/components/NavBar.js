@@ -32,7 +32,7 @@ function NavBar() {
 
     return (
         <nav>
-            <button onClick={handleHomeClick}>Enter title</button>
+            <button onClick={handleHomeClick}>SWEATSTRONG</button>
             <button onClick={handleAllExercisesClick}>All exercises</button>
             <NavLink to='/workouts'>My workouts</NavLink>
             {user ? 

@@ -128,6 +128,11 @@ function Auth() {
                         (error, index) => <h3 key={index}>{error}</h3>
                     ))}
                 </div>
+                <img 
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Please_log_in_image.png/1280px-Please_log_in_image.png' 
+                alt='login'
+                style={{ width: '50vw' }}
+            />
             </div>
         );
     }

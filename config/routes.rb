@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/exercises/unique_attributes', to: 'exercises#unique_attributes'
 
     # Workouts
-    resources :workouts, only: [:index, :create, :update]
+    resources :workouts, only: [:index, :create, :update, :destroy]
 
     # Routing logic: fallback requests for React Router.
     # Leave this here to help deploy your app later!

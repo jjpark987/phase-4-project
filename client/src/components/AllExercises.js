@@ -54,19 +54,13 @@ function AllExercises() {
                     onChange={e => setSearch(e.target.value)}
                 />
                 <div>
-                    <select
-                        value={bodyPart}
-                        onChange={e => setBodyPart(e.target.value)}
-                    >
+                    <select value={bodyPart} onChange={e => setBodyPart(e.target.value)}>
                         <option value=''>Filter by body part</option>
                         {uniqueAttributes.bodyParts.map((bodyPart, index) => (
                             <option key={index} value={bodyPart}>{bodyPart}</option>
                         ))}
                     </select>
-                    <select
-                        value={equipment}
-                        onChange={e => setEquipment(e.target.value)}
-                    >
+                    <select value={equipment} onChange={e => setEquipment(e.target.value)}>
                         <option value=''>Filter by equipment</option>
                         {uniqueAttributes.equipments.map((equipment, index) => (
                             <option key={index} value={equipment}>{equipment}</option>
@@ -76,33 +70,23 @@ function AllExercises() {
             </form>
             <div id='exercise-container'>
                 {exercises
-                    .filter(exercise => searchExercises(exercise))
-                    .filter(exercise => filterBodyPart(exercise))
-                    .filter(exercise => filterEquipment(exercise))
-                    .slice(pageStart, pageStart + 10).map(exercise => (
-                        <Exercise key={exercise.id} exercise={exercise} />
+                .filter(exercise => searchExercises(exercise))
+                .filter(exercise => filterBodyPart(exercise))
+                .filter(exercise => filterEquipment(exercise))
+                .slice(pageStart, pageStart + 10).map(exercise => (
+                    <Exercise key={exercise.id} exercise={exercise} />
                 ))}
             </div>
             <div id='page-navigation'>
                 {pageStart !== 0 && 
-                    <button 
-                        id='back-btn' 
-                        onClick={() => setPageStart(pageStart - 10)}
-                    >
-                        Back
-                    </button>
+                    <button id='back-btn' onClick={() => setPageStart(pageStart - 10)}>Back</button>
                 }
                 {pageStart <= exercises
-                    .filter(exercise => searchExercises(exercise))
-                    .filter(exercise => filterBodyPart(exercise))
-                    .filter(exercise => filterEquipment(exercise))
-                    .length - 10 && 
-                        <button 
-                            id='next-btn' 
-                            onClick={() => setPageStart(pageStart + 10)}
-                        >
-                            Next
-                        </button>
+                .filter(exercise => searchExercises(exercise))
+                .filter(exercise => filterBodyPart(exercise))
+                .filter(exercise => filterEquipment(exercise))
+                .length - 10 && 
+                    <button id='next-btn' onClick={() => setPageStart(pageStart + 10)}>Next</button>
                 }
             </div>
         </div>
