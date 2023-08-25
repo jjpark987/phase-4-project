@@ -30,6 +30,10 @@ button {
   font-size: large;
 }
 
+.x-large-btn {
+  font-size: x-large;
+}
+
 .xx-large-btn {
   font-size: xx-large;
 }
@@ -48,6 +52,10 @@ button {
   flex-direction: column;
   align-items: center;
 }
+
+.select-exercise {
+    font-size: x-large;
+  }
 
 /* NavBar.js */
 nav {
@@ -92,10 +100,6 @@ nav button {
   grid-area: search-filter;
   justify-items: center;
   margin-top: 5vh;
-}
-
-#filter {
-  display: flex;
 }
 
 #exercise-container {
@@ -143,14 +147,10 @@ img {
   width: 10vw;
 }
 
-#add-workout-btn {
-  height: fit-content;
-}
-
 /* MyWorkouts.js */
 #my-workout {
   display: grid;
-  grid-template-rows: [title] 10vh [table] 1fr;
+  grid-template-rows: 10vh 1fr;
   justify-items: center;
   margin-top: 3vh;
 }
@@ -175,6 +175,7 @@ td {
   border-bottom: none;
 }
 
+/* Workout.js */
 #workout-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -185,6 +186,20 @@ td {
 #workout-name {
   display: flex;
   align-items: center;
+  font-size: 16px;
+  margin: 16px 0;
+}
+
+#workout-name-edit {
+    background: none;
+    border: none;
+    font-size: 16px;
+    text-decoration: underline;
+    color: blue;
+    text-align: left;
+    cursor: pointer;
+    margin: 16px 0;
+    padding: 0;
 }
 
 #workout-info {
@@ -193,8 +208,4 @@ td {
   align-items: flex-end;
   justify-content: center;
   padding-right: 1vh;
-}
-
-#select-exercise {
-  font-size: x-large;
 }

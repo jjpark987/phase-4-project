@@ -16,8 +16,8 @@ puts 'Seeding 10 users...'
         email: Faker::Internet.email,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        password: 'a',
-        password_confirmation: 'a'
+        password: '1',
+        password_confirmation: '1'
     )
 end
 

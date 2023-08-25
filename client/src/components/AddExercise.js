@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAttributesContext } from "../context/AttributesContext";
 
 function AddExercise() {
-    const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
-
     const navigate = useNavigate();
-
+    
+    const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
+    
     const [addExercise, setAddExercise] = useState({
         name: '',
         bodyPart: '',
@@ -15,12 +15,7 @@ function AddExercise() {
         gifUrl: ''
     });
     const [errors, setErrors] = useState([]);
-    const [showInput, setShowInput] = useState({
-        bodyPart: false,
-        target: false,
-        equipment: false
-    });
-
+    
     useEffect(() => {
         fetch('/exercises/unique_attributes')
         .then(res => res.json())
@@ -33,10 +28,7 @@ function AddExercise() {
     }, []);
 
     function updateAddExercise(e) {
-        const { name, value } = e.target;
-
-        value === '' && setShowInput({ ...showInput, [name]: !showInput.name });
-        setAddExercise({ ...addExercise, [name]: value });
+        setAddExercise({ ...addExercise, [e.target.name]: e.target.value });
     }
 
     function submitExercise(e) {

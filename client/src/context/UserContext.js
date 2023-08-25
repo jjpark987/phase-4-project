@@ -3,27 +3,27 @@ import React, { createContext, useContext, useState } from 'react';
 const UserContext = createContext();
 
 function useUserContext() {
-  return useContext(UserContext);
+    return useContext(UserContext);
 }
 
 function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-  const login = userData => { setUser(userData) };
+    const login = userData => { setUser(userData) };
 
-  const logout = () => { setUser(null) };
+    const logout = () => { setUser(null) };
 
-  const contextValue = {
-    user,
-    login,
-    logout,
-  };
+    const contextValue = {
+        user,
+        login,
+        logout,
+    };
 
-  return (
-    <UserContext.Provider value={contextValue}>
-      {children}
-    </UserContext.Provider>
-  );
+    return (
+        <UserContext.Provider value={contextValue}>
+            {children}
+        </UserContext.Provider>
+    );
 }
 
 export { UserContext, useUserContext, UserProvider };

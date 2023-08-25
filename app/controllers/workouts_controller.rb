@@ -26,10 +26,10 @@ class WorkoutsController < ApplicationController
     end
 
     def record_not_found
-        render json: { error: 'Workout not found' }, status: :not_found
+        render json: { error: ['Workout not found'] }, status: :not_found
     end
 
     def record_invalid e
-        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+        render json: { error: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 end

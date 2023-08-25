@@ -1,34 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAddWorkoutContext } from "../context/AddWorkoutContext";
 
-function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
+function AddWorkout() {
     const navigate = useNavigate();
 
-    const [addWorkout, setAddWorkout] = useState({
-        day: workoutInfo.day,
-        exerciseId: workoutInfo.exercise.id,
-        sets: 0,
-        reps: 0,
-        weight: 0,
-        duration: 0
-    });
+    const { addWorkout, setAddWorkout } = useAddWorkoutContext();
+
     const [errors, setErrors] = useState([]);
 
     function updateAddWorkout(e) {
-        const { name, value } = e.target;
-
-        setAddWorkout({ ...addWorkout, [name]: value });
-        
-        if (name === 'day') {
-            onUpdateWorkoutInfo('day', value);
-        }
+        setAddWorkout({ ...addWorkout, [e.target.name]: e.target.value });
     }
-    
+
     function submitWorkout(e) {
         e.preventDefault();
 
         const workoutData = {
-            exercise_id: addWorkout.exerciseId,
+            exercise_id: addWorkout.exercise.id, 
             day: addWorkout.day,
             sets: addWorkout.sets,
             reps: addWorkout.reps,
@@ -45,9 +34,19 @@ function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
             const response = res.json();
 
             if (res.ok) {
-                response.then(() => navigate('/workouts'));
+                response.then(() => {
+                    setAddWorkout({
+                        exercise: {},
+                        day: '',
+                        sets: 0,
+                        reps: 0,
+                        weight: 0,
+                        duration: 0
+                      });
+                    navigate('/workouts');
+                });
             } else {
-                response.then(data => setErrors(data))
+                response.then(data => setErrors(data));
             }
         })
         .catch(error => console.error(error));
@@ -70,8 +69,13 @@ function AddWorkout({ workoutInfo, onUpdateWorkoutInfo }) {
                     <option value='friday'>Friday</option>
                     <option value='saturday'>Saturday</option>
                 </select>
-                <Link id='select-exercise' to='/exercises'>Select an exercise</Link>
-                {workoutInfo.exercise && <h1>{workoutInfo.exercise.name}</h1>}
+                <Link 
+                    className='select-exercise' 
+                    to='/exercises'
+                >
+                    Select an exercise
+                </Link>
+                {addWorkout.exercise && <h1>{addWorkout.exercise.name}</h1>}
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 
                     id='workout-sets' 

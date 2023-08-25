@@ -1,19 +1,19 @@
 class ExerciseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :body_part, :target, :equipment, :gif_url
+    attributes :id, :name, :body_part, :target, :equipment, :gif_url
 
-  def name
-    object.name.capitalize
-  end
+    def name
+        object.name.capitalize
+    end
 
-  def body_part
-    object.body_part.capitalize
-  end
+    def body_part
+        object.body_part.capitalize
+    end
 
-  def target
-    object.target.capitalize
-  end
+    def target
+        object.target.capitalize
+    end
 
-  def equipment
-    object.equipment.capitalize
-  end
+    def equipment
+        object.equipment.capitalize
+    end
 end

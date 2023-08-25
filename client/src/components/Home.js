@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 function Home() {
-
-
     return (
         <div className='component'>
             <h1>Enter title</h1>

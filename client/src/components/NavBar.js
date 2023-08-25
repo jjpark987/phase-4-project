@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
-import { useWorkoutContext } from "../context/WorkoutContext";
+import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
 function NavBar() {
-    const { user, logout } = useUserContext();
-    const { setShowEditWorkouts } = useWorkoutContext();
-
     const navigate = useNavigate();
+
+    const { user, logout } = useUserContext();
+    const { setShowEditWorkouts } = useEditWorkoutContext();
 
     function logoutUser() {
         fetch('/logout', {
@@ -20,28 +20,25 @@ function NavBar() {
         });
     }
 
-    function loginUser() {
-        navigate('/login');
+    function handleHomeClick() {
+        setShowEditWorkouts(false);
+        navigate('/');
     }
 
-    function handleExerciseclick() {
-        navigate('/exercises')
-        setShowEditWorkouts(false)
-    }
-
-    function handlehomeclick() {
-        navigate('/')
-        setShowEditWorkouts(false)
+    function handleAllExercisesClick() {
+        setShowEditWorkouts(false);
+        navigate('/exercises');
     }
 
     return (
         <nav>
-            <button onClick={handlehomeclick}>Enter title</button>
-            <button onClick={handleExerciseclick}>All exercises</button>
+            <button onClick={handleHomeClick}>Enter title</button>
+            <button onClick={handleAllExercisesClick}>All exercises</button>
             <NavLink to='/workouts'>My workouts</NavLink>
             {user ? 
-                <button onClick={logoutUser}>Logout</button> : 
-                <button onClick={loginUser}>Login</button>
+                <button onClick={logoutUser}>Logout</button> 
+            : 
+                <button onClick={() => navigate('/login')}>Login</button>
             }
         </nav>
     );

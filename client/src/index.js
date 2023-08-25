@@ -6,18 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { AttributesProvider } from './context/AttributesContext';
-import { WorkoutProvider } from './context/WorkoutContext';
+import { EditWorkoutProvider } from './context/EditWorkoutContext';
+import { AddWorkoutProvider } from './context/AddWorkoutContext';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <UserProvider>
-      <AttributesProvider>
-        <WorkoutProvider>
-          <App />
-        </WorkoutProvider>
-      </AttributesProvider>
-    </UserProvider>
-  </BrowserRouter>,
+    <BrowserRouter>
+        <UserProvider>
+            <AttributesProvider>
+                <AddWorkoutProvider>
+                    <EditWorkoutProvider>
+                        <App />
+                    </EditWorkoutProvider>
+                </AddWorkoutProvider>
+            </AttributesProvider>
+        </UserProvider>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

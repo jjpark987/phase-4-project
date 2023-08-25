@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { useUserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 
 function Auth() {
-    const { login } = useUserContext();
-
     const navigate = useNavigate();
 
-    const [showLogin, setShowLogin] = useState(true);
+    const { login } = useUserContext();
 
+    const [showLogin, setShowLogin] = useState(true);
     const [account, setAccount] = useState({
         email: '',
         password: ''
     });
-
     const [newAccount, setNewAccount] = useState({
         firstName: '',
         lastName: '',
@@ -21,7 +19,6 @@ function Auth() {
         password: '',
         passwordConfirmation: ''
     });
-
     const [errors, setErrors] = useState([]);
 
     function updateAccount(e) {
@@ -127,7 +124,9 @@ function Auth() {
                     <button className='xx-large-btn'>Login</button>
                 </form>
                 <div className='error-msg'>
-                    <h3>{errors.error}</h3>
+                    {errors.error && (errors.error.map(
+                        (error, index) => <h3 key={index}>{error}</h3>
+                    ))}
                 </div>
             </div>
         );
@@ -181,7 +180,7 @@ function Auth() {
                 <button className='xx-large-btn'>Sign up</button>
             </form>
             <div className='error-msg'>
-                {errors.errors && (errors.errors.map(
+                {errors.error && (errors.error.map(
                     (error, index) => <h3 key={index}>{error}</h3>
                 ))}
             </div>

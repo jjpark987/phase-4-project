@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Exercise from "./Exercise";
 import { useAttributesContext } from "../context/AttributesContext";
+import Exercise from "./Exercise";
 
-function AllExercises({ onUpdateWorkoutInfo }) {
+function AllExercises() {
     const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
-
+    
     const [exercises, setExercises] = useState([]);
     const [search, setSearch] = useState('');
     const [bodyPart, setBodyPart] = useState('');
     const [equipment, setEquipment] = useState('');
-    const [start, setStart] = useState(0);
-
+    const [pageStart, setPageStart] = useState(0);
+    
     useEffect(() => {
+        fetch('/exercises')
+        .then(res => res.json())
+        .then(data => setExercises(data))
+        .catch(error => console.error(error));
+
         fetch('/exercises/unique_attributes')
         .then(res => res.json())
         .then(data => setUniqueAttributes({
@@ -21,23 +26,10 @@ function AllExercises({ onUpdateWorkoutInfo }) {
             equipments: data.equipments
         }))
         .catch(error => console.error(error));
-
-        fetch('/exercises')
-        .then(res => res.json())
-        .then(data => setExercises(data))
-        .catch(error => console.error(error));
     }, []);
-
-    function updateSearch(e) {
-        setSearch(e.target.value);
-    }
 
     function searchExercises(exercise) {
         return exercise.name.toLowerCase().includes(search.toLowerCase());
-    }
-
-    function updateBodyPart(e) {
-        setBodyPart(e.target.value);
     }
 
     function filterBodyPart(exercise) {
@@ -46,22 +38,10 @@ function AllExercises({ onUpdateWorkoutInfo }) {
         }
     }
 
-    function updateEquipment(e) {
-        setEquipment(e.target.value);
-    }
-
     function filterEquipment(exercise) {
         if (equipment === exercise.equipment || equipment === '') {
             return exercise;
         }
-    }
-
-    function nextPage() {
-        setStart(start + 10);
-    }
-
-    function prevPage() {
-        setStart(start - 10);
     }
 
     return (
@@ -71,12 +51,12 @@ function AllExercises({ onUpdateWorkoutInfo }) {
                 <input
                     placeholder='Search by name'
                     value={search}
-                    onChange={updateSearch}
+                    onChange={e => setSearch(e.target.value)}
                 />
-                <div id='filter'>
+                <div>
                     <select
                         value={bodyPart}
-                        onChange={updateBodyPart}
+                        onChange={e => setBodyPart(e.target.value)}
                     >
                         <option value=''>Filter by body part</option>
                         {uniqueAttributes.bodyParts.map((bodyPart, index) => (
@@ -85,7 +65,7 @@ function AllExercises({ onUpdateWorkoutInfo }) {
                     </select>
                     <select
                         value={equipment}
-                        onChange={updateEquipment}
+                        onChange={e => setEquipment(e.target.value)}
                     >
                         <option value=''>Filter by equipment</option>
                         {uniqueAttributes.equipments.map((equipment, index) => (
@@ -99,17 +79,31 @@ function AllExercises({ onUpdateWorkoutInfo }) {
                     .filter(exercise => searchExercises(exercise))
                     .filter(exercise => filterBodyPart(exercise))
                     .filter(exercise => filterEquipment(exercise))
-                    .slice(start, start + 10).map(exercise => (
-                        <Exercise key={exercise.id} exercise={exercise} onUpdateWorkoutInfo={onUpdateWorkoutInfo} />
+                    .slice(pageStart, pageStart + 10).map(exercise => (
+                        <Exercise key={exercise.id} exercise={exercise} />
                 ))}
             </div>
             <div id='page-navigation'>
-                {start !== 0 && <button id='back-btn' onClick={prevPage}>Back</button>}
-                {start <= exercises
+                {pageStart !== 0 && 
+                    <button 
+                        id='back-btn' 
+                        onClick={() => setPageStart(pageStart - 10)}
+                    >
+                        Back
+                    </button>
+                }
+                {pageStart <= exercises
                     .filter(exercise => searchExercises(exercise))
                     .filter(exercise => filterBodyPart(exercise))
                     .filter(exercise => filterEquipment(exercise))
-                    .length - 10 && <button id='next-btn' onClick={nextPage}>Next</button>}
+                    .length - 10 && 
+                        <button 
+                            id='next-btn' 
+                            onClick={() => setPageStart(pageStart + 10)}
+                        >
+                            Next
+                        </button>
+                }
             </div>
         </div>
     );

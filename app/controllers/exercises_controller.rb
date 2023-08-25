@@ -8,7 +8,7 @@ class ExercisesController < ApplicationController
     def create
         render json: Exercise.create!(exercise_params), status: :created
     rescue ActiveRecord::RecordInvalid => e 
-        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+        render json: { error: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     # get 'exercises/unique_attributes'

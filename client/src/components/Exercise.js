@@ -1,18 +1,25 @@
 import React from "react";
-import { useUserContext } from "../context/UserContext";
-import { useWorkoutContext } from "../context/WorkoutContext";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
+import { useAddWorkoutContext } from "../context/AddWorkoutContext";
+import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
-function Exercise({ exercise, onUpdateWorkoutInfo }) {
-    const { user } = useUserContext();
-    const { showEditWorkouts, currentWorkout, setCurrentWorkout } = useWorkoutContext();
-
+function Exercise({ exercise }) {
     const navigate = useNavigate();
 
-function handleExerciseChangeEdit() {
-    setCurrentWorkout({ ...currentWorkout, exercise: exercise })
-    navigate('/workouts/edit')
-}
+    const { user } = useUserContext();
+    const { addWorkout, setAddWorkout } = useAddWorkoutContext();
+    const { showEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
+
+    function handleExerciseChangeEdit() {
+        setEditWorkout({ ...editWorkout, exercise: exercise });
+        navigate('/workouts/edit');
+    }
+
+    function handleExerciseChangeAdd() {
+        setAddWorkout({ ...addWorkout, exercise: exercise });
+        navigate('/workouts/add');
+    }
 
     return (
         <div>
@@ -24,24 +31,10 @@ function handleExerciseChangeEdit() {
                     <p>Equipment: {exercise.equipment}</p>
                 </div>
                 {showEditWorkouts ? (
-  // Content to render when showEditWorkouts is true
-  user && (
-    <button onClick={handleExerciseChangeEdit}>
-      Edit workout
-    </button>
-  )
-) : (
-  // Content to render when showEditWorkouts is false
-  user && (
-    <button
-      id='add-workout-btn'
-      onClick={() => onUpdateWorkoutInfo('exercise', exercise)}
-    >
-      Add to workout
-    </button>
-  )
-)}
-
+                    user && (<button onClick={handleExerciseChangeEdit}>Edit workout</button>)
+                ) : (
+                    user && (<button onClick={handleExerciseChangeAdd}>Add to workout</button>)
+                )}
             </div>
         </div>
     );

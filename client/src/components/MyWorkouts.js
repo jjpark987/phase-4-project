@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import { useAddWorkoutContext } from "../context/AddWorkoutContext";
+import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 import Workout from "./Workout";
-import { useWorkoutContext } from "../context/WorkoutContext";
 
-function MyWorkouts({ onUpdateWorkoutInfo }) {
+function MyWorkouts() {
+    const navigate = useNavigate();
+
     const { user } = useUserContext();
-    const { showEditWorkouts, setShowEditWorkouts } = useWorkoutContext();
+    const { addWorkout, setAddWorkout } = useAddWorkoutContext();
+    const { showEditWorkouts, setShowEditWorkouts } = useEditWorkoutContext();
 
     const [workouts, setWorkouts] = useState({
         sunday: [],
@@ -32,6 +37,11 @@ function MyWorkouts({ onUpdateWorkoutInfo }) {
         .catch(error => console.error(error));
     }, []);
 
+    function handleAddWorkoutClick(day) {
+        setAddWorkout({ ...addWorkout, day: day });
+        navigate('/workouts/add');
+    }
+
     if (user) {
         return (
             <div id='my-workout'>
@@ -40,25 +50,60 @@ function MyWorkouts({ onUpdateWorkoutInfo }) {
                     <thead>
                         <tr>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'sunday')}>Sunday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('sunday')}
+                                >
+                                    Sunday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'monday')}>Monday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('monday')}
+                                >
+                                    Monday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'tuesday')}>Tuesday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('tuesday')}
+                                >
+                                    Tuesday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'wednesday')}>Wednesday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('wednesday')}
+                                >
+                                    Wednesday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'thursday')}>Thursday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('thursday')}
+                                >
+                                    Thursday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'friday')}>Friday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('friday')}
+                                >
+                                    Friday
+                                </button>
                             </th>
                             <th>
-                                <button className='xx-large-btn' onClick={() => onUpdateWorkoutInfo('day', 'saturday')}>Saturday</button>
+                                <button 
+                                    className='x-large-btn' 
+                                    onClick={() => handleAddWorkoutClick('saturday')}
+                                >
+                                    Saturday
+                                </button>
                             </th>
                         </tr>
                     </thead>
