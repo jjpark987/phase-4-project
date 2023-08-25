@@ -86,7 +86,7 @@ function EditWorkout() {
                     value={editWorkout.weight}
                     onChange={updateEditWorkout}
                 />
-                <label htmlFor='workout-duration'>Duration (sec):</label>
+                <label htmlFor='workout-duration'>Duration (min):</label>
                 <input 
                     id='workout-duration' 
                     name='duration'

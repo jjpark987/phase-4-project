@@ -92,7 +92,7 @@ function AddWorkout() {
                     value={addWorkout.weight}
                     onChange={updateAddWorkout}
                 />
-                <label htmlFor='workout-duration'>Duration (sec):</label>
+                <label htmlFor='workout-duration'>Duration (min):</label>
                 <input 
                     id='workout-duration' 
                     name='duration'
@@ -101,7 +101,7 @@ function AddWorkout() {
                 />
                 <button className='large-btn'>Add workout</button>
                 <div className='error-msg'>
-                    {errors.errors && (errors.errors.map(
+                    {errors.error && (errors.error.map(
                         (error, index) => <h3 key={index}>{error}</h3>
                     ))}
                 </div>

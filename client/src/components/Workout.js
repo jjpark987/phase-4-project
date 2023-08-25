@@ -33,7 +33,7 @@ function Workout({ workout, showDeleteWorkouts }) {
             <div id='workout-info'>
                 {(workout.sets !== 0 && workout.reps !== 0) && <p>{workout.sets} x {workout.reps}</p>}
                 {workout.weight !== 0 && <p>{workout.weight} lbs</p>}
-                {workout.duration !== 0 && <p>{workout.duration} sec</p>}
+                {workout.duration !== 0 && <p>{workout.duration} min</p>}
             </div>
         </div>
     );
