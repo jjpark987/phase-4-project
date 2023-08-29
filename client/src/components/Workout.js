@@ -16,8 +16,11 @@ function Workout({ workout, showDeleteWorkouts }) {
         fetch(`/workouts/${workout.id}`, {
             method: 'DELETE'
         })
-        .then(() => window.location.reload())
-        .catch(error => console.error(error))
+        .then(() => {
+            navigate('/exercises');
+            navigate('/workouts');
+        })
+        .catch(error => console.error(error));
     }
 
     return (
