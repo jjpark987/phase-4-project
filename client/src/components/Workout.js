@@ -17,7 +17,7 @@ function Workout({ workout, showDeleteWorkouts }) {
             method: 'DELETE'
         })
         .then(() => {
-            navigate('/exercises');
+            navigate('/');
             navigate('/workouts');
         })
         .catch(error => console.error(error));
