@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import { useAddWorkoutContext } from "../context/AddWorkoutContext";
@@ -12,31 +12,7 @@ function MyWorkouts() {
     const { addWorkout, setAddWorkout } = useAddWorkoutContext();
     const { showEditWorkouts, setShowEditWorkouts } = useEditWorkoutContext();
 
-    const [workouts, setWorkouts] = useState({
-        sunday: [],
-        monday: [],
-        tuesday: [],
-        wednesday: [],
-        thursday: [],
-        friday: [],
-        saturday: []
-    });
     const [showDeleteWorkouts, setShowDeleteWorkouts] = useState(false);
-
-    useEffect(() => {
-        fetch('/workouts')
-        .then(res => res.json())
-        .then(data => {
-            const updatedWorkouts = { ...workouts };
-
-            data.forEach(workout => {
-                updatedWorkouts[workout.day].push(workout);
-            });
-
-            setWorkouts(updatedWorkouts);
-        })
-        .catch(error => console.error(error));
-    }, []);
 
     function handleAddToWorkout(day) {
         setShowEditWorkouts(false);
@@ -101,80 +77,81 @@ function MyWorkouts() {
                     <tbody>
                         <tr>
                             <td>
-                                {workouts.sunday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {/* IF user.workouts IS TRUE, MAP THE ARRAY OF WORKOUT OBJECTS SPECIFIC TO THE DAY OF WEEK TO RENDER ON FRONTEND */}
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'sunday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                             <td>
-                                {workouts.monday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'monday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                             <td>
-                                {workouts.tuesday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'tuesday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
+                                )} 
+                            </td>
+                            <td>
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'wednesday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                             <td>
-                                {workouts.wednesday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'thursday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                             <td>
-                                {workouts.thursday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'friday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                             <td>
-                                {workouts.friday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
-                                )}
-                            </td>
-                            <td>
-                                {workouts.saturday.map(workout => 
-                                    <Workout 
-                                        key={workout.id} 
-                                        workout={workout} 
-                                        workouts={workouts}
-                                        setWorkouts={setWorkouts}
-                                        showDeleteWorkouts={showDeleteWorkouts} 
-                                    />
+                                {user.workouts && user.workouts.map(workout => 
+                                    (workout.day === 'saturday' && 
+                                        <Workout 
+                                            key={workout.id} 
+                                            workout={workout} 
+                                            showDeleteWorkouts={showDeleteWorkouts} 
+                                        />
+                                    )
                                 )}
                             </td>
                         </tr>

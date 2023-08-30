@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+    skip_before_action :authorize, only: [:create]
+
     # get '/me'
     def show
-        render json: User.find_by!(id: session[:user_id])
+        # USED THE include: ['workouts', 'workouts.exercise'] SO USER OBJECT RENDERS THE WORKOUTS ARRAY OF OBJECTS
+        render json: User.find_by!(id: session[:user_id]), include: ['workouts', 'workouts.exercise']
     rescue ActiveRecord::RecordNotFound
         render json: { error: ['Not authorized'] }, status: :unauthorized
     end

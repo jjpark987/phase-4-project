@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
-function Workout({ workout, workouts, setWorkouts, showDeleteWorkouts }) {
+function Workout({ workout, showDeleteWorkouts }) {
     const navigate = useNavigate();
     
+    const { user } = useUserContext();
     const { showEditWorkouts, setEditWorkout } = useEditWorkoutContext();
 
     function handleEditWorkout() {
@@ -17,11 +19,7 @@ function Workout({ workout, workouts, setWorkouts, showDeleteWorkouts }) {
             method: 'DELETE'
         })
         .then(() => {
-            const updatedWorkouts = { ...workouts };
-
-            updatedWorkouts[workout.day] = updatedWorkouts[workout.day].filter(workoutElement => workoutElement.id !== workout.id);
-
-            setWorkouts(updatedWorkouts);
+            // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
         })
         .catch(error => console.error(error));
     }

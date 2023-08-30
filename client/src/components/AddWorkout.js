@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import { useAddWorkoutContext } from "../context/AddWorkoutContext";
 
 function AddWorkout() {
     const navigate = useNavigate();
 
+    const { user, setUser } = useUserContext();
     const { addWorkout, setAddWorkout } = useAddWorkoutContext();
 
     const [errors, setErrors] = useState([]);
@@ -17,12 +19,14 @@ function AddWorkout() {
         e.preventDefault();
 
         const workoutData = {
-            exercise_id: addWorkout.exercise.id, 
-            day: addWorkout.day,
-            sets: addWorkout.sets,
-            reps: addWorkout.reps,
-            weight: addWorkout.weight,
-            duration: addWorkout.duration
+            workout: {
+                exercise_id: addWorkout.exercise.id, 
+                day: addWorkout.day,
+                sets: addWorkout.sets,
+                reps: addWorkout.reps,
+                weight: addWorkout.weight,
+                duration: addWorkout.duration
+            }
         };
 
         fetch('/workouts', {
@@ -35,6 +39,11 @@ function AddWorkout() {
 
             if (res.ok) {
                 response.then(() => {
+                    // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
+                    const updatedWorkouts = [ ...user.workouts ]
+                    updatedWorkouts.push(addWorkout)
+                    console.log(updatedWorkouts)
+                    setUser({ ...user, workouts: updatedWorkouts })
                     setAddWorkout({
                         exercise: {},
                         day: '',
@@ -42,7 +51,7 @@ function AddWorkout() {
                         reps: 0,
                         weight: 0,
                         duration: 0
-                      });
+                    });
                     navigate('/workouts');
                 });
             } else {

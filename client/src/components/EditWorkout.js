@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
 function EditWorkout() {
     const navigate = useNavigate();
 
+    const { user } = useUserContext();
     const { setShowEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
     
     const [errors, setErrors] = useState([]);
@@ -16,18 +18,28 @@ function EditWorkout() {
     function sumbitEditWorkout(e) {
         e.preventDefault();
 
+        const workoutData = {
+            workout: {
+                exercise_id: editWorkout.exercise.id, 
+                day: editWorkout.day,
+                sets: editWorkout.sets,
+                reps: editWorkout.reps,
+                weight: editWorkout.weight,
+                duration: editWorkout.duration
+            }
+        };
+
         fetch(`/workouts/${editWorkout.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                workout: { ...editWorkout, exercise_id: editWorkout.exercise.id }
-            })
+            body: JSON.stringify(workoutData)
         })
         .then(res => {
             const response = res.json();
 
             if (res.ok) {
                 response.then(() => {
+                    // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
                     setShowEditWorkouts(false);
                     setEditWorkout({
                         exercise: {},

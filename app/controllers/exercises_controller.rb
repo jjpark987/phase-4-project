@@ -1,4 +1,6 @@
 class ExercisesController < ApplicationController
+    skip_before_action :authorize, only: [:index, :unique_attributes]
+    
     # get '/exercises'
     def index
         render json: Exercise.all
