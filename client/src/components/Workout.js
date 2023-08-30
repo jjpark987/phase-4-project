@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
-function Workout({ workout, showDeleteWorkouts }) {
+function Workout({ workout, workouts, setWorkouts, showDeleteWorkouts }) {
     const navigate = useNavigate();
     
     const { showEditWorkouts, setEditWorkout } = useEditWorkoutContext();
@@ -17,8 +17,11 @@ function Workout({ workout, showDeleteWorkouts }) {
             method: 'DELETE'
         })
         .then(() => {
-            navigate('/');
-            navigate('/workouts');
+            const updatedWorkouts = { ...workouts };
+
+            updatedWorkouts[workout.day] = updatedWorkouts[workout.day].filter(workoutElement => workoutElement.id !== workout.id);
+
+            setWorkouts(updatedWorkouts);
         })
         .catch(error => console.error(error));
     }

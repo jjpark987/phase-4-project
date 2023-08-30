@@ -101,25 +101,81 @@ function MyWorkouts() {
                     <tbody>
                         <tr>
                             <td>
-                                {workouts.sunday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.sunday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.monday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.monday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.tuesday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.tuesday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.wednesday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.wednesday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.thursday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.thursday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.friday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.friday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                             <td>
-                                {workouts.saturday.map(workout => <Workout key={workout.id} workout={workout} showDeleteWorkouts={showDeleteWorkouts} />)}
+                                {workouts.saturday.map(workout => 
+                                    <Workout 
+                                        key={workout.id} 
+                                        workout={workout} 
+                                        workouts={workouts}
+                                        setWorkouts={setWorkouts}
+                                        showDeleteWorkouts={showDeleteWorkouts} 
+                                    />
+                                )}
                             </td>
                         </tr>
                     </tbody>
