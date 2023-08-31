@@ -124,8 +124,8 @@ function Auth() {
                     <button className='xx-large-btn'>Login</button>
                 </form>
                 <div className='error-msg'>
-                    {errors.error && (errors.error.map(
-                        (error, index) => <h3 key={index}>{error}</h3>
+                    {errors.error && (errors.error.map((error, index) => 
+                        <h3 key={index}>{error}</h3>
                     ))}
                 </div>
                 <img 
@@ -185,8 +185,8 @@ function Auth() {
                 <button className='xx-large-btn'>Sign up</button>
             </form>
             <div className='error-msg'>
-                {errors.error && (errors.error.map(
-                    (error, index) => <h3 key={index}>{error}</h3>
+                {errors.error && (errors.error.map((error, index) => 
+                    <h3 key={index}>{error}</h3>
                 ))}
             </div>
         </div>

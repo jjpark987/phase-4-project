@@ -1,11 +1,6 @@
 class WorkoutsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-    # NOT USING THIS CONTROLLER ACTION SINCE I AM NOW OBTAINING THE WORKOUTS ARRAY OF OBJECTS VIA USER OBJECT
-    # get '/workouts'
-    # def index
-    #     render json: Workout.where(user_id: session[:user_id])
-    # end
 
     # post '/workouts'
     def create

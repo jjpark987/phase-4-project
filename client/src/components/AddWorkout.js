@@ -38,12 +38,10 @@ function AddWorkout() {
             const response = res.json();
 
             if (res.ok) {
-                response.then(() => {
-                    // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
-                    const updatedWorkouts = [ ...user.workouts ]
-                    updatedWorkouts.push(addWorkout)
-                    console.log(updatedWorkouts)
-                    setUser({ ...user, workouts: updatedWorkouts })
+                response.then(data => {
+                    const updatedWorkouts = [ ...user.workouts, data ];
+
+                    setUser({ ...user, workouts: updatedWorkouts });
                     setAddWorkout({
                         exercise: {},
                         day: '',
@@ -79,7 +77,7 @@ function AddWorkout() {
                     <option value='saturday'>Saturday</option>
                 </select>
                 <Link className='select-exercise' to='/exercises'>Select an exercise</Link>
-                {addWorkout.exercise && <h1>{addWorkout.exercise.name}</h1>}
+                <h1>{addWorkout.exercise.name}</h1>
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 
                     id='workout-sets' 
@@ -110,8 +108,8 @@ function AddWorkout() {
                 />
                 <button className='large-btn'>Add workout</button>
                 <div className='error-msg'>
-                    {errors.error && (errors.error.map(
-                        (error, index) => <h3 key={index}>{error}</h3>
+                    {errors.error && (errors.error.map((error, index) => 
+                        <h3 key={index}>{error}</h3>
                     ))}
                 </div>
             </form>

@@ -15,7 +15,6 @@ function UserProvider({ children }) {
 
     const contextValue = {
         user,
-        // ADDED setUser TO UPDATE WORKOUTS ARRAY OF OBJECTS NESTED IN user IN MY FRONTEND
         setUser,
         login,
         logout,

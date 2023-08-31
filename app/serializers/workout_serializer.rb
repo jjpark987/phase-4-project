@@ -1,6 +1,7 @@
 class WorkoutSerializer < ActiveModel::Serializer
-    attributes :id, :day, :sets, :reps, :weight, :duration
+    attributes :id, :day, :sets, :reps, :weight, :duration, :exercise
 
-    has_one :user
-    has_one :exercise
+    def exercise
+        object.exercise.attributes.merge(name: object.exercise.name.capitalize)
+    end
 end

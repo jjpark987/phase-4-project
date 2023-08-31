@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
     # get '/me'
     def show
-        # USED THE include: ['workouts', 'workouts.exercise'] SO USER OBJECT RENDERS THE WORKOUTS ARRAY OF OBJECTS
-        render json: User.find_by!(id: session[:user_id]), include: ['workouts', 'workouts.exercise']
+        render json: User.find_by!(id: session[:user_id])
     rescue ActiveRecord::RecordNotFound
         render json: { error: ['Not authorized'] }, status: :unauthorized
     end

@@ -6,7 +6,7 @@ import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 function EditWorkout() {
     const navigate = useNavigate();
 
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
     const { setShowEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
     
     const [errors, setErrors] = useState([]);
@@ -38,8 +38,12 @@ function EditWorkout() {
             const response = res.json();
 
             if (res.ok) {
-                response.then(() => {
-                    // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
+                response.then(data => {
+                    const updatedWorkouts = user.workouts.map(workout => 
+                        workout.id === data.id ? data : workout
+                    );
+
+                    setUser({ ...user, workouts: updatedWorkouts });
                     setShowEditWorkouts(false);
                     setEditWorkout({
                         exercise: {},
@@ -76,7 +80,7 @@ function EditWorkout() {
                     <option value='saturday'>Saturday</option>
                 </select>
                 <Link className='select-exercise' to='/exercises'>Select an exercise</Link>
-                {editWorkout.exercise && <h1>{editWorkout.exercise.name}</h1>}
+                <h1>{editWorkout.exercise.name}</h1>
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 
                     id='workout-sets' 
@@ -107,8 +111,8 @@ function EditWorkout() {
                 />
                 <button className='large-btn'>Edit workout</button>
                 <div className='error-msg'>
-                    {errors.error && (errors.error.map(
-                        (error, index) => <h3 key={index}>{error}</h3>
+                    {errors.error && (errors.error.map((error, index) => 
+                        <h3 key={index}>{error}</h3>
                     ))}
                 </div>
             </form>

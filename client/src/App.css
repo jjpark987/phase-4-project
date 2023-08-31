@@ -94,7 +94,11 @@ nav button {
 }
 
 #home img {
-    width: 90vw;
+    width: 70vw;
+}
+
+#home h3 {
+    margin: 0;
 }
 
 /* AllExercises.js */

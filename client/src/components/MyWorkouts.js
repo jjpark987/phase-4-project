@@ -77,8 +77,7 @@ function MyWorkouts() {
                     <tbody>
                         <tr>
                             <td>
-                                {/* IF user.workouts IS TRUE, MAP THE ARRAY OF WORKOUT OBJECTS SPECIFIC TO THE DAY OF WEEK TO RENDER ON FRONTEND */}
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'sunday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -89,7 +88,7 @@ function MyWorkouts() {
                                 )}
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'monday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -100,7 +99,7 @@ function MyWorkouts() {
                                 )}
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'tuesday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -111,7 +110,7 @@ function MyWorkouts() {
                                 )} 
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'wednesday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -122,7 +121,7 @@ function MyWorkouts() {
                                 )}
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'thursday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -133,7 +132,7 @@ function MyWorkouts() {
                                 )}
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'friday' && 
                                         <Workout 
                                             key={workout.id} 
@@ -144,7 +143,7 @@ function MyWorkouts() {
                                 )}
                             </td>
                             <td>
-                                {user.workouts && user.workouts.map(workout => 
+                                {user.workouts.map(workout => 
                                     (workout.day === 'saturday' && 
                                         <Workout 
                                             key={workout.id} 

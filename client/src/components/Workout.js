@@ -6,7 +6,7 @@ import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 function Workout({ workout, showDeleteWorkouts }) {
     const navigate = useNavigate();
     
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
     const { showEditWorkouts, setEditWorkout } = useEditWorkoutContext();
 
     function handleEditWorkout() {
@@ -19,7 +19,11 @@ function Workout({ workout, showDeleteWorkouts }) {
             method: 'DELETE'
         })
         .then(() => {
-            // ADD CODE HERE TO UPDATE THE FRONTEND CORRECTLY
+            const updatedWorkouts = user.workouts.filter(targetWorkout => 
+                targetWorkout.id !== workout.id    
+            );
+
+            setUser({ ...user, workouts: updatedWorkouts });
         })
         .catch(error => console.error(error));
     }
