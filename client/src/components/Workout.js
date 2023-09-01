@@ -19,8 +19,8 @@ function Workout({ workout, showDeleteWorkouts }) {
             method: 'DELETE'
         })
         .then(() => {
-            const updatedWorkouts = user.workouts.filter(targetWorkout => 
-                targetWorkout.id !== workout.id    
+            const updatedWorkouts = user.workouts.filter(workoutElement => 
+                workoutElement.id !== workout.id    
             );
 
             setUser({ ...user, workouts: updatedWorkouts });

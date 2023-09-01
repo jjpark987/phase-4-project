@@ -35,11 +35,11 @@ function AddWorkout() {
             body: JSON.stringify(workoutData)
         })
         .then(res => {
-            const response = res.json();
+            const responseBody = res.json();
 
             if (res.ok) {
-                response.then(data => {
-                    const updatedWorkouts = [ ...user.workouts, data ];
+                responseBody.then(updatedWorkout => {
+                    const updatedWorkouts = [ ...user.workouts, updatedWorkout ];
 
                     setUser({ ...user, workouts: updatedWorkouts });
                     setAddWorkout({
@@ -53,7 +53,7 @@ function AddWorkout() {
                     navigate('/workouts');
                 });
             } else {
-                response.then(data => setErrors(data));
+                responseBody.then(data => setErrors(data));
             }
         })
         .catch(error => console.error(error));

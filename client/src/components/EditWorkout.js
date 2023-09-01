@@ -35,12 +35,12 @@ function EditWorkout() {
             body: JSON.stringify(workoutData)
         })
         .then(res => {
-            const response = res.json();
+            const responseBody = res.json();
 
             if (res.ok) {
-                response.then(data => {
+                responseBody.then(targetWorkout => {
                     const updatedWorkouts = user.workouts.map(workout => 
-                        workout.id === data.id ? data : workout
+                        workout.id === targetWorkout.id ? targetWorkout : workout
                     );
 
                     setUser({ ...user, workouts: updatedWorkouts });
@@ -56,7 +56,7 @@ function EditWorkout() {
                     navigate('/workouts');
                 });
             } else {
-                response.then(data => setErrors(data));
+                responseBody.then(data => setErrors(data));
             }
         })
         .catch(error => console.error(error));

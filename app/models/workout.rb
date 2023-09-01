@@ -5,6 +5,7 @@ class Workout < ApplicationRecord
     before_validation :replace_nil
 
     validates :day, presence: true
+    validate :sets_reps_or_duration_present
 
     private
 
@@ -13,5 +14,11 @@ class Workout < ApplicationRecord
         self.reps ||= 0
         self.weight ||= 0
         self.duration ||= 0
+    end
+
+    def sets_reps_or_duration_present
+        if (self.sets == 0 || self.reps == 0) && self.duration == 0
+            errors.add(:base, "Must have either sets and reps OR duration")
+        end
     end
 end

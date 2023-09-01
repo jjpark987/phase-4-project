@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAttributesContext } from "../context/AttributesContext";
 import { useUserContext } from "../context/UserContext";
+import { useAttributesContext } from "../context/AttributesContext";
 
 function AddExercise() {
     const navigate = useNavigate();
@@ -21,10 +21,10 @@ function AddExercise() {
     useEffect(() => {
         fetch('/exercises/unique_attributes')
         .then(res => res.json())
-        .then(data => setUniqueAttributes({
-            bodyParts: data.body_parts,
-            targets: data.targets,
-            equipments: data.equipments
+        .then(allUniqueAttributes => setUniqueAttributes({
+            bodyParts: allUniqueAttributes.body_parts,
+            targets: allUniqueAttributes.targets,
+            equipments: allUniqueAttributes.equipments
         }))
         .catch(error => console.error(error));
     }, []);
@@ -52,12 +52,12 @@ function AddExercise() {
             body: JSON.stringify(exerciseData)
         })
         .then(res => {
-            const response = res.json();
+            const responseBody = res.json();
 
             if (res.ok) {
-                response.then(() => navigate('/exercises'));
+                responseBody.then(() => navigate('/exercises'));
             } else {
-                response.then(data => setErrors(data))
+                responseBody.then(data => setErrors(data))
             }
         })
         .catch(error => console.error(error));

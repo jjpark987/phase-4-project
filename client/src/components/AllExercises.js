@@ -15,15 +15,15 @@ function AllExercises() {
     useEffect(() => {
         fetch('/exercises')
         .then(res => res.json())
-        .then(data => setExercises(data))
+        .then(allExercises => setExercises(allExercises))
         .catch(error => console.error(error));
 
         fetch('/exercises/unique_attributes')
         .then(res => res.json())
-        .then(data => setUniqueAttributes({
-            bodyParts: data.body_parts,
-            targets: data.targets,
-            equipments: data.equipments
+        .then(allUniqueAttributes => setUniqueAttributes({
+            bodyParts: allUniqueAttributes.body_parts,
+            targets: allUniqueAttributes.targets,
+            equipments: allUniqueAttributes.equipments
         }))
         .catch(error => console.error(error));
     }, []);

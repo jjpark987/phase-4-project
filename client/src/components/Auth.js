@@ -36,16 +36,16 @@ function Auth() {
             body: JSON.stringify(loginData)
         })
         .then(res => {
-            const response = res.json();
+            const responseBody = res.json();
 
             if (res.ok) {
-                response.then(data => {
+                responseBody.then(userData => {
                     setErrors([]);
-                    login(data);
+                    login(userData);
                     navigate('/workouts');
                 });
             } else {
-                response.then(data => setErrors(data));
+                responseBody.then(data => setErrors(data));
             }
         })
         .catch(error => console.error(error));
@@ -81,10 +81,10 @@ function Auth() {
             body: JSON.stringify(userData)
         })
         .then(res => {
-            const response = res.json();
+            const responseBody = res.json();
 
             if (res.ok) {
-                response.then(() => {
+                responseBody.then(() => {
                     const loginData = {
                         email: newAccount.email,
                         password: newAccount.password
@@ -93,7 +93,7 @@ function Auth() {
                     createSession(loginData);
                 });
             } else {
-                response.then(data => setErrors(data));
+                responseBody.then(data => setErrors(data));
             }
         })
         .catch(error => console.error(error));
