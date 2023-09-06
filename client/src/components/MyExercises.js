@@ -4,7 +4,7 @@ import MyExercise from "./MyExercise";
 
 function MyExercises() {
     const { user } = useUserContext();
-console.log(user)
+
     return (
         <div className='component'>
             <h1>{user && user.first_name}'s exercises</h1>
