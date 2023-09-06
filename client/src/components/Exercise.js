@@ -24,9 +24,9 @@ function Exercise({ exercise }) {
     return (
         <div>
             <h2>{exercise.name}</h2>
-            <div className='exercise-info'>
+            <div id='exercise-info'>
                 <img src={exercise.gif_url} alt={exercise.name} />
-                <div className='exercise-detail'>
+                <div id='exercise-detail'>
                     <p>{exercise.target}</p>
                     <p>Equipment: {exercise.equipment}</p>
                 </div>

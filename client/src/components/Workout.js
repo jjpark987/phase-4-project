@@ -22,8 +22,15 @@ function Workout({ workout, showDeleteWorkouts }) {
             const updatedWorkouts = user.workouts.filter(workoutElement => 
                 workoutElement.id !== workout.id    
             );
+            const updatedExercises = user.exercises.filter(exerciseElement => 
+                exerciseElement.id !== workout.exercise.id
+            );
 
-            setUser({ ...user, workouts: updatedWorkouts });
+            setUser({
+                ...user, 
+                workouts: updatedWorkouts,
+                exercises: updatedExercises
+            });
         })
         .catch(error => console.error(error));
     }

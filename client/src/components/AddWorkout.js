@@ -40,8 +40,17 @@ function AddWorkout() {
             if (res.ok) {
                 responseBody.then(updatedWorkout => {
                     const updatedWorkouts = [ ...user.workouts, updatedWorkout ];
+                    const updatedExercises = [ ...user.exercises ];
 
-                    setUser({ ...user, workouts: updatedWorkouts });
+                    if (!updatedExercises.find(exercise => exercise.id === updatedWorkout.exercise.id)) {
+                        updatedExercises.push(updatedWorkout.exercise);
+                    }
+
+                    setUser({
+                        ...user, 
+                        workouts: updatedWorkouts, 
+                        exercises: updatedExercises
+                    });
                     setAddWorkout({
                         exercise: {},
                         day: '',

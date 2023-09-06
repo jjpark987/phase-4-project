@@ -53,18 +53,6 @@ button {
     align-items: center;
 }
 
-.exercise-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-  
-.exercise-detail {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 img {
   width: 10vw;
 }
@@ -164,6 +152,19 @@ nav button {
     place-self: end;
 }
 
+/* Exercise */
+#exercise-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+#exercise-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* MyWorkouts */
 #my-workout {
     display: grid;
@@ -261,4 +262,10 @@ td {
     align-items: flex-end;
     justify-content: center;
     padding-right: 1vh;
+}
+
+/* MyExercise */
+#my-exercise-info {
+    display: flex;
+    align-items: center;
 }

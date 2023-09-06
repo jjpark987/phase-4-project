@@ -38,12 +38,19 @@ function EditWorkout() {
             const responseBody = res.json();
 
             if (res.ok) {
-                responseBody.then(targetWorkout => {
+                responseBody.then(updatedWorkout => {
                     const updatedWorkouts = user.workouts.map(workout => 
-                        workout.id === targetWorkout.id ? targetWorkout : workout
+                        workout.id === updatedWorkout.id ? updatedWorkout : workout
+                    );
+                    const updatedExercises = updatedWorkouts.map(workout => 
+                        workout.exercise    
                     );
 
-                    setUser({ ...user, workouts: updatedWorkouts });
+                    setUser({
+                        ...user, 
+                        workouts: updatedWorkouts, 
+                        exercises: updatedExercises
+                    });
                     setShowEditWorkouts(false);
                     setEditWorkout({
                         exercise: {},
