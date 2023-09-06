@@ -29,7 +29,7 @@ function Workout({ workout, showDeleteWorkouts }) {
     }
 
     return (
-        <div id='workout-container'>
+        <div id='workout-item'>
             {showEditWorkouts ? 
                 <button id='workout-name-edit' onClick={handleEditWorkout}>{workout.exercise.name}</button> 
             :

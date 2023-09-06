@@ -10,6 +10,7 @@ import AddExercise from './components/AddExercise';
 import MyWorkouts from './components/MyWorkouts';
 import AddWorkout from './components/AddWorkout';
 import EditWorkout from './components/EditWorkout';
+import MyExercises from './components/MyExercises';
 
 function App() {    
     const { login } = useUserContext();
@@ -48,6 +49,9 @@ function App() {
                 } />
                 <Route path='/workouts/edit' element={
                     <EditWorkout />
+                } />
+                <Route path='/my_exercises' element={
+                    <MyExercises />
                 } />
             </Routes>
         </div>

@@ -18,7 +18,7 @@ class WorkoutsController < ApplicationController
     def destroy
         workout = Workout.find_by!(user_id: session[:user_id], id: params[:id])
         workout.destroy
-        head :no_content
+        head(:no_content)
     end
     
     private

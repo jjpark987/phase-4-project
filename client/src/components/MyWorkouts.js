@@ -30,6 +30,10 @@ function MyWorkouts() {
         setShowDeleteWorkouts(!showDeleteWorkouts);
     }
 
+    function handleMyExercises() {
+        navigate('/my_exercises')
+    }
+
     if (user) {
         return (
             <div id='my-workout'>
@@ -157,8 +161,9 @@ function MyWorkouts() {
                     </tbody>
                 </table>
                 <div id='edit-delete-btns'>
-                    <button id='edit-workouts' onClick={handleShowEditWorkouts}>Edit workouts</button>
-                    <button id='delete-workouts' onClick={handleShowDeleteWorkouts}>Delete workouts</button>
+                    <button id='edit-workouts-btn' onClick={handleShowEditWorkouts}>Edit workouts</button>
+                    <button id='delete-workouts-btn' onClick={handleShowDeleteWorkouts}>Delete workouts</button>
+                    <button id='view-exercises-btn' onClick={handleMyExercises}>My exercises</button>
                 </div>
             </div>
         );

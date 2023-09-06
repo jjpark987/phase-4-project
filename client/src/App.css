@@ -1,84 +1,100 @@
 /* Shared */
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3vh;
 }
 
 label {
-  font-size: x-large;
+    font-size: x-large;
 }
 
 input {
-  font-family: Impact, fantasy, -apple-system;
-  font-size: large;
-  margin-bottom: 3vh;
+    font-family: Impact, fantasy, -apple-system;
+    font-size: large;
+    margin-bottom: 3vh;
 }
 
 select {
-  font-family: Impact, fantasy, -apple-system;
-  font-size: large;
-  margin-bottom: 3vh;
+    font-family: Impact, fantasy, -apple-system;
+    font-size: large;
+    margin-bottom: 3vh;
 }
 
 button {
-  font-family: Impact, fantasy, -apple-system;
+    font-family: Impact, fantasy, -apple-system;
 }
 
 .large-btn {
-  font-size: large;
+    font-size: large;
 }
 
 .x-large-btn {
-  font-size: x-large;
+    font-size: x-large;
 }
 
 .xx-large-btn {
-  font-size: xx-large;
+    font-size: xx-large;
 }
 
 .component {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3vh;
 }
 
 .error-msg {
-  margin-top: 3vh;
-  font-size: x-large;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-top: 3vh;
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exercise-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+.exercise-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+img {
+  width: 10vw;
 }
 
 .select-exercise {
     font-size: x-large;
-  }
+}
 
-/* NavBar.js */
+/* NavBar */
 nav {
-  height: 5vh;
-  background-color: rgb(0, 0, 0);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
-  align-items: center;
+    height: 5vh;
+    background-color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
 }
 
 nav a,
 nav button {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: large;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: large;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 
-/* Home.js */
+/* Home */
 #home {
     display: flex;
     flex-direction: column;
@@ -94,108 +110,86 @@ nav button {
 }
 
 #home img {
-    width: 70vw;
+    width: 80vw;
 }
 
-#home h3 {
-    margin: 0;
-}
-
-/* AllExercises.js */
+/* AllExercises */
 #all-exercises {
-  display: grid;
-  grid-template-columns: 20vw 1fr 20vw;
-  grid-template-areas:
-    'add-exercise search-filter .'
-    '. exercise-container .'
-    '. page-navigation .';
-  justify-items: center;
+    display: grid;
+    grid-template-columns: 20vw 1fr 20vw;
+    grid-template-areas:
+        'add-exercise search-filter .'
+        '. exercise-container .'
+        '. page-navigation .';
+    justify-items: center;
 }
 
 #add-exercise {
-  grid-area: add-exercise;
-  place-self: center;
-  place-items: center;
-  font-size: x-large;
+    grid-area: add-exercise;
+    place-self: center;
+    place-items: center;
+    font-size: x-large;
 }
 
 #search-filter {
-  grid-area: search-filter;
-  justify-items: center;
-  margin-top: 5vh;
+    grid-area: search-filter;
+    justify-items: center;
+    margin-top: 5vh;
 }
 
 #exercise-container {
-  grid-area: exercise-container;
-  width: stretch;
+    grid-area: exercise-container;
+    width: stretch;
 }
 
 #page-navigation {
-  grid-area: page-navigation;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: 
-    'back-btn next-btn';
-  margin: 5vh 0;
-  width: stretch;
+    grid-area: page-navigation;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        'back-btn next-btn';
+    margin: 5vh 0;
+    width: stretch;
 }
 
 #back-btn {
-  grid-area: back-btn;
-  font-size: x-large;
-  place-self: start;
+    grid-area: back-btn;
+    font-size: x-large;
+    place-self: start;
 }
 
 #next-btn {
-  grid-area: next-btn;
-  font-size: x-large;
-  place-self: end;
+    grid-area: next-btn;
+    font-size: x-large;
+    place-self: end;
 }
 
-
-/* Exercise.js */
-#exercise-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#exercise-detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-img {
-  width: 10vw;
-}
-
-/* MyWorkouts.js */
+/* MyWorkouts */
 #my-workout {
-  display: grid;
-  grid-template-rows: 10vh 1fr;
-  justify-items: center;
-  margin-top: 3vh;
+    display: grid;
+    grid-template-rows: 10vh 1fr;
+    justify-items: center;
+    margin-top: 3vh;
 }
 
 table {  
-  margin-top: 3vh;
-  background-color: rgb(255, 255, 255);
+    margin-top: 3vh;
+    background-color: rgb(255, 255, 255);
 }
 
 tr {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 th {
-  border: 2px solid;
-  border-top: none;
+    border: 2px solid;
+    border-top: none;
 }
 
 td {
-  border: 2px solid;
-  border-bottom: none;
+    border: 2px solid;
+    border-bottom: none;
 }
 
 #edit-delete-btns {
@@ -203,13 +197,17 @@ td {
     margin: 5vh;
 }
 
-#edit-workouts {
+#edit-workouts-btn {
     color: blue;
     margin: 0 5vw;
 }
 
-#delete-workouts {
+#delete-workouts-btn {
     color: red;
+    margin: 0 5vw;
+}
+
+#view-exercises-btn {
     margin: 0 5vw;
 }
 
@@ -220,19 +218,19 @@ td {
     margin-top: 10vh;
 }
 
-/* Workout.js */
-#workout-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding-left: 1vh;
-  border-bottom: 2px dashed;
+/* Workout */
+#workout-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 1vh;
+    border-bottom: 2px dashed;
 }
 
 #workout-name {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin: 16px 0;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: 16px 0;
 }
 
 #workout-name-edit {
@@ -258,9 +256,9 @@ td {
 }
 
 #workout-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  padding-right: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right: 1vh;
 }
