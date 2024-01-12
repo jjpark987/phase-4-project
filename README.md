@@ -12,6 +12,10 @@ SweatStrong employs standard password hashing techniques to ensure security. Use
 ## Details
 The application implements Active Record validations within its models to ensure data integrity. Controller validations are utilized for backend operations, modifying JSON responses as necessary. Successful operations pass the relevant object to the frontend, while errors transmit error messages for user feedback. Additionally, React's useContext hook is employed for frontend state management, persisting the logged-in user object and minimizing prop drilling.
 
+## Demo
+
+[Video Walkthrough](https://youtu.be/DLP_9V0HKio)
+
 ## API Documentation
 This application uses ExerciseDB by Justin Mozley. Please see this [link](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb) for the official documentation.
 
