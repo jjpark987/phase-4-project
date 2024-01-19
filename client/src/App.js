@@ -11,6 +11,7 @@ import MyWorkouts from './components/MyWorkouts';
 import AddWorkout from './components/AddWorkout';
 import EditWorkout from './components/EditWorkout';
 import MyExercises from './components/MyExercises';
+import PageNotFound from './components/PageNotFound';
 
 function App() {    
     const { login } = useUserContext();
@@ -41,6 +42,9 @@ function App() {
                 <Route path='/exercises/add' element={
                     <AddExercise />
                 } />
+                <Route path='/my_exercises' element={
+                    <MyExercises />
+                } />
                 <Route path='/workouts' element={
                     <MyWorkouts />
                 } />
@@ -50,8 +54,8 @@ function App() {
                 <Route path='/workouts/edit' element={
                     <EditWorkout />
                 } />
-                <Route path='/my_exercises' element={
-                    <MyExercises />
+                <Route path='*' element={
+                    <PageNotFound />
                 } />
             </Routes>
         </div>

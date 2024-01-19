@@ -9,13 +9,13 @@ function Auth() {
 
     const [showLogin, setShowLogin] = useState(true);
     const [account, setAccount] = useState({
-        email: '',
+        username: '',
         password: ''
     });
     const [newAccount, setNewAccount] = useState({
         firstName: '',
-        lastName: '',
         email: '',
+        username: '',
         password: '',
         passwordConfirmation: ''
     });
@@ -55,7 +55,7 @@ function Auth() {
         e.preventDefault();
 
         const loginData = {
-            email: account.email,
+            username: account.username,
             password: account.password
         };
 
@@ -68,8 +68,8 @@ function Auth() {
         const userData = { 
             user: {
                 first_name: newAccount.firstName,
-                last_name: newAccount.lastName,
                 email: newAccount.email,
+                username: newAccount.username,
                 password: newAccount.password,
                 password_confirmation: newAccount.passwordConfirmation
             }
@@ -86,7 +86,7 @@ function Auth() {
             if (res.ok) {
                 responseBody.then(() => {
                     const loginData = {
-                        email: newAccount.email,
+                        username: newAccount.username,
                         password: newAccount.password
                     };
 
@@ -99,91 +99,115 @@ function Auth() {
         .catch(error => console.error(error));
     }
 
+    function handleAuthSwitch() {
+        setShowLogin(() => !showLogin);
+        setErrors([]);
+        setAccount({
+            username: '',
+            password: ''
+        });
+        setNewAccount({
+            firstName: '',
+            email: '',
+            username: '',
+            password: '',
+            passwordConfirmation: ''
+        });
+    }
+
     if (showLogin) {
         return (
-            <div className='component'>
-                <button className='large-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Create a new account</button>
-                <h1>Login</h1>
-                <form className='form' onSubmit={submitAccount}>
-                    <label htmlFor='login-email'>Email:</label>
-                    <input 
-                        id='login-email' 
-                        name='email'
-                        value={account.email}
-                        onChange={updateAccount}
-                        required
-                    />
-                    <label htmlFor='login-password'>Password:</label>
-                    <input 
-                        id='login-password' 
-                        name='password'
-                        value={account.password}
-                        onChange={updateAccount}
-                        required
-                    />
-                    <button className='xx-large-btn'>Login</button>
-                </form>
+            <div id='login-page'>
+                <div id='login-credentials'>
+                    <h1>Log in</h1>
+                    <form id='login-form' onSubmit={submitAccount}>
+                        <label htmlFor='login-username'>Username</label>
+                        <input 
+                            id='login-username' 
+                            name='username'
+                            value={account.username}
+                            onChange={updateAccount}
+                            required
+                        />
+                        <label htmlFor='login-password'>Password</label>
+                        <input 
+                            id='login-password' 
+                            name='password'
+                            type='password'
+                            value={account.password}
+                            onChange={updateAccount}
+                            required
+                        />
+                        <button className='large-btn'>Log in</button>
+                    </form>
+                    <div id='register-prompt'>
+                        <p>Don't have an account?</p>
+                        <button id='register-btn' type='button' onClick={handleAuthSwitch}>Register</button>
+                    </div>
+                </div>
                 <div className='error-msg'>
                     {errors.error && (errors.error.map((error, index) => 
                         <h3 key={index}>{error}</h3>
                     ))}
                 </div>
-                <img 
-                src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Please_log_in_image.png/1280px-Please_log_in_image.png' 
-                alt='login'
-                style={{ width: '50vw' }}
-            />
             </div>
         );
     }
 
     return (
-        <div className='component'>
-            <button className='large-btn' type='button' onClick={() => setShowLogin(!showLogin)}>Login to your account</button>
-            <h1>Sign up</h1>
-            <form className='form' onSubmit={submitNewAccount}>
-                <label htmlFor='signup-first-name'>First name:</label>
-                <input 
-                    id='signup-first-name'
-                    name='firstName'
-                    value={newAccount.firstName}
-                    onChange={updateNewAccount}
-                    required 
-                />
-                <label htmlFor='signup-last-name'>Last name:</label>
-                <input 
-                    id='signup-last-name'
-                    name='lastName'
-                    value={newAccount.lastName}
-                    onChange={updateNewAccount}
-                    required 
-                />
-                <label htmlFor='signup-email'>Email:</label>
-                <input 
-                    id='signup-email'
-                    name='email'
-                    value={newAccount.email}
-                    onChange={updateNewAccount}
-                    required 
-                />
-                <label htmlFor='signup-password'>Password:</label>
-                <input 
-                    id='signup-password'
-                    name='password'
-                    value={newAccount.password}
-                    onChange={updateNewAccount}
-                    required 
-                />
-                <label htmlFor='signup-password-confirmation'>Password confirmation:</label>
-                <input 
-                    id='signup-password-confirmation'
-                    name='passwordConfirmation'
-                    value={newAccount.passwordConfirmation}
-                    onChange={updateNewAccount}
-                    required 
-                />
-                <button className='xx-large-btn'>Sign up</button>
-            </form>
+        <div id='login-page'>
+            <div id='login-credentials'>
+                <h1>Sign up</h1>
+                <form id='login-form' onSubmit={submitNewAccount}>
+                    <label htmlFor='signup-first-name'>First name</label>
+                    <input 
+                        id='signup-first-name'
+                        name='firstName'
+                        value={newAccount.firstName}
+                        onChange={updateNewAccount}
+                        required 
+                    />
+                    <label htmlFor='signup-email'>Email address</label>
+                    <input 
+                        id='signup-email'
+                        name='email'
+                        value={newAccount.email}
+                        onChange={updateNewAccount}
+                        required 
+                    />
+                    <label htmlFor='signup-username'>Username</label>
+                    <input 
+                        id='signup-username'
+                        name='username'
+                        value={newAccount.username}
+                        onChange={updateNewAccount}
+                        required 
+                    />
+                    <label htmlFor='signup-password'>Password</label>
+                    <input 
+                        id='signup-password'
+                        name='password'
+                        value={newAccount.password}
+                        onChange={updateNewAccount}
+                        required 
+                        type='password'
+                    />
+                    <label htmlFor='signup-password-confirmation'>Password confirmation</label>
+                    <input 
+                        id='signup-password-confirmation'
+                        name='passwordConfirmation'
+                        value={newAccount.passwordConfirmation}
+                        onChange={updateNewAccount}
+                        required 
+                        type='password'
+                    />
+                    <button className='large-btn'>Sign up</button>
+                </form>
+                <div id='register-prompt'>
+                    <p>Already have an account?</p>
+                    <button id='register-btn' type='button' onClick={handleAuthSwitch}>Log in</button>
+                </div>
+            </div>
             <div className='error-msg'>
                 {errors.error && (errors.error.map((error, index) => 
                     <h3 key={index}>{error}</h3>

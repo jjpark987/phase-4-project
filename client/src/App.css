@@ -1,5 +1,5 @@
 /* Shared */
-form {
+.component {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,23 +38,11 @@ button {
     font-size: xx-large;
 }
 
-.component {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 3vh;
-}
-
 .error-msg {
-    margin-top: 3vh;
-    font-size: x-large;
+    font-size: large;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-img {
-  width: 10vw;
 }
 
 .select-exercise {
@@ -64,7 +52,7 @@ img {
 /* NavBar */
 nav {
     height: 5vh;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(30, 71, 120);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
@@ -92,13 +80,12 @@ nav button {
 #home h1{
     text-transform: uppercase;
     font-size: 5em;
-    color: #0f4b6e;
-    text-shadow: 3px 3px 5px #000000;
-    margin-bottom: 0;
+    color: #000000;
+    margin-top: 0;
 }
 
 #home img {
-    width: 80vw;
+    width: 71vw;
 }
 
 /* AllExercises */
@@ -117,6 +104,14 @@ nav button {
     place-self: center;
     place-items: center;
     font-size: x-large;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #cecece; /* Button background color */
+    color: #060606; /* Button text color */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    border: 1px solid #000000; /* Optional: Add a border */
 }
 
 #search-filter {
@@ -268,4 +263,66 @@ td {
 #my-exercise-info {
     display: flex;
     align-items: center;
+}
+
+/* Auth */
+#login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 91vh;
+}
+
+#login-credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: larger;
+    border-radius: 10px;
+    padding: 10px;
+    background: linear-gradient(to bottom right, #93d4ff, #24a7ff);
+    width: 40%;
+}
+
+#login-credentials, h1 {
+    margin-top: 0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+    width: 100%;
+}
+
+#login-form label {
+    font-size: medium;
+}
+
+#register-prompt {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#register-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: large;
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+/* LoginPrompt */
+#login-prompt {
+    display: flex;
+    justify-content: center;
+}
+
+#log-in-prompt-img {
+    margin-top: 18vh;
+    border-radius: 30px;
 }

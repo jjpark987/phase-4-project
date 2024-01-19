@@ -9,20 +9,6 @@
 require 'faker'
 require 'rest-client'
 
-puts 'Seeding 10 users...'
-
-10.times do 
-    User.create(
-        email: Faker::Internet.email,
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        password: '1',
-        password_confirmation: '1'
-    )
-end
-
-puts 'Done seeding users'
-
 puts 'Seeding exercises from ExerciseDB...'
 
 response = RestClient.get 'https://exercisedb.p.rapidapi.com/exercises', {
@@ -44,20 +30,20 @@ end
 
 puts 'Done seeding exercises'
 
-puts 'Seeding 50 workouts...'
+# puts 'Seeding 50 workouts...'
 
-days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+# days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
-10.times do
-    Workout.create(
-        user_id: 1,
-        exercise_id: rand(1..1324),
-        day: days.sample,
-        sets: rand(4..8),
-        reps: rand(6..12),
-        weight: rand(5..100),
-        duration: nil
-    )
-end
+# 10.times do
+#     Workout.create(
+#         user_id: 1,
+#         exercise_id: rand(1..1324),
+#         day: days.sample,
+#         sets: rand(4..8),
+#         reps: rand(6..12),
+#         weight: rand(5..100),
+#         duration: nil
+#     )
+# end
 
-puts 'Done seeding workouts'
+# puts 'Done seeding workouts'

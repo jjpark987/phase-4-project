@@ -3,13 +3,13 @@ class SessionsController < ApplicationController
 
     # post '/login'
     def create
-        user = User.find_by(email: params[:email])
+        user = User.find_by(username: params[:username])
 
         if user&.authenticate(params[:password])
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: { error: ['Invalid email or password'] }, status: :unauthorized
+            render json: { error: ['Invalid credentials'] }, status: :unauthorized
         end
     end
 

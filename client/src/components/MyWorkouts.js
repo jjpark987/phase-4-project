@@ -4,6 +4,7 @@ import { useUserContext } from "../context/UserContext";
 import { useAddWorkoutContext } from "../context/AddWorkoutContext";
 import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 import Workout from "./Workout";
+import LoginPrompt from "./LoginPrompt";
 
 function MyWorkouts() {
     const navigate = useNavigate();
@@ -170,14 +171,7 @@ function MyWorkouts() {
     }
 
     return (
-        <div id='please-login'>
-            <h1>Please login to see your weekly routine</h1>
-            <img 
-                src='https://health.clevelandclinic.org/wp-content/uploads/sites/3/2022/04/exerciseHowOften-944015592-770x533-1-650x428.jpg' 
-                alt='please-login'
-                style={{ width: '50vw' }}
-            />
-        </div>
+        <LoginPrompt />
     );
 }
 

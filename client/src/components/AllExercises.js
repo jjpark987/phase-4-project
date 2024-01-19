@@ -46,7 +46,7 @@ function AllExercises() {
 
     return (
         <div id='all-exercises'>
-            <Link id='add-exercise' to='/exercises/add'>Add new exercise</Link>
+            <Link id='add-exercise' to='/exercises/add'>ADD NEW EXERCISE</Link>
             <form id='search-filter'>
                 <input
                     placeholder='Search by name'

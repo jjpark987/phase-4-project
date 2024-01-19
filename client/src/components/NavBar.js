@@ -33,12 +33,12 @@ function NavBar() {
     return (
         <nav>
             <button onClick={handleHomeClick}>SWEATSTRONG</button>
-            <button onClick={handleAllExercisesClick}>All exercises</button>
-            <NavLink to='/workouts'>My workouts</NavLink>
+            <button onClick={handleAllExercisesClick}>EXERCISES</button>
+            <NavLink to='/workouts'>WORKOUTS</NavLink>
             {user ? 
-                <button onClick={logoutUser}>Logout</button> 
+                <button onClick={logoutUser}>LOGOUT</button> 
             : 
-                <button onClick={() => navigate('/login')}>Login</button>
+                <button onClick={() => navigate('/login')}>LOGIN</button>
             }
         </nav>
     );
