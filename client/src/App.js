@@ -5,9 +5,10 @@ import { useUserContext } from './context/UserContext';
 import Auth from './components/Auth';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import AllExercises from './components/AllExercises';
-import AddExercise from './components/AddExercise';
-import MyWorkouts from './components/MyWorkouts';
+import About from './components/About';
+import AllExercises from './components/exercise/AllExercises';
+import NewExercise from './components/exercise/NewExercise';
+import UserWorkouts from './components/workout/UserWorkouts';
 import AddWorkout from './components/AddWorkout';
 import EditWorkout from './components/EditWorkout';
 import MyExercises from './components/MyExercises';
@@ -33,22 +34,22 @@ function App() {
                 <Route path='/' element={
                     <Home />
                 } />
+                <Route path='/about' element={
+                    <About />
+                } />
                 <Route path='/login' element={
                     <Auth />
                 } />
                 <Route path='/exercises' element={
                     <AllExercises />
                 } />
-                <Route path='/exercises/add' element={
-                    <AddExercise />
-                } />
-                <Route path='/my_exercises' element={
-                    <MyExercises />
+                <Route path='/exercises/new' element={
+                    <NewExercise />
                 } />
                 <Route path='/workouts' element={
-                    <MyWorkouts />
+                    <UserWorkouts />
                 } />
-                <Route path='/workouts/add' element={
+                <Route path='/workouts/new' element={
                     <AddWorkout />
                 } />
                 <Route path='/workouts/edit' element={
@@ -56,6 +57,9 @@ function App() {
                 } />
                 <Route path='*' element={
                     <PageNotFound />
+                } />
+                <Route path='/my-exercises' element={
+                    <MyExercises />
                 } />
             </Routes>
         </div>

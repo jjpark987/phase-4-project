@@ -7,7 +7,8 @@ function Home() {
                 src='https://info.totalwellnesshealth.com/hubfs/HealthBenefitsFitness.png'
                 alt='people_exercising'
             />
-            <h1>SweatStrong</h1>
+            <h1>Sweaty</h1>
+            <p>Good things come to those who sweat</p>
         </div>
     );
 }

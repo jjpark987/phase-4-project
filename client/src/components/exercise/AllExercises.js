@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAttributesContext } from "../context/AttributesContext";
+import { useAttributesContext } from "../../context/AttributesContext";
 import Exercise from "./Exercise";
 
 function AllExercises() {
@@ -46,47 +46,45 @@ function AllExercises() {
 
     return (
         <div id='all-exercises'>
-            <Link id='add-exercise' to='/exercises/add'>ADD NEW EXERCISE</Link>
-            <form id='search-filter'>
+            <form id='search-filter-form'>
                 <input
                     placeholder='Search by name'
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                 />
-                <div>
-                    <select value={bodyPart} onChange={e => setBodyPart(e.target.value)}>
-                        <option value=''>Filter by body part</option>
-                        {uniqueAttributes.bodyParts.map((bodyPart, index) => (
-                            <option key={index} value={bodyPart}>{bodyPart}</option>
-                        ))}
-                    </select>
-                    <select value={equipment} onChange={e => setEquipment(e.target.value)}>
-                        <option value=''>Filter by equipment</option>
-                        {uniqueAttributes.equipments.map((equipment, index) => (
-                            <option key={index} value={equipment}>{equipment}</option>
-                        ))}
-                    </select>
-                </div>
+                <select value={bodyPart} onChange={e => setBodyPart(e.target.value)}>
+                    <option value=''>Filter by body part</option>
+                    {uniqueAttributes.bodyParts.map((bodyPart, index) => (
+                        <option key={index} value={bodyPart}>{bodyPart}</option>
+                    ))}
+                </select>
+                <select value={equipment} onChange={e => setEquipment(e.target.value)}>
+                    <option value=''>Filter by equipment</option>
+                    {uniqueAttributes.equipments.map((equipment, index) => (
+                        <option key={index} value={equipment}>{equipment}</option>
+                    ))}
+                </select>
             </form>
+            <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
             <div id='exercise-container'>
                 {exercises
                 .filter(exercise => searchExercises(exercise))
                 .filter(exercise => filterBodyPart(exercise))
                 .filter(exercise => filterEquipment(exercise))
-                .slice(pageStart, pageStart + 10).map(exercise => (
+                .slice(pageStart, pageStart + 12).map(exercise => (
                     <Exercise key={exercise.id} exercise={exercise} />
                 ))}
             </div>
             <div id='page-navigation'>
                 {pageStart !== 0 && 
-                    <button id='back-btn' onClick={() => setPageStart(pageStart - 10)}>Back</button>
+                    <button id='back-btn' onClick={() => setPageStart(pageStart - 12)}>Prev</button>
                 }
                 {pageStart <= exercises
                 .filter(exercise => searchExercises(exercise))
                 .filter(exercise => filterBodyPart(exercise))
                 .filter(exercise => filterEquipment(exercise))
                 .length - 10 && 
-                    <button id='next-btn' onClick={() => setPageStart(pageStart + 10)}>Next</button>
+                    <button id='next-btn' onClick={() => setPageStart(pageStart + 12)}>Next</button>
                 }
             </div>
         </div>

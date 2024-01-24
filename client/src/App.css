@@ -1,48 +1,9 @@
 /* Shared */
-.component {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 3vh;
-}
-
-label {
-    font-size: x-large;
-}
-
-input {
-    font-family: Impact, fantasy, -apple-system;
-    font-size: large;
-    margin-bottom: 3vh;
-}
-
-select {
-    font-family: Impact, fantasy, -apple-system;
-    font-size: large;
-    margin-bottom: 3vh;
-}
-
-button {
-    font-family: Impact, fantasy, -apple-system;
-}
-
-.large-btn {
-    font-size: large;
-}
-
-.x-large-btn {
-    font-size: x-large;
-}
-
-.xx-large-btn {
-    font-size: xx-large;
-}
-
 .error-msg {
-    font-size: large;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    font-size: small;
 }
 
 .select-exercise {
@@ -51,23 +12,55 @@ button {
 
 /* NavBar */
 nav {
-    height: 5vh;
-    background-color: rgb(30, 71, 120);
+    height: 8vh;
+    width: 100%;
+    background-color: #a8dbfffc;
+    position: fixed;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
+    grid-template-columns: 20vw repeat(8, 1fr) 20vw;
+    grid-template-areas: 
+        ". title . . . about exercises workouts auth .";
+    place-items: center;
+    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-nav a,
-nav button {
+nav * {
     background: none;
     border: none;
-    padding: 0;
-    font-size: large;
+    color: rgb(0, 0, 0);
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    font-weight: bold;
     cursor: pointer;
+}
+
+#navbar-title {
+    grid-area: title;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#navbar-about {
+    grid-area: about;
+    font-size: medium;
+    border-left: 2px solid white;
+    width: 100%;
+}
+
+#navbar-exercises {
+    grid-area: exercises;
+    font-size: medium;
+}
+
+#navbar-workouts {
+    grid-area: workouts;
+    font-size: medium;
+}
+
+#navbar-auth {
+    grid-area: auth;
+    font-size: medium;
+    border-left: 2px solid white;
+    width: 90%;
 }
 
 /* Home */
@@ -75,54 +68,148 @@ nav button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 8vh;
+}
+
+#home img {
+    width: 60vw;
 }
 
 #home h1{
     text-transform: uppercase;
     font-size: 5em;
     color: #000000;
-    margin-top: 0;
+    margin: 0;
 }
 
-#home img {
-    width: 71vw;
+#home p {
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* About */
+#about {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8vh;
+}
+
+/* Auth */
+#login {
+    padding-top: 25vh;
+}
+
+#signup {
+    padding-top: 15vh;
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: large;
+    border-radius: 25px;
+    padding: 50px;
+    margin-bottom: 0;
+    background-color: #a8dbff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.auth form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+    width: 100%;
+}
+
+.auth form label {
+    font-size: medium;
+}
+
+.auth form input {
+    margin-bottom: 3vh;
+}
+
+.auth form button {
+    width: 100%;
+    background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
+    border: none;
+    border-radius: 10px;
+    font-size: medium;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.auth-switch-prompt {
+    display: flex;
+    justify-content: center;
+    font-size: medium;
+}
+
+.auth-switch-btn {
+    background: none;
+    border: none;
+    font-size: medium;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 3px;
 }
 
 /* AllExercises */
 #all-exercises {
     display: grid;
-    grid-template-columns: 20vw 1fr 20vw;
+    grid-template-columns: 23vw 1fr 1fr 1fr 23vw;
     grid-template-areas:
-        'add-exercise search-filter .'
-        '. exercise-container .'
-        '. page-navigation .';
+        '. search-filter search-filter add-exercise .'
+        '. exercise-container exercise-container exercise-container .'
+        '. . page-navigation . .';
     justify-items: center;
+    padding-top: 11vh;
 }
 
-#add-exercise {
+#search-filter-form {
+    grid-area: search-filter;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#search-filter-form input, #search-filter-form select {
+    border: none;
+    border-radius: 8px;
+    font-size: large;
+    margin-right: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#add-exercise-link {
     grid-area: add-exercise;
-    place-self: center;
-    place-items: center;
-    font-size: x-large;
-    display: inline-block;
-    padding: 10px 20px;
+    place-self: end;
     text-align: center;
     text-decoration: none;
-    background-color: #cecece; /* Button background color */
-    color: #060606; /* Button text color */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    border: 1px solid #000000; /* Optional: Add a border */
-}
-
-#search-filter {
-    grid-area: search-filter;
-    justify-items: center;
-    margin-top: 5vh;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
+    font-size: large;
+    color: black;
+    padding: 8px;
 }
 
 #exercise-container {
     grid-area: exercise-container;
-    width: stretch;
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 5vh;
+    column-gap: 5vw;
 }
 
 #page-navigation {
@@ -131,36 +218,108 @@ nav button {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
         'back-btn next-btn';
-    margin: 5vh 0;
+    margin: 8vh 0;
     width: stretch;
 }
 
 #back-btn {
     grid-area: back-btn;
-    font-size: x-large;
     place-self: start;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-size: large;
+    padding: 8px;
+    cursor: pointer;
 }
 
 #next-btn {
     grid-area: next-btn;
-    font-size: x-large;
     place-self: end;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-size: large;
+    padding: 8px;
+    cursor: pointer;
 }
 
 /* Exercise */
-#exercise-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-  
-#exercise-detail {
+#exercise {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* MyWorkouts */
+#exercise img {
+    width: 300px;
+    border-radius: 20px;
+}
+
+#exercise p {
+    margin: 1vh;
+}
+
+#exercise button {
+    align-self: flex-start;
+    margin-top: 2vh;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
+    font-size: large;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* NewExercise */
+#new-exercise {
+    padding-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#new-exercise-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: large;
+    border-radius: 25px;
+    padding: 50px;
+    margin-bottom: 0;
+    background-color: #a8dbff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+#new-exercise-box form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+    width: 100%;
+}
+
+#new-exercise-box form label {
+    font-size: medium;
+}
+
+#new-exercise-box form input {
+    margin-bottom: 3vh;
+}
+
+#new-exercise-box form button {
+    width: 100%;
+    background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
+    border: none;
+    border-radius: 10px;
+    font-size: medium;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+/* UserWorkouts */
 #my-workout {
     display: grid;
     grid-template-rows: 10vh 1fr;
@@ -263,57 +422,6 @@ td {
 #my-exercise-info {
     display: flex;
     align-items: center;
-}
-
-/* Auth */
-#login-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 91vh;
-}
-
-#login-credentials {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: larger;
-    border-radius: 10px;
-    padding: 10px;
-    background: linear-gradient(to bottom right, #93d4ff, #24a7ff);
-    width: 40%;
-}
-
-#login-credentials, h1 {
-    margin-top: 0;
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1vh;
-    width: 100%;
-}
-
-#login-form label {
-    font-size: medium;
-}
-
-#register-prompt {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-#register-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: large;
-    cursor: pointer;
-    margin-left: 5px;
-    text-decoration: underline;
 }
 
 /* LoginPrompt */

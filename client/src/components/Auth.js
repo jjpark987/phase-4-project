@@ -117,32 +117,98 @@ function Auth() {
 
     if (showLogin) {
         return (
-            <div id='login-page'>
-                <div id='login-credentials'>
-                    <h1>Log in</h1>
-                    <form id='login-form' onSubmit={submitAccount}>
-                        <label htmlFor='login-username'>Username</label>
+            <div id='login'>
+                <div className='auth'>
+                    <div className='auth-box'>
+                        <h1>Log in</h1>
+                        <form className='auth-form' onSubmit={submitAccount}>
+                            <label htmlFor='login-username'>Username</label>
+                            <input 
+                                id='login-username' 
+                                name='username'
+                                value={account.username}
+                                onChange={updateAccount}
+                                required
+                            />
+                            <label htmlFor='login-password'>Password</label>
+                            <input 
+                                id='login-password' 
+                                name='password'
+                                type='password'
+                                value={account.password}
+                                onChange={updateAccount}
+                                required
+                            />
+                            <button>Log in</button>
+                        </form>
+                        <div className='auth-switch-prompt'>
+                            <p>Don't have an account?</p>
+                            <button className='auth-switch-btn' type='button' onClick={handleAuthSwitch}>Register</button>
+                        </div>
+                    </div>
+                    <div className='error-msg'>
+                        {errors.error && (errors.error.map((error, index) => 
+                            <h3 key={index}>{error}</h3>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div id='signup'>
+            <div className='auth'>
+                <div className='auth-box'>
+                    <h1>Sign up</h1>
+                    <form onSubmit={submitNewAccount}>
+                        <label htmlFor='signup-first-name'>First name</label>
                         <input 
-                            id='login-username' 
+                            id='signup-first-name'
+                            name='firstName'
+                            value={newAccount.firstName}
+                            onChange={updateNewAccount}
+                            required 
+                        />
+                        <label htmlFor='signup-email'>Email address</label>
+                        <input 
+                            id='signup-email'
+                            name='email'
+                            value={newAccount.email}
+                            onChange={updateNewAccount}
+                            required 
+                        />
+                        <label htmlFor='signup-username'>Username</label>
+                        <input 
+                            id='signup-username'
                             name='username'
-                            value={account.username}
-                            onChange={updateAccount}
-                            required
+                            value={newAccount.username}
+                            onChange={updateNewAccount}
+                            required 
                         />
-                        <label htmlFor='login-password'>Password</label>
+                        <label htmlFor='signup-password'>Password</label>
                         <input 
-                            id='login-password' 
+                            id='signup-password'
                             name='password'
+                            value={newAccount.password}
+                            onChange={updateNewAccount}
+                            required 
                             type='password'
-                            value={account.password}
-                            onChange={updateAccount}
-                            required
                         />
-                        <button className='large-btn'>Log in</button>
+                        <label htmlFor='signup-password-confirmation'>Password confirmation</label>
+                        <input 
+                            id='signup-password-confirmation'
+                            name='passwordConfirmation'
+                            value={newAccount.passwordConfirmation}
+                            onChange={updateNewAccount}
+                            required 
+                            type='password'
+                        />
+                        <button>Sign up</button>
                     </form>
-                    <div id='register-prompt'>
-                        <p>Don't have an account?</p>
-                        <button id='register-btn' type='button' onClick={handleAuthSwitch}>Register</button>
+                    <div className='auth-switch-prompt'>
+                        <p>Already have an account?</p>
+                        <button className='auth-switch-btn' type='button' onClick={handleAuthSwitch}>Log in</button>
                     </div>
                 </div>
                 <div className='error-msg'>
@@ -150,68 +216,6 @@ function Auth() {
                         <h3 key={index}>{error}</h3>
                     ))}
                 </div>
-            </div>
-        );
-    }
-
-    return (
-        <div id='login-page'>
-            <div id='login-credentials'>
-                <h1>Sign up</h1>
-                <form id='login-form' onSubmit={submitNewAccount}>
-                    <label htmlFor='signup-first-name'>First name</label>
-                    <input 
-                        id='signup-first-name'
-                        name='firstName'
-                        value={newAccount.firstName}
-                        onChange={updateNewAccount}
-                        required 
-                    />
-                    <label htmlFor='signup-email'>Email address</label>
-                    <input 
-                        id='signup-email'
-                        name='email'
-                        value={newAccount.email}
-                        onChange={updateNewAccount}
-                        required 
-                    />
-                    <label htmlFor='signup-username'>Username</label>
-                    <input 
-                        id='signup-username'
-                        name='username'
-                        value={newAccount.username}
-                        onChange={updateNewAccount}
-                        required 
-                    />
-                    <label htmlFor='signup-password'>Password</label>
-                    <input 
-                        id='signup-password'
-                        name='password'
-                        value={newAccount.password}
-                        onChange={updateNewAccount}
-                        required 
-                        type='password'
-                    />
-                    <label htmlFor='signup-password-confirmation'>Password confirmation</label>
-                    <input 
-                        id='signup-password-confirmation'
-                        name='passwordConfirmation'
-                        value={newAccount.passwordConfirmation}
-                        onChange={updateNewAccount}
-                        required 
-                        type='password'
-                    />
-                    <button className='large-btn'>Sign up</button>
-                </form>
-                <div id='register-prompt'>
-                    <p>Already have an account?</p>
-                    <button id='register-btn' type='button' onClick={handleAuthSwitch}>Log in</button>
-                </div>
-            </div>
-            <div className='error-msg'>
-                {errors.error && (errors.error.map((error, index) => 
-                    <h3 key={index}>{error}</h3>
-                ))}
             </div>
         </div>
     );

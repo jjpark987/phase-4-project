@@ -1,16 +1,9 @@
-html {
-    /* background: linear-gradient(to bottom right, #b623ff, #25a8ff); */
-    background: radial-gradient(#ffffff, #25a8ff);
-}
-
 body {
-    background-color: rgb(255, 255, 255);
-    font-family:  Impact, fantasy, -apple-system;
+    background: radial-gradient(white, #a8dbff);
+    font-family: sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin: 1vh auto;
-    min-height: 96vh;
-    width: 60%;
     overflow-y: scroll;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    margin: 0;
 }

@@ -25,6 +25,11 @@ function NavBar() {
         navigate('/');
     }
 
+    function handleAboutClick() {
+        setShowEditWorkouts(false);
+        navigate('/about');
+    }
+
     function handleAllExercisesClick() {
         setShowEditWorkouts(false);
         navigate('/exercises');
@@ -32,13 +37,14 @@ function NavBar() {
 
     return (
         <nav>
-            <button onClick={handleHomeClick}>SWEATSTRONG</button>
-            <button onClick={handleAllExercisesClick}>EXERCISES</button>
-            <NavLink to='/workouts'>WORKOUTS</NavLink>
+            <button id='navbar-title' onClick={handleHomeClick}>SWEATY</button>
+            <button id='navbar-about' onClick={handleAboutClick}>About</button>
+            <button id='navbar-exercises' onClick={handleAllExercisesClick}>Exercises</button>
+            <NavLink id='navbar-workouts' to='/workouts'>Workouts</NavLink>
             {user ? 
-                <button onClick={logoutUser}>LOGOUT</button> 
+                <button id='navbar-auth' onClick={logoutUser}>Log out</button> 
             : 
-                <button onClick={() => navigate('/login')}>LOGIN</button>
+                <button id='navbar-auth' onClick={() => navigate('/login')}>Log in</button>
             }
         </nav>
     );

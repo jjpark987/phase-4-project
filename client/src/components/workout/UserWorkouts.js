@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContext";
-import { useAddWorkoutContext } from "../context/AddWorkoutContext";
-import { useEditWorkoutContext } from "../context/EditWorkoutContext";
-import Workout from "./Workout";
-import LoginPrompt from "./LoginPrompt";
+import { useUserContext } from "../../context/UserContext";
+import { useAddWorkoutContext } from "../../context/AddWorkoutContext";
+import { useEditWorkoutContext } from "../../context/EditWorkoutContext";
+import Workout from "../Workout";
+import LoginPrompt from "../LoginPrompt";
 
-function MyWorkouts() {
+function UserWorkouts() {
     const navigate = useNavigate();
 
     const { user } = useUserContext();
@@ -175,4 +175,4 @@ function MyWorkouts() {
     );
 }
 
-export default MyWorkouts;
+export default UserWorkouts;
