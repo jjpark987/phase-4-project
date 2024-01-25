@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContext";
-import { useAddWorkoutContext } from "../context/AddWorkoutContext";
+import { useUserContext } from "../../context/UserContext";
+import { useNewWorkoutContext } from "../../context/NewWorkoutContext";
 
-function AddWorkout() {
+function NewWorkout() {
     const navigate = useNavigate();
 
     const { user, setUser } = useUserContext();
-    const { addWorkout, setAddWorkout } = useAddWorkoutContext();
+    const { newWorkout, setNewWorkout } = useNewWorkoutContext();
 
     const [errors, setErrors] = useState([]);
 
-    function updateAddWorkout(e) {
-        setAddWorkout({ ...addWorkout, [e.target.name]: e.target.value });
+    function updateNewWorkout(e) {
+        setNewWorkout({ ...newWorkout, [e.target.name]: e.target.value });
     }
 
     function submitWorkout(e) {
@@ -20,12 +20,12 @@ function AddWorkout() {
 
         const workoutData = {
             workout: {
-                exercise_id: addWorkout.exercise.id, 
-                day: addWorkout.day,
-                sets: addWorkout.sets,
-                reps: addWorkout.reps,
-                weight: addWorkout.weight,
-                duration: addWorkout.duration
+                exercise_id: newWorkout.exercise.id, 
+                day: newWorkout.day,
+                sets: newWorkout.sets,
+                reps: newWorkout.reps,
+                weight: newWorkout.weight,
+                duration: newWorkout.duration
             }
         };
 
@@ -51,13 +51,13 @@ function AddWorkout() {
                         workouts: updatedWorkouts, 
                         exercises: updatedExercises
                     });
-                    setAddWorkout({
+                    setNewWorkout({
                         exercise: {},
                         day: '',
-                        sets: 0,
-                        reps: 0,
-                        weight: 0,
-                        duration: 0
+                        sets: '',
+                        reps: '',
+                        weight: '',
+                        duration: ''
                     });
                     navigate('/workouts');
                 });
@@ -69,12 +69,12 @@ function AddWorkout() {
     }
 
     return (
-        <div>
+        <div id='new-workout'>
             <form onSubmit={submitWorkout}>
                 <select 
                     name='day' 
-                    value={addWorkout.day}
-                    onChange={updateAddWorkout}
+                    value={newWorkout.day}
+                    onChange={updateNewWorkout}
                 >
                     <option value=''>Select a day</option>
                     <option value='sunday'>Sunday</option>
@@ -86,34 +86,34 @@ function AddWorkout() {
                     <option value='saturday'>Saturday</option>
                 </select>
                 <Link className='select-exercise' to='/exercises'>Select an exercise</Link>
-                <h1>{addWorkout.exercise.name}</h1>
+                <h1>{newWorkout.exercise.name}</h1>
                 <label htmlFor='workout-sets'>Sets:</label>
                 <input 
                     id='workout-sets' 
                     name='sets'
-                    value={addWorkout.sets}
-                    onChange={updateAddWorkout}
+                    value={newWorkout.sets}
+                    onChange={updateNewWorkout}
                 />
                 <label htmlFor='workout-reps'>Reps:</label>
                 <input 
                     id='workout-reps' 
                     name='reps'
-                    value={addWorkout.reps}
-                    onChange={updateAddWorkout}    
+                    value={newWorkout.reps}
+                    onChange={updateNewWorkout}    
                 />
                 <label htmlFor='workout-weight'>Weight (lbs):</label>
                 <input 
                     id='workout-weight' 
                     name='weight'
-                    value={addWorkout.weight}
-                    onChange={updateAddWorkout}
+                    value={newWorkout.weight}
+                    onChange={updateNewWorkout}
                 />
                 <label htmlFor='workout-duration'>Duration (min):</label>
                 <input 
                     id='workout-duration' 
                     name='duration'
-                    value={addWorkout.duration}
-                    onChange={updateAddWorkout}
+                    value={newWorkout.duration}
+                    onChange={updateNewWorkout}
                 />
                 <button className='large-btn'>Add workout</button>
                 <div className='error-msg'>
@@ -126,4 +126,4 @@ function AddWorkout() {
     );
 }
 
-export default AddWorkout;
+export default NewWorkout;

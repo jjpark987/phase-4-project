@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
-import { useAddWorkoutContext } from "../../context/AddWorkoutContext";
+import { useNewWorkoutContext } from "../../context/NewWorkoutContext";
 import { useEditWorkoutContext } from "../../context/EditWorkoutContext";
 
 function Exercise({ exercise }) {
     const navigate = useNavigate();
 
     const { user } = useUserContext();
-    const { addWorkout, setAddWorkout } = useAddWorkoutContext();
+    const { newWorkout, setNewWorkout } = useNewWorkoutContext();
     const { showEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
 
     function replaceImage(e) {
@@ -22,7 +22,7 @@ function Exercise({ exercise }) {
     }
 
     function handleExerciseChangeAdd() {
-        setAddWorkout({ ...addWorkout, exercise: exercise });
+        setNewWorkout({ ...newWorkout, exercise: exercise });
         navigate('/workouts/new');
     }
 

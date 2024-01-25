@@ -7,17 +7,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { AttributesProvider } from './context/AttributesContext';
 import { EditWorkoutProvider } from './context/EditWorkoutContext';
-import { AddWorkoutProvider } from './context/AddWorkoutContext';
+import { NewWorkoutProvider } from './context/NewWorkoutContext';
 
 ReactDOM.render(
     <BrowserRouter>
         <UserProvider>
             <AttributesProvider>
-                <AddWorkoutProvider>
+                <NewWorkoutProvider>
                     <EditWorkoutProvider>
                         <App />
                     </EditWorkoutProvider>
-                </AddWorkoutProvider>
+                </NewWorkoutProvider>
             </AttributesProvider>
         </UserProvider>
     </BrowserRouter>,

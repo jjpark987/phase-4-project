@@ -9,8 +9,8 @@ import About from './components/About';
 import AllExercises from './components/exercise/AllExercises';
 import NewExercise from './components/exercise/NewExercise';
 import UserWorkouts from './components/workout/UserWorkouts';
-import AddWorkout from './components/AddWorkout';
-import EditWorkout from './components/EditWorkout';
+import NewWorkout from './components/workout/NewWorkout';
+import EditWorkout from './components/workout/EditWorkout';
 import MyExercises from './components/MyExercises';
 import PageNotFound from './components/PageNotFound';
 
@@ -50,7 +50,7 @@ function App() {
                     <UserWorkouts />
                 } />
                 <Route path='/workouts/new' element={
-                    <AddWorkout />
+                    <NewWorkout />
                 } />
                 <Route path='/workouts/edit' element={
                     <EditWorkout />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContext";
-import { useEditWorkoutContext } from "../context/EditWorkoutContext";
+import { useUserContext } from "../../context/UserContext";
+import { useEditWorkoutContext } from "../../context/EditWorkoutContext";
 
 function EditWorkout() {
     const navigate = useNavigate();
@@ -70,7 +70,7 @@ function EditWorkout() {
     }
 
     return (
-        <div>
+        <div id='edit-workout'>
             <form onSubmit={sumbitEditWorkout}>
                 <select 
                     name='day' 
