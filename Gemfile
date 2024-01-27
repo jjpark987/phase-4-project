@@ -50,8 +50,7 @@ end
 
 gem "active_model_serializers", "~> 0.10.12"
 
-gem 'faker', '>= 3.2.0'
-
+# Make HTTP requests to RESTful API
 gem 'rest-client', '>= 2.0'
 
 # Helps load ENV

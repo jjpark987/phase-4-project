@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { useNewWorkoutContext } from "../../context/NewWorkoutContext";
@@ -12,6 +12,17 @@ function UserWorkouts() {
     const { newWorkout, setNewWorkout } = useNewWorkoutContext();
 
     const [showDeleteWorkouts, setShowDeleteWorkouts] = useState(false);
+
+    useEffect(() => {
+        setNewWorkout({
+            exercise: {},
+            day: '',
+            sets: '',
+            reps: '',
+            weight: '',
+            duration: ''
+        });
+    }, []);
 
     function handleAddToWorkout(day) {
         setNewWorkout({ ...newWorkout, day: day });

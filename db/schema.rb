@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2023_08_15_184136) do
     t.string "target"
     t.string "equipment"
     t.string "gif_url"
+    t.boolean "original"
   end
 
   create_table "users", force: :cascade do |t|

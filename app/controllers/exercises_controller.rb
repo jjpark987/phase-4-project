@@ -27,6 +27,6 @@ class ExercisesController < ApplicationController
     private
 
     def exercise_params
-        params.require(:exercise).permit(:name, :body_part, :target, :equipment, :gif_url)
+        params.require(:exercise).permit(:name, :body_part, :target, :equipment, :gif_url, :original)
     end
 end

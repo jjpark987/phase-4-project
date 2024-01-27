@@ -18,7 +18,7 @@ function Exercise({ exercise }) {
 
     function handleExerciseChangeEdit() {
         setEditWorkout({ ...editWorkout, exercise: exercise });
-        navigate('/workouts/edit');
+        navigate(`/workouts/${editWorkout.id}/edit`);
     }
 
     function handleExerciseChangeAdd() {

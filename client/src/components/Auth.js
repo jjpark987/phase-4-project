@@ -119,9 +119,9 @@ function Auth() {
         return (
             <div id='login'>
                 <div className='auth'>
-                    <div className='auth-box'>
+                    <div className='form-box'>
                         <h1>Log in</h1>
-                        <form className='auth-form' onSubmit={submitAccount}>
+                        <form className='form' onSubmit={submitAccount}>
                             <label htmlFor='login-username'>Username</label>
                             <input 
                                 id='login-username' 
@@ -159,9 +159,9 @@ function Auth() {
     return (
         <div id='signup'>
             <div className='auth'>
-                <div className='auth-box'>
+                <div className='form-box'>
                     <h1>Sign up</h1>
-                    <form onSubmit={submitNewAccount}>
+                    <form className='form' onSubmit={submitNewAccount}>
                         <label htmlFor='signup-first-name'>First name</label>
                         <input 
                             id='signup-first-name'

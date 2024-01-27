@@ -1,13 +1,19 @@
 /* Shared */
+.form button:hover,
+#add-exercise-link:hover,
+#exercise button:hover,
+.day button:hover,
+.workout:hover,
+#delete-workout-btn:hover,
+#edit-workout-btn:hover {
+    box-shadow: none;
+}
+
 .error-msg {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-size: small;
-}
-
-.select-exercise {
-    font-size: x-large;
 }
 
 /* NavBar */
@@ -16,20 +22,20 @@ nav {
     width: 100%;
     height: 8vh;
     background-color: #a8dbfffc;
+    border-bottom: 1px solid rgb(255, 255, 255);
     display: grid;
     grid-template-columns: 20vw repeat(8, 1fr) 20vw;
     grid-template-areas: 
         ". title . . . about exercises workouts auth .";
     place-items: center;
-    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 nav * {
     background: none;
     border: none;
     color: rgb(0, 0, 0);
-    text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -42,8 +48,8 @@ nav * {
 #navbar-about {
     grid-area: about;
     width: 100%;
-    font-size: medium;
     border-left: 2px solid white;
+    font-size: medium;
 }
 
 #navbar-exercises {
@@ -59,8 +65,8 @@ nav * {
 #navbar-auth {
     grid-area: auth;
     width: 90%;
-    font-size: medium;
     border-left: 2px solid white;
+    font-size: medium;
 }
 
 /* Home */
@@ -77,21 +83,105 @@ nav * {
 
 #home h1{
     text-transform: uppercase;
-    font-size: 5em;
     color: #000000;
+    font-size: 5em;
     margin: 0;
 }
 
 #home p {
-    font-weight: bold;
     font-style: italic;
+    font-weight: bold;
 }
 
 /* About */
 #about {
     display: flex;
     flex-direction: column;
-    padding-top: 8vh;
+    align-items: center;
+}
+
+#about-head {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, rgb(197, 231, 255), rgb(20, 157, 255));
+}
+
+#about-head-box {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/about-head.jpeg');
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+#about-head h1 {
+    width: 50vw;
+    color: #00000000;
+    font-size: 8em;
+}
+
+#about-head h1 span {
+    color: #ad2525;
+    font-size: larger;
+}
+
+#about-head h1,
+#about-body-box-2 h1,
+#about-body-box-4 h1 {
+    text-align: right;
+}
+
+#about-body {
+    display: grid;
+    grid-template-rows: repeat(4, 46vh);
+}
+
+.about-body-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    column-gap: 5vw;
+    padding: 0 25vw;
+}
+
+#about-body-box-1 {
+    background-color: #abddff;
+}
+
+#about-body-box-1 h1 span {
+    color: #ad8425;
+    font-size: larger;
+}
+
+#about-body-box-2 {
+    background-color: #87cdff;
+}
+
+#about-body-box-2 h1 span {
+    color: #33ad25;
+    font-size: larger;
+}
+
+#about-body-box-3 {
+    background-color: #5abaff;
+}
+
+#about-body-box-3 h1 span {
+    color: #2a25ad;
+    font-size: larger;
+}
+
+#about-body-box-4 h1 span {
+    color: #8f25ad;
+    font-size: larger;
+}
+
+.about-body-box img {
+    width: 35vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* Auth */
@@ -110,7 +200,7 @@ nav * {
     justify-content: center;
 }
 
-.auth-box {
+.form-box {
     background-color: #a8dbff;
     border-radius: 25px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
@@ -118,33 +208,35 @@ nav * {
     flex-direction: column;
     align-items: flex-start;
     font-size: large;
-    padding: 50px;
     margin-bottom: 0;
+    padding: 50px;
 }
 
-.auth form {
+.form {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 1vh;
 }
 
-.auth form label {
+.form * {
+    border: none;
+    border-radius: 5px;
     font-size: medium;
 }
 
-.auth form input {
+.form input {
     margin-bottom: 3vh;
 }
 
-.auth form button {
+.form button {
     width: 100%;
     background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
     border: none;
     border-radius: 10px;
-    font-size: medium;
-    padding: 5px 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
     cursor: pointer;
+    padding: 5px 0;
 }
 
 .auth-switch-prompt {
@@ -158,8 +250,8 @@ nav * {
     border: none;
     font-size: medium;
     text-decoration: underline;
-    margin-left: 3px;
     cursor: pointer;
+    margin-left: 3px;
 }
 
 /* AllExercises */
@@ -176,17 +268,17 @@ nav * {
 
 #search-filter-form {
     grid-area: search-filter;
+    width: 100%;
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 #search-filter-form input, #search-filter-form select {
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: large;
-    padding: 5px;
     margin-right: 5px;
+    padding: 5px;
 }
 
 #add-exercise-link {
@@ -196,10 +288,10 @@ nav * {
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
     place-self: end;
-    text-align: center;
-    text-decoration: none;
     color: black;
     font-size: large;
+    text-align: center;
+    text-decoration: none;
     padding: 8px;
 }
 
@@ -207,18 +299,17 @@ nav * {
     grid-area: exercise-container;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 5vh;
-    column-gap: 5vw;
+    gap: 5vh 5vw;
     margin-top: 5vh;
 }
 
 #page-navigation {
     grid-area: page-navigation;
+    width: stretch;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
         'back-btn next-btn';
-    width: stretch;
     margin: 8vh 0;
 }
 
@@ -227,10 +318,10 @@ nav * {
     background: none;
     border: none;
     place-self: start;
-    text-decoration: underline;
     font-size: large;
-    padding: 8px;
+    text-decoration: underline;
     cursor: pointer;
+    padding: 8px;
 }
 
 #next-btn {
@@ -238,18 +329,18 @@ nav * {
     background: none;
     border: none;
     place-self: end;
-    text-decoration: underline;
     font-size: large;
-    padding: 8px;
+    text-decoration: underline;
     cursor: pointer;
+    padding: 8px;
 }
 
 /* Exercise */
 #exercise {
-    display: grid;
-    grid-template-rows: 8vh;
     border-radius: 20px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+    display: grid;
+    grid-template-rows: 8vh;
     padding: 10px;
 }
 
@@ -274,54 +365,22 @@ nav * {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
     align-self: flex-start;
     font-size: large;
-    padding: 8px;
-    margin-top: 2vh;
     cursor: pointer;
+    margin-top: 2vh;
+    padding: 8px;
 }
 
 /* NewExercise */
+/* Shared with Auth */
 #new-exercise {
-    padding-top: 15vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 15vh;
 }
 
-#new-exercise-box {
-    background-color: #a8dbff;
-    border-radius: 25px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: large;
-    padding: 50px;
-    margin-bottom: 0;
-}
-
-#new-exercise-box form {
-    display: flex;
-    flex-direction: column;
+.form select {
     margin-bottom: 1vh;
-    width: 100%;
-}
-
-#new-exercise-box form label {
-    font-size: medium;
-}
-
-#new-exercise-box form input {
-    margin-bottom: 3vh;
-}
-
-#new-exercise-box form button {
-    width: 100%;
-    background: linear-gradient(to bottom right, #73c5ff, #2aa6ff);
-    border: none;
-    border-radius: 10px;
-    font-size: medium;
-    padding: 5px 0;
-    cursor: pointer;
 }
 
 /* UserWorkouts */
@@ -329,7 +388,7 @@ nav * {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10vh;
+    padding-top: 11vh;
 }
 
 #week {
@@ -340,8 +399,8 @@ nav * {
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.6);
     display: grid;
     grid-template-rows: repeat(7, 1fr);
-    padding: 10px;
     margin-bottom: 3vh;
+    padding: 10px;
 }
 
 .day {
@@ -389,60 +448,77 @@ nav * {
 }
 
 /* Workout */
-#workout-delete-on {
+.workout {
     width: 7vw;
     height: 10vh;
-    background: linear-gradient(to bottom right, #ff9090, #ff5a5a);
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-}
-
-#workout-delete-off {
-    width: 7vw;
-    height: 10vh;
-    background: linear-gradient(to bottom right, #8bcefe, #2aa6ff);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+    display: grid;
+    grid-template-rows: 6vh;
+    font-size: small;
     cursor: pointer;
 }
 
 .workout-name {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    margin: 16px 0;
+    place-self: center;
+    font-weight: bold;
+    text-align: center;
 }
 
-#workout-info {
+.workout-info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#workout-delete-on {
+    background: linear-gradient(to bottom right, #ff9090, #ff5a5a);
+}
+
+#workout-delete-off {
+    background: linear-gradient(to bottom right, #8bcefe, #2aa6ff);
+}
+
+/* NewWorkout EditWorkout */
+.update-workout {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    padding-right: 1vh;
-}
-
-/* NewWorkout */
-#new-workout {
-    padding-top: 11vh;
-}
-
-/* EditWorkout */
-#edit-workout {
+    align-items: center;
     padding-top: 15vh;
 }
 
-/* MyExercise */
-#my-exercise-info {
+.update-workout form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3vw;
+}
+
+.update-workout-info {
+    width: 15vw;
     display: flex;
+    flex-direction: column;
+}
+
+.update-workout-info h1 {
+    font-size: xx-large;
+}
+
+.update-workout-details {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-/* LoginPrompt */
-#login-prompt {
-    display: flex;
-    justify-content: center;
+.update-workout-details select {
+    margin-bottom: 2vh;
 }
 
-#log-in-prompt-img {
-    margin-top: 18vh;
-    border-radius: 30px;
+.update-workout-details img {
+    width: 250px;
+    border-radius: 20px;
+}
+
+/* PageNotFound LoginPrompt */
+.flex-center {
+    display: flex;
+    place-content: center;
+    padding-top: 40vh;
 }

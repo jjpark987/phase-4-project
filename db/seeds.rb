@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
 require 'rest-client'
 
 puts 'Seeding exercises from ExerciseDB...'
@@ -24,26 +23,9 @@ exercises.each do |exercise|
         body_part: exercise['bodyPart'], 
         target: exercise['target'],
         equipment: exercise['equipment'],
-        gif_url: exercise['gifUrl']
+        gif_url: exercise['gifUrl'],
+        original: true
     )
 end
 
-puts 'Done seeding exercises'
-
-# puts 'Seeding 50 workouts...'
-
-# days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-
-# 10.times do
-#     Workout.create(
-#         user_id: 1,
-#         exercise_id: rand(1..1324),
-#         day: days.sample,
-#         sets: rand(4..8),
-#         reps: rand(6..12),
-#         weight: rand(5..100),
-#         duration: nil
-#     )
-# end
-
-# puts 'Done seeding workouts'
+puts '...done seeding exercises'

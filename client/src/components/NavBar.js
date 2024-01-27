@@ -1,12 +1,14 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import { useNewWorkoutContext } from "../context/NewWorkoutContext";
 import { useEditWorkoutContext } from "../context/EditWorkoutContext";
 
 function NavBar() {
     const navigate = useNavigate();
 
     const { user, logout } = useUserContext();
+    const { setNewWorkout } = useNewWorkoutContext();
     const { setShowEditWorkouts } = useEditWorkoutContext();
 
     function logoutUser() {
@@ -21,16 +23,40 @@ function NavBar() {
     }
 
     function handleHomeClick() {
+        setNewWorkout({
+            exercise: {},
+            day: '',
+            sets: '',
+            reps: '',
+            weight: '',
+            duration: ''
+        });
         setShowEditWorkouts(false);
         navigate('/');
     }
 
     function handleAboutClick() {
+        setNewWorkout({
+            exercise: {},
+            day: '',
+            sets: '',
+            reps: '',
+            weight: '',
+            duration: ''
+        });
         setShowEditWorkouts(false);
         navigate('/about');
     }
 
     function handleAllExercisesClick() {
+        setNewWorkout({
+            exercise: {},
+            day: '',
+            sets: '',
+            reps: '',
+            weight: '',
+            duration: ''
+        });
         setShowEditWorkouts(false);
         navigate('/exercises');
     }

@@ -12,7 +12,7 @@ function Workout({ workout, showDeleteWorkouts }) {
     function handleEditWorkout() {
         setShowEditWorkouts(true);
         setEditWorkout(workout);
-        navigate('/workouts/edit');
+        navigate(`/workouts/${workout.id}/edit`);
     }
 
     function handleDeleteWorkout() {
@@ -38,7 +38,7 @@ function Workout({ workout, showDeleteWorkouts }) {
 
     if (showDeleteWorkouts) {
         return (
-            <div id='workout-delete-on' onClick={() => handleDeleteWorkout()}>
+            <div id='workout-delete-on' className ='workout' onClick={() => handleDeleteWorkout()}>
                 <p className='workout-name'>{workout.exercise.name}</p>
                 <div className='workout-info'>
                     {(workout.sets !== 0 && workout.reps !== 0) && <p>{workout.sets} x {workout.reps}</p>}
@@ -50,7 +50,7 @@ function Workout({ workout, showDeleteWorkouts }) {
     }
 
     return (
-        <div id='workout-delete-off' onClick={() => handleEditWorkout()}>
+        <div id='workout-delete-off' className='workout' onClick={() => handleEditWorkout()}>
             <p className='workout-name'>{workout.exercise.name}</p>
             <div className='workout-info'>
                 {(workout.sets !== 0 && workout.reps !== 0) && <p>{workout.sets} x {workout.reps}</p>}

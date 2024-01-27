@@ -43,7 +43,8 @@ function NewExercise() {
                 body_part: newExercise.bodyPart,
                 target: newExercise.target,
                 equipment: newExercise.equipment,
-                gif_url: newExercise.gifUrl
+                gif_url: newExercise.gifUrl,
+                original: false
             }
         };
 
@@ -67,9 +68,9 @@ function NewExercise() {
     if (user) {
         return (
             <div id='new-exercise'>
-                <div id='new-exercise-box'>
+                <div className='form-box'>
                     <h1>New Exercise</h1>
-                    <form onSubmit={submitExercise}>
+                    <form className='form' onSubmit={submitExercise}>
                         <label htmlFor='exercise-name'>Name</label>
                         <input 
                             id='exercise-name'
@@ -85,7 +86,7 @@ function NewExercise() {
                             value={newExercise.bodyPart}
                             onChange={updateNewExercise}
                         >
-                            <option value=''>Add new body part</option>
+                            <option value=''>Select body part</option>
                             {uniqueAttributes.bodyParts.map((bodyPart, index) => (
                                 <option key={index} value={bodyPart}>{bodyPart}</option>
                             ))}
@@ -94,6 +95,7 @@ function NewExercise() {
                                 name='bodyPart'
                                 value={newExercise.bodyPart}
                                 onChange={updateNewExercise}
+                                placeholder='Or enter new body part'
                                 required   
                         />
                         <label htmlFor='exercise-target'>Target muscle</label>
@@ -103,7 +105,7 @@ function NewExercise() {
                             value={newExercise.target}
                             onChange={updateNewExercise}
                         >
-                            <option value=''>Add new muscle group</option>
+                            <option value=''>Select muscle group</option>
                             {uniqueAttributes.targets.map((target, index) => (
                                 <option key={index} value={target}>{target}</option>
                             ))}
@@ -112,6 +114,7 @@ function NewExercise() {
                             name='target'
                             value={newExercise.target}
                             onChange={updateNewExercise}
+                            placeholder='Or enter new muscle group'
                             required   
                         />
                         <label htmlFor='exercise-equipment'>Equipment</label>
@@ -121,7 +124,7 @@ function NewExercise() {
                             value={newExercise.equipment}
                             onChange={updateNewExercise}
                         >
-                            <option value=''>Add new equipment</option>
+                            <option value=''>Select equipment</option>
                             {uniqueAttributes.equipments.map((equipment, index) => (
                                 <option key={index} value={equipment}>{equipment}</option>
                             ))}
@@ -130,6 +133,7 @@ function NewExercise() {
                             name='equipment'
                             value={newExercise.equipment}
                             onChange={updateNewExercise} 
+                            placeholder='Or enter new equipment'
                             required
                         />
                         <label htmlFor='exercise-gif-url'>Gif or image URL (optional)</label>
@@ -137,15 +141,16 @@ function NewExercise() {
                             id='exercise-gif-url'
                             name='gifUrl'
                             value={newExercise.gifUrl}
-                            onChange={updateNewExercise}
-                            required    
+                            onChange={updateNewExercise}   
                         />
                         <button className='large-btn'>Submit</button>
                     </form>
                 </div>
-                {errors.errors && (errors.errors.map(
-                    (error, index) => <h3 key={index}>{error}</h3>
-                ))}
+                <div className='error-msg'>
+                    {errors.error && (errors.error.map(
+                        (error, index) => <h3 key={index}>{error}</h3>
+                    ))}
+                </div>
             </div>
         );
     }

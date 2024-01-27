@@ -19,7 +19,7 @@ class Workout < ApplicationRecord
     end
 
     def sets_reps_or_duration_present
-        if (self.sets == 0 || self.reps == 0) && self.duration == 0
+        if ((self.sets == 0 || self.reps == 0) && self.duration == 0) || self.sets != 0 && self.reps != 0 && self.duration != 0
             errors.add(:base, "Must have either sets and reps OR duration")
         end
     end

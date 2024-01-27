@@ -11,7 +11,6 @@ import NewExercise from './components/exercise/NewExercise';
 import UserWorkouts from './components/workout/UserWorkouts';
 import NewWorkout from './components/workout/NewWorkout';
 import EditWorkout from './components/workout/EditWorkout';
-import MyExercises from './components/MyExercises';
 import PageNotFound from './components/PageNotFound';
 
 function App() {    
@@ -52,14 +51,11 @@ function App() {
                 <Route path='/workouts/new' element={
                     <NewWorkout />
                 } />
-                <Route path='/workouts/edit' element={
+                <Route path='/workouts/:id/edit' element={
                     <EditWorkout />
                 } />
                 <Route path='*' element={
                     <PageNotFound />
-                } />
-                <Route path='/my-exercises' element={
-                    <MyExercises />
                 } />
             </Routes>
         </div>

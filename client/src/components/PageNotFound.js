@@ -2,12 +2,8 @@ import React from "react";
 
 function PageNotFound() {
     return (
-        <div>
-            <img 
-                src='/page_not_found.jpeg'
-                alt='page_not_found'
-                width='100%'
-            />
+        <div className='flex-center'>
+            <h1>Page Not Found</h1>
         </div>
     );
 }
