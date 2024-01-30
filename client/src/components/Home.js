@@ -3,12 +3,12 @@ import React from "react";
 function Home() {
     return (
         <div id='home'>
-            <img 
-                src='https://info.totalwellnesshealth.com/hubfs/HealthBenefitsFitness.png'
-                alt='people_exercising'
-            />
-            <h1>Sweaty</h1>
-            <p>Good things come to those who sweat</p>
+            <div id='home-box'>
+                <div id='home-box-background'>
+                    <h1>SWEATY</h1>
+                    <h3>Good things come to those who sweat</h3>
+                </div>
+            </div>
         </div>
     );
 }

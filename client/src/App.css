@@ -71,55 +71,54 @@ nav * {
 
 /* Home */
 #home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-top: 8vh;
 }
 
-#home img {
-    width: 60vw;
+#home-box {
+    background: linear-gradient(to bottom right, rgb(197, 231, 255), rgb(20, 157, 255));
+}
+
+#home-box-background {
+    height: 92vh;
+    background-image: url('/about-head.jpeg');
+    background-clip: text;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #home h1{
-    text-transform: uppercase;
-    color: #000000;
-    font-size: 5em;
+    color: #00000000;
+    font-size: 18em;
     margin: 0;
-}
-
-#home p {
-    font-style: italic;
-    font-weight: bold;
+    padding-top: 25vh;
 }
 
 /* About */
 #about {
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #about-head {
-    width: 100vw;
-    height: 100vh;
     background: linear-gradient(to bottom right, rgb(197, 231, 255), rgb(20, 157, 255));
 }
 
 #about-head-box {
     width: 100vw;
     height: 100vh;
-    background-image: url('/about-head.jpeg');
-    background-clip: text;
     display: flex;
     align-items: center;
     place-content: center;
 }
 
 #about-head h1 {
-    width: 50vw;
-    color: #00000000;
-    font-size: 8em;
+    width: 40vw;
+    color: #000000;
+    font-size: 6em;
+    padding-top: 10vh;
 }
 
 #about-head h1 span {
@@ -141,8 +140,8 @@ nav * {
 .about-body-box {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    place-items: center;
     column-gap: 5vw;
+    place-items: center;
     padding: 0 25vw;
 }
 
