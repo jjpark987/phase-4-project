@@ -1,6 +1,11 @@
-# Phase 4 Project: SweatStrong
+# Sweaty
 
-## Introduction
+Design and track your weekly workout routine with customized sets, reps, and weight for over 1000 different exercises.
+
+[Video Walkthrough]()
+
+## Description
+
 SweatStrong is a web application built with a React frontend and a Rails API backend. This single-page application adheres to RESTful conventions, providing all users with access to an exercise database. Once logged in, users can create new exercises to add to the list and even create custom weekly workout splits to suit their fitness goals efficiently.
 
 ## Models
@@ -11,10 +16,6 @@ SweatStrong employs standard password hashing techniques to ensure security. Use
 
 ## Details
 The application implements Active Record validations within its models to ensure data integrity. Controller validations are utilized for backend operations, modifying JSON responses as necessary. Successful operations pass the relevant object to the frontend, while errors transmit error messages for user feedback. Additionally, React's useContext hook is employed for frontend state management, persisting the logged-in user object and minimizing prop drilling.
-
-## Demo
-
-[Video Walkthrough](https://youtu.be/DLP_9V0HKio)
 
 ## API Documentation
 This application uses ExerciseDB by Justin Mozley. Please see this [link](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb) for the official documentation.
