@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
     
     # get '/exercises'
     def index
-        render json: Exercise.all
+        render json: Exercise.all.order(:id)
     end
 
     # post '/exercises'

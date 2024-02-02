@@ -10,6 +10,7 @@ function AllExercises() {
     const [search, setSearch] = useState('');
     const [bodyPart, setBodyPart] = useState('');
     const [equipment, setEquipment] = useState('');
+    const [sortBy, setSortBy] = useState('alphabet');
     const [pageStart, setPageStart] = useState(0);
     
     useEffect(() => {
@@ -44,9 +45,24 @@ function AllExercises() {
         }
     }
 
+    function sortByLogic(a, b) {
+        if (sortBy === 'alphabet') {
+            return a.name.localeCompare(b.name);
+        } else {
+            return a.target.localeCompare(b.target);
+        }
+    }
+
+    function clearSelections() {
+        setSearch('');
+        setBodyPart('');
+        setEquipment('');
+        setSortBy('alphabet');
+    }
+
     return (
         <div id='all-exercises'>
-            <form id='search-filter-form'>
+            <form id='search-form'>
                 <input
                     placeholder='Search by name'
                     value={search}
@@ -64,6 +80,11 @@ function AllExercises() {
                         <option key={index} value={equipment}>{equipment}</option>
                     ))}
                 </select>
+                <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                    <option value='alphabet'>Sort alphabetically</option>
+                    <option value='target'>Sort by target muscle</option>
+                </select>
+                <button type='button' onClick={() => clearSelections()}>Clear</button>
             </form>
             <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
             <div id='exercise-container'>
@@ -71,6 +92,7 @@ function AllExercises() {
                 .filter(exercise => searchExercises(exercise))
                 .filter(exercise => filterBodyPart(exercise))
                 .filter(exercise => filterEquipment(exercise))
+                .sort(sortByLogic)
                 .slice(pageStart, pageStart + 12).map(exercise => (
                     <Exercise key={exercise.id} exercise={exercise} />
                 ))}
@@ -83,6 +105,7 @@ function AllExercises() {
                 .filter(exercise => searchExercises(exercise))
                 .filter(exercise => filterBodyPart(exercise))
                 .filter(exercise => filterEquipment(exercise))
+                .sort(sortByLogic)
                 .length - 10 && 
                     <button id='next-btn' onClick={() => setPageStart(pageStart + 12)}>Next</button>
                 }

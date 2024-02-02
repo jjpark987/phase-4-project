@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
     # Users
     post '/signup', to: 'users#create'
@@ -11,6 +14,9 @@ Rails.application.routes.draw do
 
     # Workouts
     resources :workouts, only: [:create, :update, :destroy]
+
+    # Mount Sidekiq for periodic job
+    mount Sidekiq::Web => '/sidekiq'
 
     # Routing logic: fallback requests for React Router.
     # Leave this here to help deploy your app later!

@@ -1,0 +1,4 @@
+replace_gif_urls:
+    cron: "30 14 * * *"
+    class: "ReplaceGifUrls"
+    queue: default

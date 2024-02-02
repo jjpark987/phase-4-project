@@ -1,5 +1,6 @@
 /* Shared */
 .form button:hover,
+#search-form button:hover,
 #add-exercise-link:hover,
 #exercise button:hover,
 .day button:hover,
@@ -256,28 +257,37 @@ nav * {
 /* AllExercises */
 #all-exercises {
     display: grid;
-    grid-template-columns: 23vw 1fr 1fr 1fr 23vw;
+    grid-template-columns: 20vw 1fr 1fr 10vw 20vw;
     grid-template-areas:
-        '. search-filter search-filter add-exercise .'
+        '. search-form search-form add-exercise .'
         '. exercise-container exercise-container exercise-container .'
         '. . page-navigation . .';
     justify-items: center;
     padding-top: 11vh;
 }
 
-#search-filter-form {
-    grid-area: search-filter;
+#search-form {
+    grid-area: search-form;
     width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
-#search-filter-form input, #search-filter-form select {
+#search-form * {
     border: none;
     border-radius: 5px;
-    font-size: large;
+    font-size: medium;
     margin-right: 5px;
     padding: 5px;
+}
+
+#search-form input {
+    width: 18vw;
+}
+
+#search-form button {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 
 #add-exercise-link {

@@ -34,7 +34,7 @@ function Exercise({ exercise }) {
                 alt={exercise.name}
                 onError={replaceImage}
             />
-            <p>Body part | <b>{exercise.target}</b></p>
+            <p>Target | <b>{exercise.target}</b></p>
             <p>Equipment | {exercise.equipment}</p>
             {showEditWorkouts ? (
                 user && (<button onClick={handleExerciseChangeEdit}>Edit workout</button>)

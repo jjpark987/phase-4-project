@@ -11,10 +11,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'net-http'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -24,11 +21,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
 group :development do
   gem 'listen', '~> 3.3'
@@ -40,7 +32,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_bot_rails'
+  gem 'webmock'
 end
 
 group :test do
@@ -50,8 +45,15 @@ end
 
 gem "active_model_serializers", "~> 0.10.12"
 
+# Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.7'
 # Make HTTP requests to RESTful API
 gem 'rest-client', '>= 2.0'
-
 # Helps load ENV
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+# Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 4.0'
+# For periodic jobs
+gem "sidekiq", "~> 7.2"
+gem "sidekiq-cron", "~> 1.12"
+gem "sidekiq-scheduler", "~> 5.0"
