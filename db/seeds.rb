@@ -24,7 +24,7 @@ exercises.each do |exercise|
         target: exercise['target'],
         equipment: exercise['equipment'],
         gif_url: exercise['gifUrl'],
-        original: true
+        original_id: exercise['id']
     )
 end
 

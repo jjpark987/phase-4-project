@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
     
     # get '/exercises'
     def index
-        render json: Exercise.all.order(:id)
+        render json: Exercise.all
     end
 
     # post '/exercises'
@@ -27,6 +27,6 @@ class ExercisesController < ApplicationController
     private
 
     def exercise_params
-        params.require(:exercise).permit(:name, :body_part, :target, :equipment, :gif_url, :original)
+        params.require(:exercise).permit(:name, :body_part, :target, :equipment, :gif_url, :original_id)
     end
 end

@@ -44,7 +44,7 @@ function NewExercise() {
                 target: newExercise.target,
                 equipment: newExercise.equipment,
                 gif_url: newExercise.gifUrl,
-                original: false
+                original_id: null
             }
         };
 

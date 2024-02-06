@@ -261,7 +261,7 @@ nav * {
     grid-template-areas:
         '. search-form search-form add-exercise .'
         '. exercise-container exercise-container exercise-container .'
-        '. . page-navigation . .';
+        '. page-navigation page-navigation page-navigation .';
     justify-items: center;
     padding-top: 11vh;
 }
@@ -312,36 +312,50 @@ nav * {
     margin-top: 5vh;
 }
 
+#no-results-msg {
+    grid-area: exercise-container;
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    margin: 25vh 0;
+}
+
 #page-navigation {
     grid-area: page-navigation;
-    width: stretch;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
-        'back-btn next-btn';
     margin: 8vh 0;
 }
 
-#back-btn {
-    grid-area: back-btn;
-    background: none;
-    border: none;
-    place-self: start;
-    font-size: large;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 8px;
+#pagination {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
-#next-btn {
-    grid-area: next-btn;
+#pagination * {
+    margin: 0;
+    padding: 0;
+    place-self: center;
+}
+
+.navigation {
+    font-size: xx-large;
+}
+
+#pagination button {
     background: none;
     border: none;
-    place-self: end;
-    font-size: large;
-    text-decoration: underline;
     cursor: pointer;
-    padding: 8px;
+}
+
+#show-pages {
+    width: 25vw;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+}
+
+#current-page {
+    font-weight: bolder;
+    font-size: xx-large;
 }
 
 /* Exercise */

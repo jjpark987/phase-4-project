@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAttributesContext } from "../../context/AttributesContext";
 import Exercise from "./Exercise";
+import Pagination from "./Pagination";
 
 function AllExercises() {
     const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
-    
+
     const [exercises, setExercises] = useState([]);
+    const [filteredExercises, setFilteredExercises] = useState([]);
     const [search, setSearch] = useState('');
     const [bodyPart, setBodyPart] = useState('');
     const [equipment, setEquipment] = useState('');
     const [sortBy, setSortBy] = useState('alphabet');
-    const [pageStart, setPageStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     
     useEffect(() => {
         fetch('/exercises')
         .then(res => res.json())
-        .then(allExercises => setExercises(allExercises))
+        .then(allExercises => {
+            setExercises(allExercises);
+            setFilteredExercises(allExercises);
+        })
         .catch(error => console.error(error));
 
         fetch('/exercises/unique_attributes')
@@ -28,6 +34,18 @@ function AllExercises() {
         }))
         .catch(error => console.error(error));
     }, []);
+
+    useEffect(() => {
+        const filtered = exercises
+            .filter(exercise => searchExercises(exercise))
+            .filter(exercise => filterBodyPart(exercise))
+            .filter(exercise => filterEquipment(exercise))
+            .sort(sortByLogic);
+
+        setFilteredExercises(filtered);
+        setTotalPages(Math.ceil(filtered.length / 12));
+        setCurrentPage(1);
+    }, [exercises, search, bodyPart, equipment, sortBy]);
 
     function searchExercises(exercise) {
         return exercise.name.toLowerCase().includes(search.toLowerCase());
@@ -87,28 +105,19 @@ function AllExercises() {
                 <button type='button' onClick={() => clearSelections()}>Clear</button>
             </form>
             <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
-            <div id='exercise-container'>
-                {exercises
-                .filter(exercise => searchExercises(exercise))
-                .filter(exercise => filterBodyPart(exercise))
-                .filter(exercise => filterEquipment(exercise))
-                .sort(sortByLogic)
-                .slice(pageStart, pageStart + 12).map(exercise => (
-                    <Exercise key={exercise.id} exercise={exercise} />
-                ))}
-            </div>
+            {filteredExercises.length !== 0 ? 
+                <div id='exercise-container'>
+                    {filteredExercises.slice((currentPage - 1) * 12, currentPage * 12).map(exercise => (
+                        <Exercise key={exercise.id} exercise={exercise} />
+                    ))}
+                </div> :
+                <div id='no-results-msg'>No results found</div>}
             <div id='page-navigation'>
-                {pageStart !== 0 && 
-                    <button id='back-btn' onClick={() => setPageStart(pageStart - 12)}>Prev</button>
-                }
-                {pageStart <= exercises
-                .filter(exercise => searchExercises(exercise))
-                .filter(exercise => filterBodyPart(exercise))
-                .filter(exercise => filterEquipment(exercise))
-                .sort(sortByLogic)
-                .length - 10 && 
-                    <button id='next-btn' onClick={() => setPageStart(pageStart + 12)}>Next</button>
-                }
+                <Pagination 
+                    nPages={totalPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
         </div>
     );
