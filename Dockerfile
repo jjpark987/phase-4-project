@@ -18,7 +18,7 @@ COPY . .
 
 # Run the render-build.sh script to build the front end and back end code
 RUN chmod +x render-build.sh
-RUN ./render-build.sh
+RUN /bin/render-build.sh
 
 # Start Redis, Rails, and Sidekiq
 CMD ["sh", "-c", "redis-server & bundle exec rails server -b 0.0.0.0 & bundle exec sidekiq"]
