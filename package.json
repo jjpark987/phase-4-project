@@ -9,5 +9,12 @@
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-async-generator-functions": "^7.23.9",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/plugin-transform-object-rest-spread": "^7.23.4",
+    "@babel/plugin-transform-unicode-property-regex": "^7.23.3",
+    "core-js": "^3.35.1"
   }
 }
