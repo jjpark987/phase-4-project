@@ -32,3 +32,4 @@
 
 # Ignore RapidAPI Key
 .env
+node_modules
