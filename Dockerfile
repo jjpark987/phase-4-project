@@ -16,15 +16,9 @@ RUN bundle install
 # Copy the rest of your Rails application into the container
 COPY . .
 
-# Build the frontend code
-RUN rm -rf public
-RUN npm install --prefix client && npm run build --prefix client && rm -rf node_modules
-RUN cp -a client/build/. public/
-
-# Run database migrations
-RUN bundle exec rake db:migrate
-# Uncomment the following line if you have seed data and want to run db:seed during the initial deploy
-RUN bundle exec rake db:seed
+# Run the render-build.sh script to build the front end and back end code
+RUN chmod +x render-build.sh
+RUN ./render-build.sh
 
 # Start Redis, Rails, and Sidekiq
 CMD ["sh", "-c", "redis-server & bundle exec rails server -b 0.0.0.0 & bundle exec sidekiq"]
