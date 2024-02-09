@@ -81,7 +81,7 @@ nav * {
 
 #home-box-background {
     height: 92vh;
-    background-image: url('/about-head.jpeg');
+    background-image: url('../public/about-head.jpeg');
     background-clip: text;
     display: flex;
     flex-direction: column;

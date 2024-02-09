@@ -18,20 +18,28 @@ function AllExercises() {
     
     useEffect(() => {
         fetch('/exercises')
-        .then(res => res.json())
-        .then(allExercises => {
-            setExercises(allExercises);
-            setFilteredExercises(allExercises);
+        .then(res => {
+            if (res.ok) {
+                res.json().then(allExercises => {
+                    setExercises(allExercises);
+                    setFilteredExercises(allExercises);
+                });
+            }
         })
         .catch(error => console.error(error));
 
         fetch('/exercises/unique_attributes')
-        .then(res => res.json())
-        .then(allUniqueAttributes => setUniqueAttributes({
-            bodyParts: allUniqueAttributes.body_parts,
-            targets: allUniqueAttributes.targets,
-            equipments: allUniqueAttributes.equipments
-        }))
+        .then(res => {
+            if (res.ok) {
+                res.json().then(allUniqueAttributes => {
+                    setUniqueAttributes({
+                        bodyParts: allUniqueAttributes.body_parts,
+                        targets: allUniqueAttributes.targets,
+                        equipments: allUniqueAttributes.equipments
+                    });
+                });
+            }
+        })
         .catch(error => console.error(error));
     }, []);
 
