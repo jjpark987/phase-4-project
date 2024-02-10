@@ -1,0 +1,11 @@
+development:
+  :url: 'redis://localhost:6379/0'
+  :namespace: 'sweaty_development_sidekiq'
+
+test:
+  :url: 'redis://localhost:6379/0'
+  :namespace: 'sweaty_test_sidekiq'
+
+production:
+  :url: <%= ENV['REDIS_URL'] %>
+  :namespace: 'sweaty_production_sidekiq'
