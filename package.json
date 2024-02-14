@@ -1,24 +1,13 @@
 {
-  "name": "phase-4-deploying-app-demo",
+  "name": "sweaty",
   "description": "Build scripts for Heroku",
   "engines": {
-    "node": "16.x"
+    "node": "21.x"
   },
   "scripts": {
     "build": "npm install --prefix client && npm run build --prefix client",
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-async-generator-functions": "^7.23.9",
-    "@babel/plugin-transform-class-properties": "^7.23.3",
-    "@babel/plugin-transform-object-rest-spread": "^7.23.4",
-    "@babel/plugin-transform-unicode-property-regex": "^7.23.3",
-    "core-js": "^3.35.1"
-  },
-  "dependencies": {
-    "16": "^0.0.2",
-    "node": "^21.6.1"
   }
 }

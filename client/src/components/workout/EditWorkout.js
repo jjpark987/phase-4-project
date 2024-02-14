@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import { useGifsContext } from "../../context/GifsContext";
 import { useEditWorkoutContext } from "../../context/EditWorkoutContext";
 import LoginPrompt from "../LoginPrompt";
 
@@ -8,14 +9,10 @@ function EditWorkout() {
     const navigate = useNavigate();
 
     const { user, setUser } = useUserContext();
+    const { gifs } = useGifsContext();
     const { setShowEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
     
     const [errors, setErrors] = useState([]);
-
-    function replaceImage(e) {
-        const num = Math.floor(Math.random() * 4) + 1;
-        e.target.src = `/default_exercise_${num}.jpeg`;
-    }
 
     function updateEditWorkout(e) {
         setEditWorkout({ ...editWorkout, [e.target.name]: e.target.value });
@@ -130,9 +127,8 @@ function EditWorkout() {
                             <Link to='/exercises'>Select an exercise</Link>
                             <h3>{editWorkout.exercise.name}</h3>
                             <img 
-                                src={editWorkout.exercise.gif_url} 
+                                src={gifs[`${editWorkout.exercise.id}`] || '/no-gif-default.jpg'} 
                                 alt={editWorkout.exercise.name} 
-                                onError={replaceImage}
                             />
                         </div>
                     </form>

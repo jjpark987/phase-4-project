@@ -1,6 +1,7 @@
 class Exercise < ApplicationRecord
     has_many :workouts
     has_many :users, through: :workouts
+    has_one_attached :gif
 
     before_validation :lowercase_all, :remove_parentheses, :update_equipments
     

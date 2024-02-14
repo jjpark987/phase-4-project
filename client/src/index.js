@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { AttributesProvider } from './context/AttributesContext';
+import { GifsProvider } from './context/GifsContext';
 import { EditWorkoutProvider } from './context/EditWorkoutContext';
 import { NewWorkoutProvider } from './context/NewWorkoutContext';
 
@@ -13,11 +14,13 @@ ReactDOM.render(
     <BrowserRouter>
         <UserProvider>
             <AttributesProvider>
-                <NewWorkoutProvider>
-                    <EditWorkoutProvider>
-                        <App />
-                    </EditWorkoutProvider>
-                </NewWorkoutProvider>
+                <GifsProvider>
+                    <NewWorkoutProvider>
+                        <EditWorkoutProvider>
+                            <App />
+                        </EditWorkoutProvider>
+                    </NewWorkoutProvider>
+                </GifsProvider>
             </AttributesProvider>
         </UserProvider>
     </BrowserRouter>,

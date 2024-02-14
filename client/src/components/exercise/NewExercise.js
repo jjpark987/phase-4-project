@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { useAttributesContext } from "../../context/AttributesContext";
+import { useGifsContext } from "../../context/GifsContext";
 import LoginPrompt from "../LoginPrompt";
 
 function NewExercise() {
@@ -9,6 +10,7 @@ function NewExercise() {
     
     const { user } = useUserContext();
     const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
+    const { gifs, setGifs } = useGifsContext();
     
     const [newExercise, setNewExercise] = useState({
         name: '',
@@ -28,7 +30,7 @@ function NewExercise() {
             equipments: allUniqueAttributes.equipments
         }))
         .catch(error => console.error(error));
-    }, []);
+    }, [setUniqueAttributes]);
 
     function updateNewExercise(e) {
         setNewExercise({ ...newExercise, [e.target.name]: e.target.value });
@@ -57,7 +59,10 @@ function NewExercise() {
             const responseBody = res.json();
 
             if (res.ok) {
-                responseBody.then(() => navigate('/exercises'));
+                responseBody.then(exercise => {
+                    setGifs({ ...gifs, [exercise.id]: exercise.gif_blob_url });
+                    navigate('/exercises');
+                });
             } else {
                 responseBody.then(data => setErrors(data))
             }

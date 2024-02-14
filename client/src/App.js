@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useUserContext } from './context/UserContext';
 import Auth from './components/Auth';
@@ -16,15 +16,22 @@ import PageNotFound from './components/PageNotFound';
 function App() {    
     const { login } = useUserContext();
     
+    const [loggedIn, setLoggedIn] = useState(false);
+
     useEffect(() => {
         fetch('/me')
         .then(res => {
             if (res.ok) {
-                res.json().then(data => login(data));
+                res.json().then(data => {
+                    if (!loggedIn) {
+                        login(data);
+                        setLoggedIn(true);
+                    }
+                });
             }
         })
         .catch(error => console.error(error));
-    }, []);
+    }, [loggedIn, login]);
 
     return (
         <div>

@@ -22,7 +22,7 @@ function UserWorkouts() {
             weight: '',
             duration: ''
         });
-    }, []);
+    }, [setNewWorkout]);
 
     function handleAddToWorkout(day) {
         setNewWorkout({ ...newWorkout, day: day });

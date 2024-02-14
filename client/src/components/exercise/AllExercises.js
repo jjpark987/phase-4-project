@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAttributesContext } from "../../context/AttributesContext";
+import { useGifsContext } from "../../context/GifsContext";
 import Exercise from "./Exercise";
 import Pagination from "./Pagination";
 
 function AllExercises() {
     const { uniqueAttributes, setUniqueAttributes } = useAttributesContext();
+    const { setGifs } = useGifsContext();
 
     const [exercises, setExercises] = useState([]);
     const [filteredExercises, setFilteredExercises] = useState([]);
@@ -17,17 +19,6 @@ function AllExercises() {
     const [totalPages, setTotalPages] = useState(1);
     
     useEffect(() => {
-        fetch('/exercises')
-        .then(res => {
-            if (res.ok) {
-                res.json().then(allExercises => {
-                    setExercises(allExercises);
-                    setFilteredExercises(allExercises);
-                });
-            }
-        })
-        .catch(error => console.error(error));
-
         fetch('/exercises/unique_attributes')
         .then(res => {
             if (res.ok) {
@@ -41,9 +32,52 @@ function AllExercises() {
             }
         })
         .catch(error => console.error(error));
-    }, []);
+
+        fetch('/exercises/gifs')
+        .then(res => {
+            if (res.ok) {
+                res.json().then(allGifs => setGifs(allGifs));
+            }
+        })
+        .catch(error => console.error(error));
+
+        fetch('/exercises')
+        .then(res => {
+            if (res.ok) {
+                res.json().then(allExercises => {
+                    setExercises(allExercises);
+                    setFilteredExercises(allExercises);
+                });
+            }
+        })
+        .catch(error => console.error(error));
+    }, [setUniqueAttributes, setGifs, setExercises, setFilteredExercises]);
 
     useEffect(() => {
+        function searchExercises(exercise) {
+            return exercise.name.toLowerCase().includes(search.toLowerCase());
+        }
+    
+        function filterBodyPart(exercise) {
+            if (bodyPart === exercise.body_part || bodyPart === '') {
+                return exercise;
+            }
+        }
+    
+        function filterEquipment(exercise) {
+            if (equipment === exercise.equipment || equipment === '') {
+                return exercise;
+            }
+        }
+    
+        function sortByLogic(a, b) {
+            if (sortBy === 'alphabet') {
+                return a.name.localeCompare(b.name);
+            } else {
+                return a.target.localeCompare(b.target);
+            }
+        }
+
         const filtered = exercises
             .filter(exercise => searchExercises(exercise))
             .filter(exercise => filterBodyPart(exercise))
@@ -54,30 +88,6 @@ function AllExercises() {
         setTotalPages(Math.ceil(filtered.length / 12));
         setCurrentPage(1);
     }, [exercises, search, bodyPart, equipment, sortBy]);
-
-    function searchExercises(exercise) {
-        return exercise.name.toLowerCase().includes(search.toLowerCase());
-    }
-
-    function filterBodyPart(exercise) {
-        if (bodyPart === exercise.body_part || bodyPart === '') {
-            return exercise;
-        }
-    }
-
-    function filterEquipment(exercise) {
-        if (equipment === exercise.equipment || equipment === '') {
-            return exercise;
-        }
-    }
-
-    function sortByLogic(a, b) {
-        if (sortBy === 'alphabet') {
-            return a.name.localeCompare(b.name);
-        } else {
-            return a.target.localeCompare(b.target);
-        }
-    }
 
     function clearSelections() {
         setSearch('');
@@ -119,7 +129,7 @@ function AllExercises() {
                         <Exercise key={exercise.id} exercise={exercise} />
                     ))}
                 </div> :
-                <div id='no-results-msg'>No results found</div>}
+                <div id='no-results-msg'>No results</div>}
             <div id='page-navigation'>
                 <Pagination 
                     nPages={totalPages}

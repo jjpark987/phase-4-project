@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
 
     # Exercises
-    resources :exercises, only: [:index, :create]
-    get '/exercises/unique_attributes', to: 'exercises#unique_attributes'
+    resources :exercises, only: [:index, :create] do
+        collection do
+            get 'unique_attributes'
+            get 'gifs'
+        end
+    end
 
     # Workouts
     resources :workouts, only: [:create, :update, :destroy]

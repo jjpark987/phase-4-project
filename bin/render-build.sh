@@ -15,5 +15,7 @@ cp -a client/build/. public/
 # builds the back end code
 bundle install
 bundle exec rake db:migrate
+bundle exec rake db:seed
+ruby ./store_gif_blob_for_all_exercises.rb
 
 echo '...finished running render-build.sh'
