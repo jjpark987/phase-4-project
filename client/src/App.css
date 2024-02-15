@@ -373,7 +373,6 @@ nav * {
 }
 
 #exercise img {
-    width: 300px;
     border-radius: 20px;
 }
 
@@ -539,7 +538,7 @@ nav * {
     border-radius: 20px;
 }
 
-/* PageNotFound LoginPrompt */
+/* PageNotFound Loading LoginPrompt */
 .flex-center {
     display: flex;
     place-content: center;

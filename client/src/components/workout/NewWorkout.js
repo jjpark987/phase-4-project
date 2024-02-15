@@ -125,9 +125,12 @@ function NewWorkout() {
                             </select>
                             <Link to='/exercises'>Select an exercise</Link>
                             <h3>{newWorkout.exercise.name}</h3>
-                            <img 
-                                src={gifs[`${newWorkout.exercise.id}`] || '/no-gif-default.jpg'} 
-                                alt={newWorkout.exercise.name}                         />
+                            {gifs[`${newWorkout.exercise.id}`] && (
+                                <img
+                                    src={gifs[`${newWorkout.exercise.id}`]} 
+                                    alt={newWorkout.exercise.name} 
+                                />
+                            )}
                         </div>
                     </form>
                 </div>

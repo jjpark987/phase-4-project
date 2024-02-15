@@ -126,10 +126,12 @@ function EditWorkout() {
                             </select>
                             <Link to='/exercises'>Select an exercise</Link>
                             <h3>{editWorkout.exercise.name}</h3>
-                            <img 
-                                src={gifs[`${editWorkout.exercise.id}`] || '/no-gif-default.jpg'} 
-                                alt={editWorkout.exercise.name} 
-                            />
+                            {gifs[`${editWorkout.exercise.id}`] && (
+                                <img
+                                    src={gifs[`${editWorkout.exercise.id}`]} 
+                                    alt={editWorkout.exercise.name} 
+                                />
+                            )}
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useUserContext } from "../../context/UserContext";
 import { useGifsContext } from "../../context/GifsContext";
 import { useNewWorkoutContext } from "../../context/NewWorkoutContext";
@@ -12,6 +13,12 @@ function Exercise({ exercise }) {
     const { gifs } = useGifsContext();
     const { newWorkout, setNewWorkout } = useNewWorkoutContext();
     const { showEditWorkouts, editWorkout, setEditWorkout } = useEditWorkoutContext();
+
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        setLoaded(true);
+    }, [gifs]);
 
     function handleExerciseChangeEdit() {
         setEditWorkout({ ...editWorkout, exercise: exercise });
@@ -26,10 +33,33 @@ function Exercise({ exercise }) {
     return (
         <div id='exercise'>
             <h3>{exercise.name}</h3>
-            <img 
-                src={gifs[exercise.id] || '/no-gif-default.jpg'} 
-                alt={exercise.name}
-            />
+            {loaded ? (
+                gifs[exercise.id] ? (
+                    <LazyLoadImage
+                        width={300}
+                        height={300}
+                        src={gifs[exercise.id]}
+                        alt={exercise.name}
+                        placeholderSrc='white-background.jpg'
+                    />
+                ) : (
+                    <LazyLoadImage
+                        width={300}
+                        height={300}
+                        src='no-gif-default.jpg'
+                        alt={exercise.name}
+                        placeholderSrc='no-gif-default.jpg'
+                        effect='blur'
+                    />
+                )
+            ) : (
+                <img
+                    width={300}
+                    height={300}
+                    src='white-background.jpg'
+                    alt='Loading...'
+                />
+            )}
             <p>Target | <b>{exercise.target}</b></p>
             <p>Equipment | {exercise.equipment}</p>
             {showEditWorkouts ? (

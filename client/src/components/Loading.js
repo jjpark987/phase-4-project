@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function LoginPrompt() {
+export default function Loading() {
     return (
         <div className='flex-center'>
-            <h1>Please Log In</h1>
+            <h1>Loading...</h1>
         </div>
     );
 }

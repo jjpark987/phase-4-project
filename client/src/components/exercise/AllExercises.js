@@ -123,13 +123,12 @@ function AllExercises() {
                 <button type='button' onClick={() => clearSelections()}>Clear</button>
             </form>
             <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
-            {filteredExercises.length !== 0 ? 
-                <div id='exercise-container'>
-                    {filteredExercises.slice((currentPage - 1) * 12, currentPage * 12).map(exercise => (
-                        <Exercise key={exercise.id} exercise={exercise} />
-                    ))}
-                </div> :
-                <div id='no-results-msg'>No results</div>}
+            {(search && filteredExercises.length === 0) && <div id='no-results-msg'>No results</div>}
+            <div id='exercise-container'>
+                {filteredExercises.slice((currentPage - 1) * 12, currentPage * 12).map(exercise => (
+                    <Exercise key={exercise.id} exercise={exercise} />
+                ))}
+            </div>
             <div id='page-navigation'>
                 <Pagination 
                     nPages={totalPages}

@@ -2,7 +2,7 @@
 
 Design and track your weekly workout routine with customized sets, reps, and weight for over 1000 different exercises.
 
-[Video Walkthrough]()
+https://sweaty-h35i.onrender.com/exercises
 
 ## Description
 

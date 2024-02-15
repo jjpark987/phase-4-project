@@ -31,7 +31,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'active_model_serializers', '~> 0.10.14'
 
 # Offers tools for processing and manipulating images attached via Active Storage
-# gem 'image_processing', '~> 1.12', '>= 1.12.2'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 
 # Loads ENV
 gem 'dotenv-rails', '~> 3.0'
