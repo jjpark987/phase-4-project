@@ -17,7 +17,8 @@ function Exercise({ exercise }) {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        setLoaded(true);
+        const areGifsLoaded = Object.values(gifs).every(gif => gif !== null && gif !== undefined);
+        setLoaded(areGifsLoaded);
     }, [gifs]);
 
     function handleExerciseChangeEdit() {
@@ -33,14 +34,14 @@ function Exercise({ exercise }) {
     return (
         <div id='exercise'>
             <h3>{exercise.name}</h3>
-            {loaded ? (
+            {loaded && (
                 gifs[exercise.id] ? (
                     <LazyLoadImage
                         width={300}
                         height={300}
                         src={gifs[exercise.id]}
                         alt={exercise.name}
-                        placeholderSrc='white-background.jpg'
+                        placeholderSrc='loading.jpg'
                     />
                 ) : (
                     <LazyLoadImage
@@ -48,17 +49,8 @@ function Exercise({ exercise }) {
                         height={300}
                         src='no-gif-default.jpg'
                         alt={exercise.name}
-                        placeholderSrc='no-gif-default.jpg'
-                        effect='blur'
                     />
                 )
-            ) : (
-                <img
-                    width={300}
-                    height={300}
-                    src='white-background.jpg'
-                    alt='Loading...'
-                />
             )}
             <p>Target | <b>{exercise.target}</b></p>
             <p>Equipment | {exercise.equipment}</p>
