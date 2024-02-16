@@ -98,32 +98,34 @@ function AllExercises() {
 
     return (
         <div id='all-exercises'>
-            <form id='search-form'>
-                <input
-                    placeholder='Search by name'
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                />
-                <select value={bodyPart} onChange={e => setBodyPart(e.target.value)}>
-                    <option value=''>Filter by body part</option>
-                    {uniqueAttributes.bodyParts.map((bodyPart, index) => (
-                        <option key={index} value={bodyPart}>{bodyPart}</option>
-                    ))}
-                </select>
-                <select value={equipment} onChange={e => setEquipment(e.target.value)}>
-                    <option value=''>Filter by equipment</option>
-                    {uniqueAttributes.equipments.map((equipment, index) => (
-                        <option key={index} value={equipment}>{equipment}</option>
-                    ))}
-                </select>
-                <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-                    <option value='alphabet'>Sort alphabetically</option>
-                    <option value='target'>Sort by target muscle</option>
-                </select>
-                <button type='button' onClick={() => clearSelections()}>Clear</button>
-            </form>
-            <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
-            {(search && filteredExercises.length === 0) && <div id='no-results-msg'>No results</div>}
+            <div id='all-exercises-header'>
+                <form id='search-form'>
+                    <input
+                        placeholder='Search by name'
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                    />
+                    <select value={bodyPart} onChange={e => setBodyPart(e.target.value)}>
+                        <option value=''>Filter by body part</option>
+                        {uniqueAttributes.bodyParts.map((bodyPart, index) => (
+                            <option key={index} value={bodyPart}>{bodyPart}</option>
+                        ))}
+                    </select>
+                    <select value={equipment} onChange={e => setEquipment(e.target.value)}>
+                        <option value=''>Filter by equipment</option>
+                        {uniqueAttributes.equipments.map((equipment, index) => (
+                            <option key={index} value={equipment}>{equipment}</option>
+                        ))}
+                    </select>
+                    <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                        <option value='alphabet'>Sort alphabetically</option>
+                        <option value='target'>Sort by target muscle</option>
+                    </select>
+                    <button type='button' onClick={() => clearSelections()}>Clear</button>
+                </form>
+                <Link id='add-exercise-link' to='/exercises/new'>Add new exercise</Link>
+                {(search && filteredExercises.length === 0) && <div id='no-results-msg'>No results</div>}
+            </div>
             <div id='exercise-container'>
                 {filteredExercises.slice((currentPage - 1) * 12, currentPage * 12).map(exercise => (
                     <Exercise key={exercise.id} exercise={exercise} />

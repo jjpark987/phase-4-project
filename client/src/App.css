@@ -257,19 +257,19 @@ nav * {
 /* AllExercises */
 #all-exercises {
     display: grid;
-    grid-template-columns: 20vw 1fr 1fr 10vw 20vw;
+    grid-template-columns: 15vw 1fr 15vw;
     grid-template-areas:
-        '. search-form search-form add-exercise .'
-        '. exercise-container exercise-container exercise-container .'
-        '. page-navigation page-navigation page-navigation .';
+        '. header .'
+        '. exercise-container .'
+        '. page-navigation .';
     justify-items: center;
     padding-top: 11vh;
 }
 
-#search-form {
-    grid-area: search-form;
-    width: 100%;
+#all-exercises-header {
+    grid-area: header;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -282,7 +282,7 @@ nav * {
 }
 
 #search-form input {
-    width: 18vw;
+    width: 15vw;
 }
 
 #search-form button {
@@ -296,11 +296,11 @@ nav * {
     border: none;
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
-    place-self: end;
     color: black;
-    font-size: large;
+    font-size: medium;
     text-align: center;
     text-decoration: none;
+    margin-left: 3vw;
     padding: 8px;
 }
 
@@ -370,6 +370,11 @@ nav * {
 #exercise h3 {
     place-self: center;
     text-align: center;
+}
+
+#exercise div {
+    display: flex;
+    justify-content: center;
 }
 
 #exercise img {

@@ -34,24 +34,26 @@ function Exercise({ exercise }) {
     return (
         <div id='exercise'>
             <h3>{exercise.name}</h3>
-            {loaded && (
-                gifs[exercise.id] ? (
-                    <LazyLoadImage
-                        width={300}
-                        height={300}
-                        src={gifs[exercise.id]}
-                        alt={exercise.name}
-                        placeholderSrc='loading.jpg'
-                    />
-                ) : (
-                    <LazyLoadImage
-                        width={300}
-                        height={300}
-                        src='no-gif-default.jpg'
-                        alt={exercise.name}
-                    />
-                )
-            )}
+            <div>
+                {loaded && (
+                    gifs[exercise.id] ? (
+                        <LazyLoadImage
+                            width={300}
+                            height={300}
+                            src={gifs[exercise.id]}
+                            alt={exercise.name}
+                            placeholderSrc='loading.jpg'
+                        />
+                    ) : (
+                        <LazyLoadImage
+                            width={300}
+                            height={300}
+                            src='no-gif-default.jpg'
+                            alt={exercise.name}
+                        />
+                    )
+                )}
+            </div>
             <p>Target | <b>{exercise.target}</b></p>
             <p>Equipment | {exercise.equipment}</p>
             {showEditWorkouts ? (
