@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'rest-client'
-
 puts 'Seeding exercises from ExerciseDB...'
 
 response = RestClient.get 'https://exercisedb.p.rapidapi.com/exercises', {
